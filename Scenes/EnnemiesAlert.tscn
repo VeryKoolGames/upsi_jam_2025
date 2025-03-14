@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://c0m5mmph4eqs8"]
+
+[ext_resource type="Texture2D" uid="uid://du1j5slratbhn" path="res://Sprites/EnnemiesAlert.png" id="1_t3hh6"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="EnnemiesAlert" type="Sprite2D" parent="."]
+position = Vector2(0, 36)
+texture = ExtResource("1_t3hh6")
