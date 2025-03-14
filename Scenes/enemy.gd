@@ -4,6 +4,7 @@ var speed = 100  # Movement speed
 var player: Node2D  # Reference to player node
 
 func _ready():
+	add_to_group("enemy")
 	player = get_tree().get_first_node_in_group("player")
 	if !player:
 		push_error("Enemy cannot find player node!")

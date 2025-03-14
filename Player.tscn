@@ -37,6 +37,8 @@ unique_name_in_owner = true
 script = ExtResource("4_xxkd1")
 
 [node name="Walls" type="StaticBody2D" parent="."]
+collision_layer = 3
+collision_mask = 3
 
 [node name="leftWall" type="CollisionShape2D" parent="Walls"]
 position = Vector2(-955, 6)
