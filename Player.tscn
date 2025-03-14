@@ -1,14 +1,17 @@
-[gd_scene load_steps=7 format=3 uid="uid://otlm4qvh6cx"]
+[gd_scene load_steps=9 format=3 uid="uid://otlm4qvh6cx"]
 
 [ext_resource type="Script" uid="uid://cd4rt1lm4asto" path="res://Scripts/player_movement.gd" id="1_2ibxi"]
 [ext_resource type="Texture2D" uid="uid://peyfspvt3nvc" path="res://Sprites/icon.svg" id="2_o2i67"]
 [ext_resource type="PackedScene" uid="uid://dqsvnfjk7e8rf" path="res://shape.tscn" id="3_2feor"]
 [ext_resource type="Script" uid="uid://bmmu75tdlondq" path="res://Scripts/shape_manager.gd" id="4_xxkd1"]
+[ext_resource type="Script" uid="uid://i0w0tr8g0c2j" path="res://enemy_spawner.gd" id="5_tdg3f"]
+[ext_resource type="PackedScene" uid="uid://n8nx7vjj0lqy" path="res://Scenes/enemy.tscn" id="6_dtqjt"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_o2i67"]
 radius = 63.0714
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_e80uo"]
+normal = Vector2(-0.0120336, 0.999928)
 
 [node name="Player" type="Node2D"]
 
@@ -30,15 +33,31 @@ position = Vector2(0, 167)
 position = Vector2(-176, 87)
 
 [node name="ShapeManager" type="Node2D" parent="."]
+unique_name_in_owner = true
 script = ExtResource("4_xxkd1")
 
 [node name="Walls" type="StaticBody2D" parent="."]
 
 [node name="leftWall" type="CollisionShape2D" parent="Walls"]
-position = Vector2(-572, 1)
+position = Vector2(-955, 6)
+rotation = 4.71239
+shape = SubResource("WorldBoundaryShape2D_e80uo")
+
+[node name="rightWall" type="CollisionShape2D" parent="Walls"]
+position = Vector2(960, -17)
 rotation = 1.55876
 shape = SubResource("WorldBoundaryShape2D_e80uo")
 
 [node name="botWall" type="CollisionShape2D" parent="Walls"]
-position = Vector2(2, 323)
+position = Vector2(2, 538)
+rotation = 3.14159
 shape = SubResource("WorldBoundaryShape2D_e80uo")
+
+[node name="topWall" type="CollisionShape2D" parent="Walls"]
+position = Vector2(2, -542)
+shape = SubResource("WorldBoundaryShape2D_e80uo")
+
+[node name="EnemySpawner" type="Node2D" parent="."]
+position = Vector2(-2, -2)
+script = ExtResource("5_tdg3f")
+enemy_scene = ExtResource("6_dtqjt")
