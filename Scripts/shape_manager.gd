@@ -41,7 +41,9 @@ func _get_closest_node_to_mouse() -> GameShape:
 
 func _launch_shape_towards_mouse() -> void:
 	print("Launching closest shape " + closest_shape.name)
+	closest_shape.is_shot = true
 	closest_shape.collision_layer = 2
+	closest_shape.collision_mask = 2
 	var original_global_pos = closest_shape.global_position
 	shapes.erase(closest_shape)
 	var old_parent = closest_shape.get_parent()
