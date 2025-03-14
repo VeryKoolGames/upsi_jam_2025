@@ -1,0 +1,44 @@
+[gd_scene load_steps=7 format=3 uid="uid://otlm4qvh6cx"]
+
+[ext_resource type="Script" uid="uid://cd4rt1lm4asto" path="res://Scripts/player_movement.gd" id="1_2ibxi"]
+[ext_resource type="Texture2D" uid="uid://peyfspvt3nvc" path="res://Sprites/icon.svg" id="2_o2i67"]
+[ext_resource type="PackedScene" uid="uid://dqsvnfjk7e8rf" path="res://shape.tscn" id="3_2feor"]
+[ext_resource type="Script" uid="uid://bmmu75tdlondq" path="res://Scripts/shape_manager.gd" id="4_xxkd1"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_o2i67"]
+radius = 63.0714
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_e80uo"]
+
+[node name="Player" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+script = ExtResource("1_2ibxi")
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
+texture = ExtResource("2_o2i67")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+shape = SubResource("CircleShape2D_o2i67")
+
+[node name="Shape" parent="CharacterBody2D" instance=ExtResource("3_2feor")]
+position = Vector2(0, 167)
+
+[node name="Shape2" parent="CharacterBody2D" instance=ExtResource("3_2feor")]
+position = Vector2(-176, 87)
+
+[node name="ShapeManager" type="Node2D" parent="."]
+script = ExtResource("4_xxkd1")
+
+[node name="Walls" type="StaticBody2D" parent="."]
+
+[node name="leftWall" type="CollisionShape2D" parent="Walls"]
+position = Vector2(-572, 1)
+rotation = 1.55876
+shape = SubResource("WorldBoundaryShape2D_e80uo")
+
+[node name="botWall" type="CollisionShape2D" parent="Walls"]
+position = Vector2(2, 323)
+shape = SubResource("WorldBoundaryShape2D_e80uo")
