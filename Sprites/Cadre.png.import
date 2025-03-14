@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c8jpye7a6bbr2"
-path="res://.godot/imported/EnnemyAlertGradient.png-a1d7c81a49b4b85090e1a7fb6a77ad34.ctex"
+uid="uid://fdsk4ws4k5j0"
+path="res://.godot/imported/Cadre.png-781d657a3228ecee3ee32fd635426be2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/EnnemyAlertGradient.png"
-dest_files=["res://.godot/imported/EnnemyAlertGradient.png-a1d7c81a49b4b85090e1a7fb6a77ad34.ctex"]
+source_file="res://Sprites/Cadre.png"
+dest_files=["res://.godot/imported/Cadre.png-781d657a3228ecee3ee32fd635426be2.ctex"]
 
 [params]
 
