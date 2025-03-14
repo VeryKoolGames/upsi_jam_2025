@@ -34,10 +34,14 @@ func _get_closest_node_to_mouse() -> GameShape:
 	return nearest_shape
 
 func _launch_shape_towards_mouse() -> void:
+	var original_global_pos = closest_shape.global_position
 	closest_shape.remove_from_group("shapes")
-	closest_shape.get_parent().remove_child(closest_shape)
+	var old_parent = closest_shape.get_parent()
+	old_parent.remove_child(closest_shape)
 	owner.add_child(closest_shape)
+	closest_shape.global_position = original_global_pos
 	var mouse_pos = get_global_mouse_position()
 	var velocity_vector = mouse_pos - closest_shape.global_position
+	velocity_vector = velocity_vector * 1.2
 	closest_shape.body.apply_impulse(velocity_vector)
 	shapes = get_tree().get_nodes_in_group("shapes")
