@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://dicn6qsrupon1"]
+
+[ext_resource type="Texture2D" uid="uid://dudo877wy0wgq" path="res://Sprites/Carré.svg" id="1_lf6h2"]
+[ext_resource type="Texture2D" uid="uid://cwps7srghtsga" path="res://Sprites/Grid.svg" id="2_laxsj"]
+[ext_resource type="Texture2D" uid="uid://d38226rqoridu" path="res://Sprites/BorderGradient.png" id="3_etw40"]
+[ext_resource type="PackedScene" uid="uid://c8s8qyrng86ep" path="res://Scenes/LevelAndScore.tscn" id="4_laxsj"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="BackgroundColor" type="Sprite2D" parent="."]
+modulate = Color(0.00392157, 0.121569, 0.215686, 1)
+position = Vector2(963, 543)
+scale = Vector2(19.26, 11.0803)
+texture = ExtResource("1_lf6h2")
+
+[node name="Grid" type="Sprite2D" parent="."]
+position = Vector2(968, 537)
+texture = ExtResource("2_laxsj")
+
+[node name="BorderGradient" type="Sprite2D" parent="."]
+position = Vector2(960, 540)
+texture = ExtResource("3_etw40")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="LevelUI" parent="CanvasLayer" instance=ExtResource("4_laxsj")]
+offset_left = 1.0
+offset_right = 1.0
