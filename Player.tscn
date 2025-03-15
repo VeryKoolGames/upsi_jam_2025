@@ -108,6 +108,7 @@ shape = SubResource("WorldBoundaryShape2D_e80uo")
 position = Vector2(418, -392)
 script = ExtResource("5_tdg3f")
 enemy_scene = ExtResource("6_dtqjt")
+spawn_margin = 1000
 camera = NodePath("../Camera2D")
 
 [node name="Line2D" type="Line2D" parent="."]

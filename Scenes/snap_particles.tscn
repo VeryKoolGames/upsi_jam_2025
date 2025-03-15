@@ -1,5 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://bi7yny72t34p4"]
+[gd_scene load_steps=7 format=3 uid="uid://eeqfni3unyi0"]
 
+[ext_resource type="Script" uid="uid://b74a8bfo86ehr" path="res://Scenes/snap_particles.gd" id="1_iqlsw"]
 [ext_resource type="Texture2D" uid="uid://dxqetl4tmw8dr" path="res://Sprites/Carré_Dotted.svg" id="1_p10l6"]
 [ext_resource type="Texture2D" uid="uid://dudo877wy0wgq" path="res://Sprites/Carré.svg" id="2_s8kgx"]
 
@@ -15,9 +16,30 @@ point_count = 2
 [sub_resource type="Gradient" id="Gradient_iqlsw"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
-[node name="SnapParticles" type="Node2D"]
+[node name="SnapParticles" type="Node2D" node_paths=PackedStringArray("particle_one", "particle_two")]
+script = ExtResource("1_iqlsw")
+particle_one = NodePath("OutlineGrow2")
+particle_two = NodePath("OutlineGrow")
+
+[node name="OutlineGrow2" type="CPUParticles2D" parent="."]
+position = Vector2(2, 0)
+emitting = false
+amount = 1
+texture = ExtResource("2_s8kgx")
+one_shot = true
+speed_scale = 2.0
+lifetime_randomness = 0.3
+direction = Vector2(0, 0)
+spread = 0.0
+gravity = Vector2(0, 0)
+damping_curve = SubResource("Curve_lt6it")
+scale_amount_min = 1.2
+scale_amount_max = 1.2
+scale_amount_curve = SubResource("Curve_s8kgx")
+color_ramp = SubResource("Gradient_iqlsw")
 
 [node name="OutlineGrow" type="CPUParticles2D" parent="."]
+position = Vector2(2, 0)
 emitting = false
 amount = 1
 texture = ExtResource("1_p10l6")
@@ -30,22 +52,5 @@ gravity = Vector2(0, 0)
 damping_curve = SubResource("Curve_lt6it")
 scale_amount_min = 2.0
 scale_amount_max = 2.0
-scale_amount_curve = SubResource("Curve_s8kgx")
-color_ramp = SubResource("Gradient_iqlsw")
-
-[node name="OutlineGrow2" type="CPUParticles2D" parent="OutlineGrow"]
-emitting = false
-amount = 1
-texture = ExtResource("2_s8kgx")
-lifetime = 1.8
-one_shot = true
-speed_scale = 2.0
-lifetime_randomness = 0.3
-direction = Vector2(0, 0)
-spread = 0.0
-gravity = Vector2(0, 0)
-damping_curve = SubResource("Curve_lt6it")
-scale_amount_min = 1.2
-scale_amount_max = 1.2
 scale_amount_curve = SubResource("Curve_s8kgx")
 color_ramp = SubResource("Gradient_iqlsw")

@@ -20,6 +20,7 @@ func _process(delta):
 
 func on_enemy_killed():
 	get_node("Sprite2D").hide()
+	remove_from_group("enemy")
 	explosionParticles.play_death_particles()
 	await get_tree().create_timer(1.0).timeout
 	queue_free()

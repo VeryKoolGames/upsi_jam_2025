@@ -25,6 +25,8 @@ func _get_closest_node_to_mouse() -> GameShape:
 		return null
 	var mouse_pos = get_global_mouse_position()
 	var nearest_shape = shapes[0]
+	if not nearest_shape:
+		return null
 	var near_pos = nearest_shape.global_position
 	var near_sqr = mouse_pos.distance_squared_to(near_pos)
 	for i in range(1, shapes.size()):
@@ -55,7 +57,6 @@ func _launch_shape_towards_mouse() -> void:
 	var mouse_pos = get_global_mouse_position()
 	var velocity_vector = mouse_pos - closest_shape.global_position
 	velocity_vector = velocity_vector * 4
-	print(velocity_vector)
 	closest_shape.on_shoot()
 	closest_shape.new_velocity = velocity_vector
 	should_launch = true
