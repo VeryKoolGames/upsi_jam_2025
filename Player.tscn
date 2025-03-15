@@ -36,27 +36,42 @@ position = Vector2(-176, 87)
 unique_name_in_owner = true
 script = ExtResource("4_xxkd1")
 
-[node name="Walls" type="StaticBody2D" parent="."]
+[node name="Walls" type="Node2D" parent="."]
+
+[node name="Area2D" type="StaticBody2D" parent="Walls" groups=["walls"]]
+position = Vector2(-960, 0)
+rotation = -1.5708
 collision_layer = 3
 collision_mask = 3
 
-[node name="leftWall" type="CollisionShape2D" parent="Walls"]
-position = Vector2(-955, 6)
-rotation = 4.71239
+[node name="leftWall" type="CollisionShape2D" parent="Walls/Area2D"]
 shape = SubResource("WorldBoundaryShape2D_e80uo")
 
-[node name="rightWall" type="CollisionShape2D" parent="Walls"]
-position = Vector2(960, -17)
-rotation = 1.55876
+[node name="Area2D2" type="StaticBody2D" parent="Walls" groups=["walls"]]
+position = Vector2(961, 0)
+rotation = 1.5708
+collision_layer = 3
+collision_mask = 3
+
+[node name="rightWall" type="CollisionShape2D" parent="Walls/Area2D2"]
+scale = Vector2(1, 1)
 shape = SubResource("WorldBoundaryShape2D_e80uo")
 
-[node name="botWall" type="CollisionShape2D" parent="Walls"]
-position = Vector2(2, 538)
+[node name="Area2D3" type="StaticBody2D" parent="Walls" groups=["walls"]]
+position = Vector2(0, -540)
+collision_layer = 3
+collision_mask = 3
+
+[node name="topWall" type="CollisionShape2D" parent="Walls/Area2D3"]
+shape = SubResource("WorldBoundaryShape2D_e80uo")
+
+[node name="Area2D4" type="StaticBody2D" parent="Walls" groups=["walls"]]
+position = Vector2(-14, 541)
 rotation = 3.14159
-shape = SubResource("WorldBoundaryShape2D_e80uo")
+collision_layer = 3
+collision_mask = 3
 
-[node name="topWall" type="CollisionShape2D" parent="Walls"]
-position = Vector2(2, -542)
+[node name="botWall" type="CollisionShape2D" parent="Walls/Area2D4"]
 shape = SubResource("WorldBoundaryShape2D_e80uo")
 
 [node name="EnemySpawner" type="Node2D" parent="."]
