@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://ux5cvlxw14op"]
+[gd_scene load_steps=6 format=3 uid="uid://f6ggcfwbj2is"]
 
 [ext_resource type="Texture2D" uid="uid://d2pyrurvdn6xw" path="res://Sprites/QuitGame-1.png" id="1_7bk68"]
 [ext_resource type="Script" uid="uid://ccdansdssd61n" path="res://Scenes/main_menu_buttons.gd" id="1_hvmtc"]

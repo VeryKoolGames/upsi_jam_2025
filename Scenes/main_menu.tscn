@@ -1,12 +1,12 @@
-[gd_scene load_steps=8 format=3 uid="uid://baqdtsftj30c8"]
+[gd_scene load_steps=8 format=3 uid="uid://bd2va6fqq64dt"]
 
 [ext_resource type="Texture2D" uid="uid://dudo877wy0wgq" path="res://Sprites/Carré.svg" id="1_opfnp"]
 [ext_resource type="Texture2D" uid="uid://fdsk4ws4k5j0" path="res://Sprites/Cadre.png" id="2_cp0ys"]
 [ext_resource type="Texture2D" uid="uid://d38226rqoridu" path="res://Sprites/BorderGradient.png" id="3_yhxw7"]
 [ext_resource type="Texture2D" uid="uid://cwps7srghtsga" path="res://Sprites/Grid.svg" id="4_trj04"]
-[ext_resource type="PackedScene" uid="uid://pgblr8gkwaxn" path="res://Scenes/TitleLogo.tscn" id="6_cp0ys"]
-[ext_resource type="PackedScene" uid="uid://ux5cvlxw14op" path="res://Scenes/MainMenuButtons.tscn" id="6_opfnp"]
-[ext_resource type="PackedScene" uid="uid://cuk8ucch5tfpd" path="res://Scenes/pause_menu.tscn" id="7_cp0ys"]
+[ext_resource type="PackedScene" path="res://Scenes/TitleLogo.tscn" id="6_cp0ys"]
+[ext_resource type="PackedScene" uid="uid://f6ggcfwbj2is" path="res://Scenes/MainMenuButtons.tscn" id="6_opfnp"]
+[ext_resource type="PackedScene" path="res://Scenes/pause_menu.tscn" id="7_cp0ys"]
 
 [node name="MAIN_MENU" type="Control"]
 layout_mode = 3
@@ -61,7 +61,6 @@ grow_vertical = 2
 texture = ExtResource("4_trj04")
 
 [node name="MarginContainer" parent="." instance=ExtResource("6_opfnp")]
-visible = false
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -81,6 +80,7 @@ offset_top = 75.0
 offset_bottom = 477.0
 
 [node name="PauseMenu" parent="." instance=ExtResource("7_cp0ys")]
+visible = false
 layout_mode = 1
 offset_left = 3.0
 offset_top = -4.0

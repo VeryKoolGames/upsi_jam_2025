@@ -11,13 +11,14 @@ config_version=5
 [application]
 
 config/name="upsi_jam_2025"
-run/main_scene="uid://c4x5jp3xx3pe2"
+run/main_scene="uid://bd2va6fqq64dt"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://Sprites/icon.svg"
 
 [autoload]
 
 Events="*res://Scripts/Autoloads/Events.gd"
+PlayerScore="*res://player_score.gd"
 
 [display]
 

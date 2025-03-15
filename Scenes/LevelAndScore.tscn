@@ -17,8 +17,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_l062w")
-score_label = NodePath("SCORE")
-timer_label = NodePath("TIMER")
+score_label = NodePath("TIMER")
+timer_label = NodePath("SCORE")
 game_timer = NodePath("GameTimer")
 
 [node name="BG" type="TextureRect" parent="."]

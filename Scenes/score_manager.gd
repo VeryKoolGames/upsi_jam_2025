@@ -7,10 +7,10 @@ var score: int
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	score_label.text = "SCORE: 0"
+	score_label.text = "0"
 	Events.player_scored.connect(_update_score)
 	game_timer.one_shot = true
-	game_timer.wait_time = 30
+	game_timer.wait_time = 15
 	game_timer.start()
 	game_timer.connect("timeout", _on_timer_timeout)
 
@@ -18,11 +18,12 @@ func _process(delta: float) -> void:
 	_update_timer()
 
 func _update_timer():
-	timer_label.text = str(int(game_timer.time_left))
+	timer_label.text = "TIMER: " + str(int(game_timer.time_left))
 
 func _update_score(score_to_add: int):
 	score += score_to_add
-	score_label.text = "SCORE: " + str(score)
+	PlayerScore.player_score += score
+	score_label.text = str(score)
 
 func _on_timer_timeout():
-	print("Game Done")
+	Events.game_ended.emit(true)
