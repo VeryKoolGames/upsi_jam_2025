@@ -15,7 +15,6 @@ func _ready() -> void:
 	add_to_group("shapes")
 	shape_manager = get_node("../%ShapeManager")
 	shape_manager.shapes.append(self)
-	print("I exist now")
 	_set_random_color()
 	_set_random_shape()
 	_set_random_scale()
@@ -34,18 +33,22 @@ func _set_random_scale():
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.get_parent().is_in_group("enemy") and !is_shot:
 		shape_manager.remove_shape(self)
-		area.owner.queue_free()
+		area.owner.on_enemy_killed()
 		queue_free()
 	elif area.owner.is_in_group("enemy"):
 		score_to_be_added *= 2
-		area.owner.queue_free()
+		area.owner.on_enemy_killed()
 		Events.emit_signal("player_scored", score_to_be_added)
-	elif area.owner.is_in_group("shapes") and area.owner.can_be_picked_up:
+	elif area.owner.is_in_group("shapes") and area.owner.can_be_picked_up and not is_shot:
 		var shape: GameShape = area.owner
 		shape.is_shot = false
 		shape.can_be_picked_up = false
 		shape.reparent(self.get_parent())
 		shape_manager.add_shape(shape)
+
+func on_shoot():
+	await get_tree().create_timer(2.0).timeout
+	can_be_picked_up = true
 
 func _physics_process(delta: float) -> void:
 	if is_shot:
@@ -55,7 +58,3 @@ func _physics_process(delta: float) -> void:
 			new_velocity = new_velocity.bounce(collision_info.get_normal())
 			new_velocity.x *= 0.8
 			new_velocity.y *= 0.8
-		if new_velocity.x <= 5 and new_velocity.y <= 5:
-			await get_tree().create_timer(2.0).timeout
-			can_be_picked_up = true
-			is_shot = false

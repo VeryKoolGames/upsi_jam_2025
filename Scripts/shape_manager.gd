@@ -46,9 +46,6 @@ func add_shape(shape):
 
 func _launch_shape_towards_mouse() -> void:
 	closest_shape.is_shot = true
-	print("Launchig shape")
-	closest_shape.collision_layer = 2
-	closest_shape.collision_mask = 2
 	var original_global_pos = closest_shape.global_position
 	shapes.erase(closest_shape)
 	var old_parent = closest_shape.get_parent()
@@ -59,6 +56,7 @@ func _launch_shape_towards_mouse() -> void:
 	var velocity_vector = mouse_pos - closest_shape.global_position
 	velocity_vector = velocity_vector * 4
 	print(velocity_vector)
+	closest_shape.on_shoot()
 	closest_shape.new_velocity = velocity_vector
 	should_launch = true
 	closest_shape = null

@@ -13,7 +13,7 @@
 radius = 34.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tdg3f"]
-radius = 80.0562
+radius = 60.0333
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_e80uo"]
 normal = Vector2(-0.0120336, 0.999928)

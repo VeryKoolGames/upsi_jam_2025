@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://dgulj44aqy4fb"]
+[gd_scene load_steps=8 format=3 uid="uid://0jv0gwp3s0ks"]
 
 [ext_resource type="Texture2D" uid="uid://dolarhdkcjpau" path="res://Sprites/particles.png" id="1_ahgu2"]
+[ext_resource type="Script" uid="uid://chjh7mvpjy8uj" path="res://Scenes/explosion_particles.gd" id="1_svfft"]
 [ext_resource type="Texture2D" uid="uid://n74gchi0uqmi" path="res://Sprites/particleRectangle.png" id="2_bwcjq"]
 
 [sub_resource type="Curve" id="Curve_svfft"]
@@ -8,21 +9,49 @@ _limits = [-360.0, 360.0, 0.0, 1.0]
 _data = [Vector2(0, 360), 0.0, 0.0, 0, 0, Vector2(0.568063, -348.144), -2084.35, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="Curve" id="Curve_ahgu2"]
+[sub_resource type="Curve" id="Curve_c7l22"]
 _limits = [0.0, 100.0, 0.0, 1.0]
-_data = [Vector2(0, 0), 0.0, -3.35531, 0, 0, Vector2(0.727749, 99.1322), 283.164, 0.0, 0, 0]
+_data = [Vector2(0.0157068, 100), 0.0, 0.0, 0, 0, Vector2(1, 0), -267.049, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="Curve" id="Curve_bwcjq"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.97508, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="Curve" id="Curve_c7l22"]
+[sub_resource type="Curve" id="Curve_ahgu2"]
 _limits = [0.0, 100.0, 0.0, 1.0]
-_data = [Vector2(0.0157068, 100), 0.0, 0.0, 0, 0, Vector2(1, 0), -267.049, 0.0, 0, 0]
+_data = [Vector2(0, 0), 0.0, -3.35531, 0, 0, Vector2(0.727749, 99.1322), 283.164, 0.0, 0, 0]
 point_count = 2
 
-[node name="Explosion_Particles" type="Node2D"]
+[node name="Explosion_Particles" type="Node2D" node_paths=PackedStringArray("particle_one", "particle_two")]
+script = ExtResource("1_svfft")
+particle_one = NodePath("CPUParticles2D")
+particle_two = NodePath("CPUParticlesImpact")
+
+[node name="CPUParticlesImpact" type="CPUParticles2D" parent="."]
+emitting = false
+texture = ExtResource("2_bwcjq")
+lifetime = 0.6
+one_shot = true
+speed_scale = 1.2
+explosiveness = 0.87
+randomness = 0.75
+lifetime_randomness = 0.3
+particle_flag_align_y = true
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 300.0
+initial_velocity_max = 300.0
+angular_velocity_min = 1.0
+angular_velocity_max = 1.0
+angular_velocity_curve = SubResource("Curve_svfft")
+damping_max = 20.0
+damping_curve = SubResource("Curve_c7l22")
+scale_amount_min = 0.5
+scale_amount_max = 0.5
+scale_amount_curve = SubResource("Curve_bwcjq")
+color = Color(1, 0.784314, 0.215686, 1)
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 emitting = false
@@ -50,29 +79,3 @@ scale_amount_min = 0.5
 scale_amount_max = 0.5
 scale_amount_curve = SubResource("Curve_bwcjq")
 color = Color(1, 0, 0.0156863, 1)
-
-[node name="CPUParticlesImpact" type="CPUParticles2D" parent="CPUParticles2D"]
-emitting = false
-amount = 6
-texture = ExtResource("2_bwcjq")
-lifetime = 0.2
-one_shot = true
-speed_scale = 1.4
-explosiveness = 0.87
-randomness = 0.75
-lifetime_randomness = 0.3
-particle_flag_align_y = true
-direction = Vector2(0, 0)
-spread = 180.0
-gravity = Vector2(0, 0)
-initial_velocity_min = 300.0
-initial_velocity_max = 300.0
-angular_velocity_min = 1.0
-angular_velocity_max = 1.0
-angular_velocity_curve = SubResource("Curve_svfft")
-damping_max = 20.0
-damping_curve = SubResource("Curve_c7l22")
-scale_amount_min = 0.5
-scale_amount_max = 0.5
-scale_amount_curve = SubResource("Curve_bwcjq")
-color = Color(1, 0.784314, 0.215686, 1)
