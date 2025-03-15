@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://c4x5jp3xx3pe2"]
+[gd_scene load_steps=7 format=3 uid="uid://c4x5jp3xx3pe2"]
 
 [ext_resource type="PackedScene" uid="uid://otlm4qvh6cx" path="res://Player.tscn" id="1_jjgbg"]
 [ext_resource type="PackedScene" uid="uid://c8s8qyrng86ep" path="res://Scenes/LevelAndScore.tscn" id="2_bo1nx"]
 [ext_resource type="Script" uid="uid://cnsvfodv6y40p" path="res://cameraShake.gd" id="2_jjvhh"]
 [ext_resource type="PackedScene" uid="uid://vs2gc7hbww43" path="res://Scenes/end_game_ui.tscn" id="3_8gbba"]
 [ext_resource type="PackedScene" uid="uid://stnv4kvm8g88" path="res://Scenes/pause_menu.tscn" id="5_kry3j"]
+[ext_resource type="AudioStream" uid="uid://m347ow524jsl" path="res://Sounds/mainMusic.wav" id="6_21xkr"]
 
 [node name="Main" type="Node2D"]
 
@@ -29,3 +30,8 @@ visible = false
 visible = false
 
 [node name="CanvasLayer3" type="CanvasLayer" parent="."]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_21xkr")
+volume_db = -10.0
+autoplay = true
