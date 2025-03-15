@@ -1,12 +1,11 @@
 extends Node2D
+class_name ShapeManager
 
 var shapes: Array[Node]
 var closest_shape: GameShape
 var should_launch: bool = true
 @export var aim_line: Line2D
 
-#func _ready() -> void:
-	#shapes = get_tree().get_nodes_in_group("shapes")
 	
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:

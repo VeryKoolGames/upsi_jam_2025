@@ -1,32 +1,38 @@
-[gd_scene load_steps=5 format=3 uid="uid://dqsvnfjk7e8rf"]
+[gd_scene load_steps=8 format=3 uid="uid://dqsvnfjk7e8rf"]
 
 [ext_resource type="Script" uid="uid://cdsvvbrrgasar" path="res://shape.gd" id="1_t2h0s"]
 [ext_resource type="Texture2D" uid="uid://dudo877wy0wgq" path="res://Sprites/Carré.svg" id="2_t2h0s"]
+[ext_resource type="Texture2D" uid="uid://cv3a0cfqdadm7" path="res://Sprites/Cercle.svg" id="3_0ujrv"]
+[ext_resource type="Texture2D" uid="uid://boo5wbqw8ag6b" path="res://Sprites/DemiCercle.svg" id="4_jhyun"]
+[ext_resource type="Texture2D" uid="uid://cd7e7ngvdtcdk" path="res://Sprites/Croissant.svg" id="5_jjkrx"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_77gc5"]
-radius = 60.0333
+radius = 43.1741
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_t2h0s"]
-radius = 82.3893
+radius = 52.1536
 
-[node name="Shape" type="RigidBody2D"]
+[node name="SquareShape" type="RigidBody2D" node_paths=PackedStringArray("sprite")]
 collision_layer = 2
 collision_mask = 2
 gravity_scale = 0.0
 script = ExtResource("1_t2h0s")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_t2h0s")
+possible_colors = Array[Color]([Color(0.737255, 1, 0.00784314, 1), Color(0.145098, 0.176471, 0.909804, 1), Color(1, 0.784314, 0.215686, 1)])
+possible_shapes = Array[Texture2D]([ExtResource("2_t2h0s"), ExtResource("3_0ujrv"), ExtResource("4_jhyun"), ExtResource("5_jjkrx")])
+sprite = NodePath("Node2D/Sprite2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_77gc5")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Node2D" type="Node2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="Sprite2D" type="Sprite2D" parent="Node2D"]
+scale = Vector2(0.639999, 0.639999)
+texture = ExtResource("2_t2h0s")
+
+[node name="Area2D" type="Area2D" parent="Node2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Area2D"]
 shape = SubResource("CircleShape2D_t2h0s")
 
-[node name="PickupTimer" type="Timer" parent="."]
-unique_name_in_owner = true
-
-[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_entered" from="Node2D/Area2D" to="." method="_on_area_2d_area_entered"]

@@ -1,12 +1,13 @@
-[gd_scene load_steps=11 format=3 uid="uid://otlm4qvh6cx"]
+[gd_scene load_steps=12 format=3 uid="uid://otlm4qvh6cx"]
 
 [ext_resource type="Script" uid="uid://cd4rt1lm4asto" path="res://Scripts/player_movement.gd" id="1_2ibxi"]
 [ext_resource type="Texture2D" uid="uid://4lc7xuy3cfr5" path="res://Sprites/Coeur.svg" id="2_tdg3f"]
 [ext_resource type="PackedScene" uid="uid://dqsvnfjk7e8rf" path="res://shape.tscn" id="3_2feor"]
-[ext_resource type="Script" uid="uid://bmmu75tdlondq" path="res://Scripts/shape_manager.gd" id="4_xxkd1"]
+[ext_resource type="Script" uid="uid://cmgbbh8o7nwm" path="res://shape_spawner.gd" id="5_5ncpa"]
 [ext_resource type="Script" uid="uid://i0w0tr8g0c2j" path="res://enemy_spawner.gd" id="5_tdg3f"]
 [ext_resource type="PackedScene" uid="uid://n8nx7vjj0lqy" path="res://Scenes/enemy.tscn" id="6_dtqjt"]
 [ext_resource type="Texture2D" uid="uid://cgkbts6k4taid" path="res://Sprites/LineGradient.svg" id="7_dtqjt"]
+[ext_resource type="PackedScene" uid="uid://gbrrr4ey6d5t" path="res://shape_manager.tscn" id="8_5ncpa"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_o2i67"]
 radius = 34.0
@@ -25,28 +26,48 @@ normal = Vector2(-0.0120336, 0.999928)
 script = ExtResource("1_2ibxi")
 
 [node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
+modulate = Color(0.992157, 0.25098, 0.235294, 1)
 texture = ExtResource("2_tdg3f")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
 shape = SubResource("CircleShape2D_o2i67")
-
-[node name="Shape" parent="CharacterBody2D" instance=ExtResource("3_2feor")]
-position = Vector2(0, 167)
-
-[node name="Shape2" parent="CharacterBody2D" instance=ExtResource("3_2feor")]
-position = Vector2(-176, 87)
 
 [node name="Area2D" type="Area2D" parent="CharacterBody2D"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/Area2D"]
 shape = SubResource("CircleShape2D_tdg3f")
 
-[node name="ShapeManager" type="Node2D" parent="CharacterBody2D" node_paths=PackedStringArray("aim_line")]
-unique_name_in_owner = true
-script = ExtResource("4_xxkd1")
-aim_line = NodePath("../../Line2D")
+[node name="SpawnPoints" type="Node2D" parent="CharacterBody2D"]
+
+[node name="SpawnPoint1" type="Node2D" parent="CharacterBody2D/SpawnPoints"]
+position = Vector2(122, -129)
+metadata/_edit_group_ = true
+
+[node name="SpawnPoint2" type="Node2D" parent="CharacterBody2D/SpawnPoints"]
+position = Vector2(198, -2)
+
+[node name="SpawnPoint3" type="Node2D" parent="CharacterBody2D/SpawnPoints"]
+position = Vector2(-10, -173)
+
+[node name="SpawnPoint4" type="Node2D" parent="CharacterBody2D/SpawnPoints"]
+position = Vector2(-162, -95)
+
+[node name="SpawnPoint5" type="Node2D" parent="CharacterBody2D/SpawnPoints"]
+position = Vector2(104, 155)
+
+[node name="SpawnPoint6" type="Node2D" parent="CharacterBody2D/SpawnPoints"]
+position = Vector2(-91, 170)
+
+[node name="SpawnPoint7" type="Node2D" parent="CharacterBody2D/SpawnPoints"]
+position = Vector2(-163, 56)
+
+[node name="ShapeSpawner" type="Node2D" parent="CharacterBody2D" node_paths=PackedStringArray("spawn_points")]
+script = ExtResource("5_5ncpa")
+spawn_points = [NodePath("../SpawnPoints/SpawnPoint1"), NodePath("../SpawnPoints/SpawnPoint2"), NodePath("../SpawnPoints/SpawnPoint3"), NodePath("../SpawnPoints/SpawnPoint4"), NodePath("../SpawnPoints/SpawnPoint5"), NodePath("../SpawnPoints/SpawnPoint6"), NodePath("../SpawnPoints/SpawnPoint7")]
+shape_scenes = Array[PackedScene]([ExtResource("3_2feor")])
 
 [node name="Walls" type="Node2D" parent="."]
+metadata/_edit_lock_ = true
 
 [node name="Area2D" type="StaticBody2D" parent="Walls" groups=["walls"]]
 position = Vector2(-960, 0)
@@ -64,7 +85,6 @@ collision_layer = 3
 collision_mask = 3
 
 [node name="rightWall" type="CollisionShape2D" parent="Walls/Area2D2"]
-scale = Vector2(1, 1)
 shape = SubResource("WorldBoundaryShape2D_e80uo")
 
 [node name="Area2D3" type="StaticBody2D" parent="Walls" groups=["walls"]]
@@ -84,12 +104,17 @@ collision_mask = 3
 [node name="botWall" type="CollisionShape2D" parent="Walls/Area2D4"]
 shape = SubResource("WorldBoundaryShape2D_e80uo")
 
-[node name="EnemySpawner" type="Node2D" parent="."]
+[node name="EnemySpawner" type="Node2D" parent="." node_paths=PackedStringArray("camera")]
 position = Vector2(418, -392)
 script = ExtResource("5_tdg3f")
 enemy_scene = ExtResource("6_dtqjt")
+camera = NodePath("../Camera2D")
 
 [node name="Line2D" type="Line2D" parent="."]
 texture = ExtResource("7_dtqjt")
+
+[node name="ShapeManager" parent="." node_paths=PackedStringArray("aim_line") instance=ExtResource("8_5ncpa")]
+unique_name_in_owner = true
+aim_line = NodePath("../Line2D")
 
 [connection signal="area_entered" from="CharacterBody2D/Area2D" to="CharacterBody2D" method="_on_area_2d_area_entered"]

@@ -7,6 +7,7 @@
 radius = 23.0
 
 [node name="Enemy" type="Node2D"]
+modulate = Color(1, 0, 0.0156863, 1)
 script = ExtResource("1_1f0kj")
 
 [node name="Area2D" type="Area2D" parent="."]
@@ -15,4 +16,5 @@ script = ExtResource("1_1f0kj")
 shape = SubResource("CircleShape2D_1f0kj")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 4.71239
 texture = ExtResource("2_1f0kj")

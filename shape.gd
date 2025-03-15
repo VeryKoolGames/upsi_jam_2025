@@ -5,21 +5,47 @@ var is_shot: bool
 var can_be_picked_up: bool
 var new_velocity
 var score_to_be_added: int = 10
+var is_attached
+@export var possible_colors: Array[Color]
+@export var possible_shapes: Array[Texture2D]
+@export var sprite: Sprite2D
+var shape_manager: ShapeManager
 
 func _ready() -> void:
 	add_to_group("shapes")
-	get_node("%ShapeManager").shapes.append(self)
+	shape_manager = get_node("../%ShapeManager")
+	shape_manager.shapes.append(self)
+	print("I exist now")
+	_set_random_color()
+	_set_random_shape()
+	_set_random_scale()
 	
+func _set_random_shape():
+	sprite.texture = possible_shapes[randi_range(0, possible_shapes.size() - 1)]
+
+func _set_random_color():
+	sprite.modulate = possible_colors[randi_range(0, possible_colors.size() - 1)]
+
+func _set_random_scale():
+	var test = sprite.get_parent() as Node2D
+	var rand_scale = randf_range(1, 2)
+	test.apply_scale(Vector2(rand_scale, rand_scale))
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.get_parent().is_in_group("enemy") and !is_shot:
-		get_node("%ShapeManager").remove_shape(self)
-		area.get_parent().queue_free()
+		shape_manager.remove_shape(self)
+		area.owner.queue_free()
 		queue_free()
-	elif area.get_parent().is_in_group("enemy"):
+	elif area.owner.is_in_group("enemy"):
 		score_to_be_added *= 2
-		area.get_parent().queue_free()
+		area.owner.queue_free()
 		Events.emit_signal("player_scored", score_to_be_added)
+	elif area.owner.is_in_group("shapes") and area.owner.can_be_picked_up:
+		var shape: GameShape = area.owner
+		shape.is_shot = false
+		shape.can_be_picked_up = false
+		shape.reparent(self.get_parent())
+		shape_manager.add_shape(shape)
 
 func _physics_process(delta: float) -> void:
 	if is_shot:

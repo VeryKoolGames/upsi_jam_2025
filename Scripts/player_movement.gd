@@ -15,13 +15,12 @@ func _physics_process(delta):
 
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
-	if area.get_parent().is_in_group("shapes") and area.get_parent().can_be_picked_up:
-		print("Catching ")
-		var shape: GameShape = area.get_parent()
+	if area.owner.is_in_group("shapes") and area.owner.can_be_picked_up:
+		var shape: GameShape = area.owner
 		shape.is_shot = false
 		shape.can_be_picked_up = false
 		shape.reparent(self)
 		get_node("%ShapeManager").add_shape(shape)
-	elif area.get_parent().is_in_group("enemy"):
+	elif area.owner.is_in_group("enemy"):
 		print("You died")
 		queue_free()

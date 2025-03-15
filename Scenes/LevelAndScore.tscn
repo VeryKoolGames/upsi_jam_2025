@@ -1,20 +1,23 @@
-[gd_scene load_steps=8 format=3 uid="uid://c8s8qyrng86ep"]
+[gd_scene load_steps=9 format=3 uid="uid://c8s8qyrng86ep"]
 
 [ext_resource type="FontFile" uid="uid://4b21mf5p1g08" path="res://Sprites/Orbitron-Regular.ttf" id="1_1kq1x"]
 [ext_resource type="Texture2D" uid="uid://cg7j1xgsstomy" path="res://Sprites/TimerBackground.svg" id="1_al4uf"]
 [ext_resource type="Texture2D" uid="uid://dudo877wy0wgq" path="res://Sprites/Carré.svg" id="1_l1b5m"]
+[ext_resource type="Script" uid="uid://cmyw8rhyy28tf" path="res://Scenes/score_manager.gd" id="1_l062w"]
 [ext_resource type="FontFile" uid="uid://b7ishda7ounim" path="res://Fonts/Orbitron-Regular.ttf" id="1_yg28j"]
 [ext_resource type="Texture2D" uid="uid://fdsk4ws4k5j0" path="res://Sprites/Cadre.png" id="4_cqqkl"]
 [ext_resource type="Texture2D" uid="uid://d38226rqoridu" path="res://Sprites/BorderGradient.png" id="5_x5q7b"]
 [ext_resource type="Texture2D" uid="uid://cwps7srghtsga" path="res://Sprites/Grid.svg" id="6_l1b5m"]
 
-[node name="LevelUI" type="Control"]
+[node name="LevelUI" type="Control" node_paths=PackedStringArray("score_label")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_l062w")
+score_label = NodePath("TIMER")
 
 [node name="BG" type="TextureRect" parent="."]
 modulate = Color(0.00784314, 0.121569, 0.215686, 1)
