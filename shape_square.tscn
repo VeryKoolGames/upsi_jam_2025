@@ -1,17 +1,17 @@
-[gd_scene load_steps=7 format=3 uid="uid://dqsvnfjk7e8rf"]
+[gd_scene load_steps=9 format=3 uid="uid://dqsvnfjk7e8rf"]
 
 [ext_resource type="Script" uid="uid://cdsvvbrrgasar" path="res://shape.gd" id="1_seg8l"]
 [ext_resource type="Texture2D" uid="uid://dudo877wy0wgq" path="res://Sprites/Carré.svg" id="2_cwbt1"]
+[ext_resource type="Texture2D" uid="uid://cwsnmwvpjxh1v" path="res://Sprites/Croix.svg" id="4_nkf8i"]
+[ext_resource type="Texture2D" uid="uid://dth058gx7crax" path="res://Sprites/Croix_Dotted.svg" id="5_475gu"]
+[ext_resource type="PackedScene" uid="uid://bw758m4gx7dj4" path="res://Scenes/piece_mort_particles.tscn" id="5_j0x15"]
 [ext_resource type="Texture2D" uid="uid://dxqetl4tmw8dr" path="res://Sprites/Carré_Dotted.svg" id="8_dk3cl"]
 [ext_resource type="PackedScene" uid="uid://bi7yny72t34p4" path="res://Scenes/snap_particles.tscn" id="14_ghnil"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_77gc5"]
-radius = 44.1022
+radius = 45.0
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_kgn5e"]
-size = Vector2(62, 61)
-
-[node name="SquareShape" type="RigidBody2D" node_paths=PackedStringArray("sprite", "outline_sprite", "snap_particle")]
+[node name="SquareShape" type="RigidBody2D" node_paths=PackedStringArray("sprite", "outline_sprite", "snap_particle", "piece_mort_particle")]
 collision_layer = 2
 collision_mask = 2
 gravity_scale = 0.0
@@ -22,6 +22,7 @@ possible_shapes_outlines = Array[Texture2D]([ExtResource("8_dk3cl")])
 sprite = NodePath("Node2D/MainSprite")
 outline_sprite = NodePath("Node2D/OutlineSprite")
 snap_particle = NodePath("SnapParticles")
+piece_mort_particle = NodePath("PieceMortParticles")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_77gc5")
@@ -30,19 +31,21 @@ shape = SubResource("CircleShape2D_77gc5")
 
 [node name="MainSprite" type="Sprite2D" parent="Node2D"]
 scale = Vector2(0.639999, 0.639999)
-texture = ExtResource("2_cwbt1")
+texture = ExtResource("4_nkf8i")
 
 [node name="OutlineSprite" type="Sprite2D" parent="Node2D"]
 visible = false
 scale = Vector2(0.639999, 0.639999)
-texture = ExtResource("8_dk3cl")
+texture = ExtResource("5_475gu")
 
 [node name="Area2D" type="Area2D" parent="Node2D"]
 
-[node name="SquareCollider" type="CollisionShape2D" parent="Node2D/Area2D"]
-position = Vector2(0, 0.5)
-shape = SubResource("RectangleShape2D_kgn5e")
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Node2D/Area2D"]
+scale = Vector2(0.639999, 0.639999)
+polygon = PackedVector2Array(13, -49, -14, -49, -14, -17.8, -17.8, -14, -49, -14, -49, 13, -18.7, 13, -14, 16.9, -14, 49, 13, 49, 13, 17.8, 17.8, 13, 49, 13, 49, -14, 16, -15, 15.1, -15, 13, -18.5)
 
 [node name="SnapParticles" parent="." instance=ExtResource("14_ghnil")]
+
+[node name="PieceMortParticles" parent="." instance=ExtResource("5_j0x15")]
 
 [connection signal="area_entered" from="Node2D/Area2D" to="." method="_on_area_2d_area_entered"]

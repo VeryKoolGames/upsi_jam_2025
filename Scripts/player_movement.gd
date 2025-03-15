@@ -25,6 +25,9 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 		shape.snap_particle.play_pickup_particles()
 		shape._switch_sprites_to_main()
 		get_node("%ShapeManager").add_shape(shape)
+		var tween = create_tween()
+		tween.set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+		tween.tween_property(shape, "angular_velocity", 0.0, 0.2)
 	elif area.owner.is_in_group("enemy"):
 		on_player_death()
 
