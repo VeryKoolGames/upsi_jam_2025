@@ -57,7 +57,7 @@ func _launch_shape_towards_mouse() -> void:
 	closest_shape.global_position = original_global_pos
 	var mouse_pos = get_global_mouse_position()
 	var velocity_vector = mouse_pos - closest_shape.global_position
-	velocity_vector = velocity_vector * 1.2
+	velocity_vector = velocity_vector * 4
 	print(velocity_vector)
 	closest_shape.new_velocity = velocity_vector
 	should_launch = true
