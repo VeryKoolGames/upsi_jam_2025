@@ -1,20 +1,22 @@
 [gd_scene load_steps=5 format=3 uid="uid://dqsvnfjk7e8rf"]
 
-[ext_resource type="Texture2D" uid="uid://peyfspvt3nvc" path="res://Sprites/icon.svg" id="1_3tjat"]
 [ext_resource type="Script" uid="uid://cdsvvbrrgasar" path="res://shape.gd" id="1_t2h0s"]
+[ext_resource type="Texture2D" uid="uid://dudo877wy0wgq" path="res://Sprites/Carré.svg" id="2_t2h0s"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_77gc5"]
-radius = 58.0
+radius = 60.0333
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_t2h0s"]
 radius = 82.3893
 
 [node name="Shape" type="RigidBody2D"]
+collision_layer = 2
+collision_mask = 2
 gravity_scale = 0.0
 script = ExtResource("1_t2h0s")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_3tjat")
+texture = ExtResource("2_t2h0s")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_77gc5")
@@ -23,5 +25,8 @@ shape = SubResource("CircleShape2D_77gc5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_t2h0s")
+
+[node name="PickupTimer" type="Timer" parent="."]
+unique_name_in_owner = true
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
