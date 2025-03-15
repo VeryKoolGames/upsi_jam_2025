@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://c8s8qyrng86ep"]
+[gd_scene load_steps=10 format=3 uid="uid://c8s8qyrng86ep"]
 
 [ext_resource type="FontFile" uid="uid://4b21mf5p1g08" path="res://Sprites/Orbitron-Regular.ttf" id="1_1kq1x"]
 [ext_resource type="Texture2D" uid="uid://cg7j1xgsstomy" path="res://Sprites/TimerBackground.svg" id="1_al4uf"]
@@ -8,11 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://fdsk4ws4k5j0" path="res://Sprites/Cadre.png" id="4_cqqkl"]
 [ext_resource type="Texture2D" uid="uid://d38226rqoridu" path="res://Sprites/BorderGradient.png" id="5_x5q7b"]
 [ext_resource type="Texture2D" uid="uid://cwps7srghtsga" path="res://Sprites/Grid.svg" id="6_l1b5m"]
-[ext_resource type="Script" uid="uid://d0a5ubnypfyo2" path="res://Scenes/enemy_detection.gd" id="9_b4ac1"]
-[ext_resource type="Texture2D" uid="uid://du1j5slratbhn" path="res://Sprites/EnnemiesAlert.png" id="10_6fxjm"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_6fxjm"]
-size = Vector2(1919, 97)
+[ext_resource type="PackedScene" uid="uid://d0tr5643b772e" path="res://Scenes/enemy_detection.tscn" id="9_b4ac1"]
 
 [node name="LevelUI" type="Control" node_paths=PackedStringArray("score_label", "timer_label", "game_timer")]
 layout_mode = 3
@@ -142,19 +138,79 @@ unique_name_in_owner = true
 wait_time = 30.0
 one_shot = true
 
-[node name="EnemyDetection" type="Node2D" parent="." node_paths=PackedStringArray("warning_sprite")]
-script = ExtResource("9_b4ac1")
-warning_sprite = NodePath("Sprite2D")
+[node name="EnemyDetect" type="Node" parent="."]
 
-[node name="Area2D" type="Area2D" parent="EnemyDetection"]
+[node name="TopDetect" type="Node" parent="EnemyDetect"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyDetection/Area2D"]
-position = Vector2(949.5, -58.5)
-shape = SubResource("RectangleShape2D_6fxjm")
+[node name="EnemyDetection" parent="EnemyDetect/TopDetect" instance=ExtResource("9_b4ac1")]
+position = Vector2(80, 0)
 
-[node name="Sprite2D" type="Sprite2D" parent="EnemyDetection"]
-visible = false
-position = Vector2(181, 36)
-texture = ExtResource("10_6fxjm")
+[node name="EnemyDetection2" parent="EnemyDetect/TopDetect" instance=ExtResource("9_b4ac1")]
+position = Vector2(359, 0)
 
-[connection signal="area_entered" from="EnemyDetection/Area2D" to="EnemyDetection" method="_on_area_2d_area_entered"]
+[node name="EnemyDetection3" parent="EnemyDetect/TopDetect" instance=ExtResource("9_b4ac1")]
+position = Vector2(640, 0)
+
+[node name="EnemyDetection4" parent="EnemyDetect/TopDetect" instance=ExtResource("9_b4ac1")]
+position = Vector2(919, 0)
+
+[node name="EnemyDetection5" parent="EnemyDetect/TopDetect" instance=ExtResource("9_b4ac1")]
+position = Vector2(1200, 0)
+
+[node name="EnemyDetection6" parent="EnemyDetect/TopDetect" instance=ExtResource("9_b4ac1")]
+position = Vector2(1481, 0)
+
+[node name="BotDetect" type="Node" parent="EnemyDetect"]
+
+[node name="EnemyDetection8" parent="EnemyDetect/BotDetect" instance=ExtResource("9_b4ac1")]
+position = Vector2(1839, 1078)
+rotation = 3.14159
+
+[node name="EnemyDetection9" parent="EnemyDetect/BotDetect" instance=ExtResource("9_b4ac1")]
+position = Vector2(1560, 1078)
+rotation = 3.14159
+
+[node name="EnemyDetection10" parent="EnemyDetect/BotDetect" instance=ExtResource("9_b4ac1")]
+position = Vector2(1279, 1078)
+rotation = 3.14159
+
+[node name="EnemyDetection11" parent="EnemyDetect/BotDetect" instance=ExtResource("9_b4ac1")]
+position = Vector2(998, 1078)
+rotation = 3.14159
+
+[node name="EnemyDetection12" parent="EnemyDetect/BotDetect" instance=ExtResource("9_b4ac1")]
+position = Vector2(721, 1078)
+rotation = 3.14159
+
+[node name="EnemyDetection14" parent="EnemyDetect/BotDetect" instance=ExtResource("9_b4ac1")]
+position = Vector2(439, 1078)
+rotation = 3.14159
+
+[node name="LeftDetect" type="Node" parent="EnemyDetect"]
+
+[node name="EnemyDetection15" parent="EnemyDetect/LeftDetect" instance=ExtResource("9_b4ac1")]
+position = Vector2(1920, 636)
+rotation = 1.5708
+
+[node name="EnemyDetection17" parent="EnemyDetect/LeftDetect" instance=ExtResource("9_b4ac1")]
+position = Vector2(1920, 357)
+rotation = 1.5708
+
+[node name="EnemyDetection18" parent="EnemyDetect/LeftDetect" instance=ExtResource("9_b4ac1")]
+position = Vector2(1920, 77)
+rotation = 1.5708
+
+[node name="RightDetect" type="Node2D" parent="EnemyDetect"]
+rotation = 3.14159
+
+[node name="EnemyDetection15" parent="EnemyDetect/RightDetect" instance=ExtResource("9_b4ac1")]
+position = Vector2(-3.81163e-05, -436)
+rotation = 1.5708
+
+[node name="EnemyDetection17" parent="EnemyDetect/RightDetect" instance=ExtResource("9_b4ac1")]
+position = Vector2(-6.26821e-05, -717)
+rotation = 1.5708
+
+[node name="EnemyDetection18" parent="EnemyDetect/RightDetect" instance=ExtResource("9_b4ac1")]
+position = Vector2(-8.69857e-05, -995)
+rotation = 1.5708
