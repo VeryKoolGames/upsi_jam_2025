@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://d2mnoo73rlj0n"]
+
+[sub_resource type="Environment" id="Environment_cp0ys"]
+background_mode = 3
+ssil_radius = 7.12
+glow_enabled = true
+glow_intensity = 0.51
+glow_bloom = 0.53
+glow_hdr_threshold = 1.72
+glow_hdr_scale = 1.39
+
+[node name="PostPro" type="WorldEnvironment"]
+environment = SubResource("Environment_cp0ys")
