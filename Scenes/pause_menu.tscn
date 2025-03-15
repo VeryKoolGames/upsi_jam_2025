@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cuk8ucch5tfpd"]
+[gd_scene load_steps=9 format=3 uid="uid://stnv4kvm8g88"]
 
 [ext_resource type="FontFile" uid="uid://b7ishda7ounim" path="res://Fonts/Orbitron-Regular.ttf" id="1_sjs17"]
 [ext_resource type="Script" uid="uid://cyubol7ymis02" path="res://Scenes/pause_menu.gd" id="1_u8tnp"]
@@ -17,8 +17,15 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_u8tnp")
-tween_intensity = 1.2
 tween_duration = 0.1
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 2
@@ -43,6 +50,7 @@ grow_vertical = 0
 theme_override_constants/separation = -50
 
 [node name="RESUME" type="TextureButton" parent="VBoxContainer"]
+process_mode = 3
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -51,6 +59,7 @@ texture_pressed = ExtResource("1_vmyb1")
 texture_hover = ExtResource("2_myy0f")
 
 [node name="Menu" type="TextureButton" parent="VBoxContainer"]
+process_mode = 3
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -59,6 +68,7 @@ texture_pressed = ExtResource("3_sjs17")
 texture_hover = ExtResource("4_u8tnp")
 
 [node name="QuitButton" type="TextureButton" parent="VBoxContainer"]
+process_mode = 3
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -66,6 +76,12 @@ texture_normal = ExtResource("5_myy0f")
 texture_pressed = ExtResource("5_myy0f")
 texture_hover = ExtResource("6_myy0f")
 
+[connection signal="mouse_entered" from="VBoxContainer/RESUME" to="." method="_on_resume_mouse_entered"]
+[connection signal="mouse_exited" from="VBoxContainer/RESUME" to="." method="_on_resume_mouse_exited"]
 [connection signal="pressed" from="VBoxContainer/RESUME" to="." method="_on_resume_pressed"]
+[connection signal="mouse_entered" from="VBoxContainer/Menu" to="." method="_on_menu_mouse_entered"]
+[connection signal="mouse_exited" from="VBoxContainer/Menu" to="." method="_on_menu_mouse_exited"]
 [connection signal="pressed" from="VBoxContainer/Menu" to="." method="_on_mainmenu_pressed"]
+[connection signal="mouse_entered" from="VBoxContainer/QuitButton" to="." method="_on_quit_button_mouse_entered"]
+[connection signal="mouse_exited" from="VBoxContainer/QuitButton" to="." method="_on_quit_button_mouse_exited"]
 [connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://otlm4qvh6cx"]
+[gd_scene load_steps=19 format=3 uid="uid://otlm4qvh6cx"]
 
 [ext_resource type="Script" uid="uid://cd4rt1lm4asto" path="res://Scripts/player_movement.gd" id="1_2ibxi"]
 [ext_resource type="Texture2D" uid="uid://4lc7xuy3cfr5" path="res://Sprites/Coeur.svg" id="2_tdg3f"]
@@ -6,12 +6,13 @@
 [ext_resource type="Script" uid="uid://i0w0tr8g0c2j" path="res://enemy_spawner.gd" id="5_tdg3f"]
 [ext_resource type="PackedScene" path="res://half_circle.tscn" id="5_wi0c6"]
 [ext_resource type="PackedScene" uid="uid://n8nx7vjj0lqy" path="res://Scenes/enemy.tscn" id="6_dtqjt"]
-[ext_resource type="PackedScene" path="res://round_circle.tscn" id="6_wi0c6"]
-[ext_resource type="PackedScene" path="res://triangle_shape.tscn" id="7_hp6x6"]
-[ext_resource type="PackedScene" path="res://triangle_diago_shape.tscn" id="8_3tkgg"]
-[ext_resource type="PackedScene" uid="uid://c2u0po1yo75pc" path="res://shape_manager.tscn" id="8_5ncpa"]
-[ext_resource type="PackedScene" path="res://triangle_small_shape.tscn" id="9_oudfo"]
-[ext_resource type="PackedScene" path="res://circle_letter_shape.tscn" id="10_d6rpx"]
+[ext_resource type="PackedScene" uid="uid://cqd4scgty1wlb" path="res://round_circle.tscn" id="6_wi0c6"]
+[ext_resource type="PackedScene" uid="uid://brhpedrkppwpj" path="res://triangle_shape.tscn" id="7_hp6x6"]
+[ext_resource type="PackedScene" uid="uid://w31jg8pbth22" path="res://triangle_diago_shape.tscn" id="8_3tkgg"]
+[ext_resource type="PackedScene" uid="uid://gbrrr4ey6d5t" path="res://shape_manager.tscn" id="8_5ncpa"]
+[ext_resource type="PackedScene" uid="uid://be7xl7udyyv2y" path="res://triangle_small_shape.tscn" id="9_oudfo"]
+[ext_resource type="PackedScene" uid="uid://73q7pvbppq41" path="res://circle_letter_shape.tscn" id="10_d6rpx"]
+[ext_resource type="PackedScene" uid="uid://c80uwbkjp4xio" path="res://cross_shape.tscn" id="11_d6rpx"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_o2i67"]
 radius = 34.0
@@ -29,6 +30,11 @@ colors = PackedColorArray(0.145098, 0.176471, 0.909804, 1, 0.145098, 0.176471, 0
 [node name="Player" type="Node2D"]
 
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="ShapeSpawner" type="Node2D" parent="." node_paths=PackedStringArray("spawn_points")]
+script = ExtResource("5_5ncpa")
+spawn_points = [NodePath("../CharacterBody2D/SpawnPoints/SpawnPoint1"), NodePath("../CharacterBody2D/SpawnPoints/SpawnPoint2"), NodePath("../CharacterBody2D/SpawnPoints/SpawnPoint3"), NodePath("../CharacterBody2D/SpawnPoints/SpawnPoint4"), NodePath("../CharacterBody2D/SpawnPoints/SpawnPoint5"), NodePath("../CharacterBody2D/SpawnPoints/SpawnPoint6"), NodePath("../CharacterBody2D/SpawnPoints/SpawnPoint7")]
+shape_scenes = Array[PackedScene]([ExtResource("3_2feor"), ExtResource("5_wi0c6"), ExtResource("6_wi0c6"), ExtResource("7_hp6x6"), ExtResource("8_3tkgg"), ExtResource("9_oudfo"), ExtResource("10_d6rpx"), ExtResource("11_d6rpx")])
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
 script = ExtResource("1_2ibxi")
@@ -48,31 +54,27 @@ shape = SubResource("CircleShape2D_tdg3f")
 [node name="SpawnPoints" type="Node2D" parent="CharacterBody2D"]
 
 [node name="SpawnPoint1" type="Node2D" parent="CharacterBody2D/SpawnPoints"]
-position = Vector2(83, -71)
+position = Vector2(202, -255)
 metadata/_edit_group_ = true
 
 [node name="SpawnPoint2" type="Node2D" parent="CharacterBody2D/SpawnPoints"]
-position = Vector2(124, 30)
+position = Vector2(307, 168)
 
 [node name="SpawnPoint3" type="Node2D" parent="CharacterBody2D/SpawnPoints"]
-position = Vector2(-8, -99)
+position = Vector2(-205, -238)
 
 [node name="SpawnPoint4" type="Node2D" parent="CharacterBody2D/SpawnPoints"]
-position = Vector2(-98, -51)
+position = Vector2(-387, 60)
 
 [node name="SpawnPoint5" type="Node2D" parent="CharacterBody2D/SpawnPoints"]
-position = Vector2(58, 102)
+position = Vector2(-40, 307)
 
 [node name="SpawnPoint6" type="Node2D" parent="CharacterBody2D/SpawnPoints"]
-position = Vector2(-40, 93)
+position = Vector2(-268, 236)
 
 [node name="SpawnPoint7" type="Node2D" parent="CharacterBody2D/SpawnPoints"]
-position = Vector2(-101, 23)
-
-[node name="ShapeSpawner" type="Node2D" parent="CharacterBody2D" node_paths=PackedStringArray("spawn_points")]
-script = ExtResource("5_5ncpa")
-spawn_points = [NodePath("../SpawnPoints/SpawnPoint1"), NodePath("../SpawnPoints/SpawnPoint2"), NodePath("../SpawnPoints/SpawnPoint3"), NodePath("../SpawnPoints/SpawnPoint4"), NodePath("../SpawnPoints/SpawnPoint5"), NodePath("../SpawnPoints/SpawnPoint6"), NodePath("../SpawnPoints/SpawnPoint7")]
-shape_scenes = Array[PackedScene]([ExtResource("10_d6rpx"), ExtResource("5_wi0c6"), ExtResource("6_wi0c6"), ExtResource("8_3tkgg"), ExtResource("7_hp6x6"), ExtResource("9_oudfo")])
+position = Vector2(-527, -161)
+metadata/_edit_group_ = true
 
 [node name="Walls" type="Node2D" parent="."]
 metadata/_edit_lock_ = true
@@ -113,7 +115,6 @@ collision_mask = 3
 shape = SubResource("WorldBoundaryShape2D_e80uo")
 
 [node name="EnemySpawner" type="Node2D" parent="." node_paths=PackedStringArray("camera")]
-position = Vector2(418, -392)
 script = ExtResource("5_tdg3f")
 enemy_scene = ExtResource("6_dtqjt")
 spawn_margin = 1000

@@ -12,16 +12,19 @@ var is_attached
 @export var sprite: Sprite2D
 @export var outline_sprite: Sprite2D
 @export var snap_particle: SnapParticle
+@export var piece_mort_particle: PieceMortParticle
 var shape_manager: ShapeManager
 @export var max_velocity: float = 3000.0
+var is_dead: bool
 
 func _ready() -> void:
 	add_to_group("shapes")
+	can_be_picked_up = true
 	shape_manager = get_node("../%ShapeManager")
-	shape_manager.shapes.append(self)
 	_set_random_color()
 	_set_random_shape()
 	_set_random_scale()
+	_switch_sprites_to_outline()
 
 func _set_random_shape():
 	var random_index = randi_range(0, possible_shapes.size() - 1)
@@ -31,18 +34,27 @@ func _set_random_shape():
 
 func _set_random_color():
 	var random_index = randi_range(0, possible_colors.size() - 1)
-	sprite.modulate = possible_colors[random_index]
-	outline_sprite.modulate = possible_colors[random_index]
+	var color = possible_colors[random_index]
+	sprite.modulate = color
+	outline_sprite.modulate = color
+	piece_mort_particle.set_particles_color(color)
 
 func _set_random_scale():
 	var test = sprite.get_parent() as Node2D
-	var rand_scale = randf_range(1, 2)
+	var rand_scale = randf_range(1, 1.4)
 	test.apply_scale(Vector2(rand_scale, rand_scale))
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
+	if is_dead:
+		return
 	if area.get_parent().is_in_group("enemy") and !is_shot:
+		is_dead = true
 		shape_manager.remove_shape(self)
 		area.owner.on_enemy_killed()
+		piece_mort_particle.emit_particles()
+		sprite.hide()
+		outline_sprite.hide()
+		await get_tree().create_timer(4).timeout
 		queue_free()
 	elif area.owner.is_in_group("enemy"):
 		score_to_be_added *= 2
@@ -56,13 +68,16 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 		shape.snap_particle.play_pickup_particles()
 		shape._switch_sprites_to_main()
 		shape_manager.add_shape(shape)
+		var tween = create_tween()
+		tween.set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+		tween.tween_property(shape, "angular_velocity", 0.0, 0.2)
 
 func on_shoot():
 	await get_tree().create_timer(0.5).timeout
 	can_be_picked_up = true
 
 func _physics_process(delta: float) -> void:
-	if is_shot:
+	if is_shot and not is_dead:
 		if new_velocity.x <= 10 and new_velocity.y <= 10 and can_be_picked_up:
 			_switch_sprites_to_outline()
 		new_velocity *= 0.99

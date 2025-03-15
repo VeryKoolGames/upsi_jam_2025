@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://n8luhv11grx4"]
+[gd_scene load_steps=9 format=3 uid="uid://bw758m4gx7dj4"]
 
 [ext_resource type="Texture2D" uid="uid://dudo877wy0wgq" path="res://Sprites/Carré.svg" id="1_850f4"]
-[ext_resource type="Shader" uid="uid://c6ys235ls4hnd" path="res://Shaders/piece_mort_particles.gdshader" id="2_fiveg"]
+[ext_resource type="Script" uid="uid://b2j58uij8la6k" path="res://Scenes/piece_mort_particles.gd" id="1_m8ykb"]
+[ext_resource type="Shader" path="res://Shaders/piece_mort_particles.gdshader" id="2_fiveg"]
 [ext_resource type="Texture2D" uid="uid://cd7e7ngvdtcdk" path="res://Sprites/Croissant.svg" id="2_hl0qe"]
 [ext_resource type="Texture2D" uid="uid://byw02m6dhbn26" path="res://Sprites/Triangle1.svg" id="4_fiveg"]
 
@@ -17,7 +18,11 @@ point_count = 2
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4x0lm"]
 shader = ExtResource("2_fiveg")
 
-[node name="PieceMortParticles" type="Node2D"]
+[node name="PieceMortParticles" type="Node2D" node_paths=PackedStringArray("particle_one", "particle_two", "particle_three")]
+script = ExtResource("1_m8ykb")
+particle_one = NodePath("Square")
+particle_two = NodePath("Croissant")
+particle_three = NodePath("Triangle")
 
 [node name="Square" type="CPUParticles2D" parent="."]
 emitting = false
@@ -39,8 +44,8 @@ damping_min = 5700.0
 damping_max = 6000.0
 angle_max = 5.0
 angle_curve = SubResource("Curve_m8ykb")
-scale_amount_min = 0.2
-scale_amount_max = 0.4
+scale_amount_min = 0.1
+scale_amount_max = 0.2
 scale_amount_curve = SubResource("Curve_hl0qe")
 
 [node name="Croissant" type="CPUParticles2D" parent="."]
@@ -64,8 +69,8 @@ damping_min = 5700.0
 damping_max = 6000.0
 angle_max = 5.0
 angle_curve = SubResource("Curve_m8ykb")
-scale_amount_min = 0.4
-scale_amount_max = 0.8
+scale_amount_min = 0.1
+scale_amount_max = 0.2
 scale_amount_curve = SubResource("Curve_hl0qe")
 
 [node name="Triangle" type="CPUParticles2D" parent="."]
@@ -89,6 +94,6 @@ damping_min = 5700.0
 damping_max = 6000.0
 angle_max = 5.0
 angle_curve = SubResource("Curve_m8ykb")
-scale_amount_min = 0.4
-scale_amount_max = 0.8
+scale_amount_min = 0.1
+scale_amount_max = 0.2
 scale_amount_curve = SubResource("Curve_hl0qe")
