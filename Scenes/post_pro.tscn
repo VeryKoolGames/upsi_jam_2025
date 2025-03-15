@@ -4,8 +4,10 @@
 background_mode = 3
 ssil_radius = 7.12
 glow_enabled = true
-glow_intensity = 0.63
-glow_bloom = 0.41
+glow_intensity = 0.51
+glow_bloom = 0.53
+glow_hdr_threshold = 1.72
+glow_hdr_scale = 1.39
 
 [node name="PostPro" type="WorldEnvironment"]
 environment = SubResource("Environment_cp0ys")
