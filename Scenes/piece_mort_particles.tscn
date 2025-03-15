@@ -1,31 +1,21 @@
-[gd_scene load_steps=10 format=3 uid="uid://n8luhv11grx4"]
+[gd_scene load_steps=8 format=3 uid="uid://n8luhv11grx4"]
 
 [ext_resource type="Texture2D" uid="uid://dudo877wy0wgq" path="res://Sprites/Carré.svg" id="1_850f4"]
-[ext_resource type="Shader" uid="uid://c6ys235ls4hnd" path="res://Scenes/piece_mort_particles.gdshader" id="2_fiveg"]
+[ext_resource type="Shader" uid="uid://c6ys235ls4hnd" path="res://Shaders/piece_mort_particles.gdshader" id="2_fiveg"]
 [ext_resource type="Texture2D" uid="uid://cd7e7ngvdtcdk" path="res://Sprites/Croissant.svg" id="2_hl0qe"]
 [ext_resource type="Texture2D" uid="uid://byw02m6dhbn26" path="res://Sprites/Triangle1.svg" id="4_fiveg"]
 
 [sub_resource type="Curve" id="Curve_m8ykb"]
 _limits = [-360.0, 360.0, 0.0, 1.0]
-_data = [Vector2(0.00282486, -360), 0.0, 153.848, 0, 0, Vector2(0.251412, -277.056), 0.0, 0.0, 0, 0]
+_data = [Vector2(0.00282486, -360), 0.0, 153.848, 0, 0, Vector2(0.121469, -261.299), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="Curve" id="Curve_hl0qe"]
 _data = [Vector2(0.829843, 1), 0.0, -3.07399, 0, 0, Vector2(1, 0), -2.97508, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="Gradient" id="Gradient_ouiu4"]
-interpolation_mode = 1
-offsets = PackedFloat32Array(0, 0.333333, 0.666667)
-colors = PackedColorArray(0.737255, 1, 0.00784314, 1, 0.145098, 0.176471, 0.909804, 1, 1, 0.784314, 0.215686, 1)
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4x0lm"]
 shader = ExtResource("2_fiveg")
-
-[sub_resource type="Gradient" id="Gradient_h8kuj"]
-interpolation_mode = 1
-offsets = PackedFloat32Array(0, 0.333333, 0.666667)
-colors = PackedColorArray(0.737255, 1, 0.00784314, 1, 0.145098, 0.176471, 0.909804, 1, 1, 0.784314, 0.215686, 1)
 
 [node name="PieceMortParticles" type="Node2D"]
 
@@ -52,7 +42,6 @@ angle_curve = SubResource("Curve_m8ykb")
 scale_amount_min = 0.2
 scale_amount_max = 0.4
 scale_amount_curve = SubResource("Curve_hl0qe")
-color_initial_ramp = SubResource("Gradient_ouiu4")
 
 [node name="Croissant" type="CPUParticles2D" parent="."]
 material = SubResource("ShaderMaterial_4x0lm")
@@ -78,7 +67,6 @@ angle_curve = SubResource("Curve_m8ykb")
 scale_amount_min = 0.4
 scale_amount_max = 0.8
 scale_amount_curve = SubResource("Curve_hl0qe")
-color_initial_ramp = SubResource("Gradient_h8kuj")
 
 [node name="Triangle" type="CPUParticles2D" parent="."]
 material = SubResource("ShaderMaterial_4x0lm")
@@ -104,4 +92,3 @@ angle_curve = SubResource("Curve_m8ykb")
 scale_amount_min = 0.4
 scale_amount_max = 0.8
 scale_amount_curve = SubResource("Curve_hl0qe")
-color_initial_ramp = SubResource("Gradient_ouiu4")

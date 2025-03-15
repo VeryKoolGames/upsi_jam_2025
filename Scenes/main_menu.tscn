@@ -1,15 +1,84 @@
-[gd_scene load_steps=9 format=3 uid="uid://bd2va6fqq64dt"]
+[gd_scene load_steps=16 format=3 uid="uid://baqdtsftj30c8"]
 
 [ext_resource type="Texture2D" uid="uid://dudo877wy0wgq" path="res://Sprites/Carré.svg" id="1_opfnp"]
 [ext_resource type="Texture2D" uid="uid://fdsk4ws4k5j0" path="res://Sprites/Cadre.png" id="2_cp0ys"]
+[ext_resource type="Shader" uid="uid://bb55b1b27vwjp" path="res://Shaders/Pattern.gdshader" id="3_trj04"]
 [ext_resource type="Texture2D" uid="uid://d38226rqoridu" path="res://Sprites/BorderGradient.png" id="3_yhxw7"]
-[ext_resource type="Texture2D" uid="uid://cwps7srghtsga" path="res://Sprites/Grid.svg" id="4_trj04"]
+[ext_resource type="Texture2D" uid="uid://dllh45ivq315l" path="res://Sprites/GridPattern.png" id="4_16hvj"]
+[ext_resource type="Texture2D" uid="uid://cnmv4e68cep7s" path="res://Sprites/BackGroundFade.png" id="4_vr1f0"]
 [ext_resource type="PackedScene" uid="uid://f6ggcfwbj2is" path="res://Scenes/MainMenuButtons.tscn" id="6_opfnp"]
 [ext_resource type="Texture2D" uid="uid://2bu2vcw3fce6" path="res://Sprites/Title.png" id="6_yhxw7"]
 [ext_resource type="PackedScene" uid="uid://cuk8ucch5tfpd" path="res://Scenes/pause_menu.tscn" id="7_cp0ys"]
 [ext_resource type="PackedScene" uid="uid://blvuicffccsll" path="res://Scenes/post_pro_2.tscn" id="8_yhxw7"]
-[ext_resource type="PackedScene" path="res://Scenes/TitleLogo.tscn" id="6_cp0ys"]
-[ext_resource type="PackedScene" uid="uid://f6ggcfwbj2is" path="res://Scenes/MainMenuButtons.tscn" id="6_opfnp"]
+[ext_resource type="Texture2D" uid="uid://btbbpiieap8rf" path="res://Sprites/VKG.png" id="11_vr1f0"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_trj04"]
+shader = ExtResource("3_trj04")
+shader_parameter/pattern_texture = ExtResource("4_16hvj")
+shader_parameter/uv_scale = Vector2(14, 7)
+shader_parameter/speed = -0.2
+
+[sub_resource type="Animation" id="Animation_trj04"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1.01, 1.01)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_yhxw7"]
+resource_name = "TitleAnim"
+length = 4.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2, 4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1.01, 1.01), Vector2(1.07, 1.07), Vector2(1.01, 1.01)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2, 4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, -0.172788, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_16hvj"]
+_data = {
+&"RESET": SubResource("Animation_trj04"),
+&"TitleAnim": SubResource("Animation_yhxw7")
+}
 
 [node name="MAIN_MENU" type="Control"]
 layout_mode = 3
@@ -30,6 +99,21 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("1_opfnp")
 
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_trj04")
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+
+[node name="BG2_Fade" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_vr1f0")
+
 [node name="Cadre_Billes" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
@@ -38,21 +122,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_cp0ys")
-
-[node name="GRID" type="TextureRect" parent="."]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -912.0
-offset_top = -504.5
-offset_right = 912.0
-offset_bottom = 504.5
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("4_trj04")
 
 [node name="BorderGradient" type="TextureRect" parent="."]
 layout_mode = 1
@@ -77,12 +146,20 @@ offset_bottom = -28.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="TextureRect" type="TextureRect" parent="."]
-layout_mode = 1
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("TextureRect")
+libraries = {
+&"": SubResource("AnimationLibrary_16hvj")
+}
+autoplay = "TitleAnim"
+
+[node name="TextureRect" type="TextureRect" parent="AnimationPlayer"]
 offset_left = 12.0
 offset_top = 11.0
 offset_right = 692.0
 offset_bottom = 484.0
+scale = Vector2(1.01, 1.01)
+pivot_offset = Vector2(340, 237)
 texture = ExtResource("6_yhxw7")
 
 [node name="PauseMenu" parent="." instance=ExtResource("7_cp0ys")]
@@ -94,3 +171,18 @@ offset_right = 3.0
 offset_bottom = -4.0
 
 [node name="PostPro" parent="." instance=ExtResource("8_yhxw7")]
+
+[node name="LOGO" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -256.0
+offset_top = -171.0
+offset_right = -101.0
+offset_bottom = -115.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = ExtResource("11_vr1f0")
