@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dqsvnfjk7e8rf"]
+[gd_scene load_steps=7 format=3 uid="uid://djwd3uuqnpylj"]
 
 [ext_resource type="Script" uid="uid://cdsvvbrrgasar" path="res://shape.gd" id="1_seg8l"]
 [ext_resource type="Texture2D" uid="uid://dudo877wy0wgq" path="res://Sprites/Carré.svg" id="2_cwbt1"]

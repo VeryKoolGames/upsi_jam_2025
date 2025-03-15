@@ -1,7 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://gbrrr4ey6d5t"]
+[gd_scene load_steps=2 format=3 uid="uid://c2u0po1yo75pc"]
 
 [ext_resource type="Script" uid="uid://bmmu75tdlondq" path="res://Scripts/shape_manager.gd" id="1_1f3b0"]
 
-[node name="ShapeManager" type="Node2D" node_paths=PackedStringArray("aim_line")]
+[node name="ShapeManager" type="Node2D"]
 script = ExtResource("1_1f3b0")
-aim_line = NodePath("")

@@ -2,9 +2,10 @@ extends Control
 class_name EndGameUI
 
 @export var end_game_label: Label
+@export var scoreLabel: Label
 
-var win_text = "Congratulations you won ! "
-var lose_text = "Game Over"
+var win_text = "YOU WIN ! "
+var lose_text = "YOU LOSE !"
 
 func _ready() -> void:
 	Events.game_ended.connect(on_game_end)
@@ -20,11 +21,11 @@ func on_game_end(is_win: bool):
 		end_game_label.text = win_text
 	else:
 		end_game_label.text = lose_text
-	end_game_label.text += str(PlayerScore.player_score)
+		scoreLabel.text += str(PlayerScore.player_score)
 
-func _on_replay_button_button_up() -> void:
+func _on_replay_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://Scenes/main.tscn")
 
 
-func _on_quit_button_button_up() -> void:
+func _on_quit_button_pressed() -> void:
 	get_tree().quit(0)
