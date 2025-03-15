@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-var speed = 400
+var speed = 600
 var rotation_speed = 3.0
 
 @export var end_game_canvas: EndGameUI

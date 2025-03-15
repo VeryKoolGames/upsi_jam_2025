@@ -19,6 +19,7 @@ func _process(delta):
 	rotation = direction.angle()
 
 func on_enemy_killed():
+	Events.on_soft_hit.emit()
 	get_node("Sprite2D").hide()
 	remove_from_group("enemy")
 	explosionParticles.play_death_particles()

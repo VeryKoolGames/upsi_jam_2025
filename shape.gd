@@ -13,6 +13,7 @@ var is_attached
 @export var outline_sprite: Sprite2D
 @export var snap_particle: SnapParticle
 var shape_manager: ShapeManager
+@export var max_velocity: float = 3000.0
 
 func _ready() -> void:
 	add_to_group("shapes")
@@ -74,6 +75,9 @@ func _physics_process(delta: float) -> void:
 			else:
 				new_velocity.x *= 0.8
 				new_velocity.y *= 0.8
+			if new_velocity.length() > max_velocity:
+				new_velocity = new_velocity.normalized() * max_velocity
+				Events.on_hard_hit.emit()
 
 func _switch_sprites_to_outline():
 	outline_sprite.show()
