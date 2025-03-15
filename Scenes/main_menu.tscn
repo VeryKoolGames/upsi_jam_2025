@@ -4,10 +4,10 @@
 [ext_resource type="Texture2D" uid="uid://fdsk4ws4k5j0" path="res://Sprites/Cadre.png" id="2_cp0ys"]
 [ext_resource type="Texture2D" uid="uid://d38226rqoridu" path="res://Sprites/BorderGradient.png" id="3_yhxw7"]
 [ext_resource type="Texture2D" uid="uid://cwps7srghtsga" path="res://Sprites/Grid.svg" id="4_trj04"]
-[ext_resource type="PackedScene" uid="uid://pgblr8gkwaxn" path="res://Scenes/TitleLogo.tscn" id="6_cp0ys"]
-[ext_resource type="PackedScene" uid="uid://ux5cvlxw14op" path="res://Scenes/MainMenuButtons.tscn" id="6_opfnp"]
+[ext_resource type="PackedScene" uid="uid://f6ggcfwbj2is" path="res://Scenes/MainMenuButtons.tscn" id="6_opfnp"]
+[ext_resource type="Texture2D" uid="uid://2bu2vcw3fce6" path="res://Sprites/Title.png" id="6_yhxw7"]
 [ext_resource type="PackedScene" uid="uid://cuk8ucch5tfpd" path="res://Scenes/pause_menu.tscn" id="7_cp0ys"]
-[ext_resource type="PackedScene" uid="uid://d2mnoo73rlj0n" path="res://Scenes/post_pro.tscn" id="8_yhxw7"]
+[ext_resource type="PackedScene" uid="uid://blvuicffccsll" path="res://Scenes/post_pro_2.tscn" id="8_yhxw7"]
 
 [node name="MAIN_MENU" type="Control"]
 layout_mode = 3
@@ -75,16 +75,13 @@ offset_bottom = -28.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="TITLE2" parent="." instance=ExtResource("6_cp0ys")]
+[node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1
-anchors_preset = 0
-anchor_left = 0.0
-anchor_right = 0.0
-offset_left = -29.0
-offset_top = 20.0
-offset_right = 815.0
-offset_bottom = 422.0
-grow_horizontal = 1
+offset_left = 12.0
+offset_top = 11.0
+offset_right = 692.0
+offset_bottom = 484.0
+texture = ExtResource("6_yhxw7")
 
 [node name="PauseMenu" parent="." instance=ExtResource("7_cp0ys")]
 visible = false

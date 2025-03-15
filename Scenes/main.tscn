@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://c4x5jp3xx3pe2"]
+[gd_scene load_steps=5 format=3 uid="uid://c4x5jp3xx3pe2"]
 
 [ext_resource type="PackedScene" uid="uid://otlm4qvh6cx" path="res://Player.tscn" id="1_jjgbg"]
 [ext_resource type="PackedScene" uid="uid://c8s8qyrng86ep" path="res://Scenes/LevelAndScore.tscn" id="2_bo1nx"]
-[ext_resource type="PackedScene" uid="uid://vs2gc7hbww43" path="res://Scenes/end_game_ui.tscn" id="3_8gbba"]
+[ext_resource type="Script" uid="uid://cnsvfodv6y40p" path="res://cameraShake.gd" id="2_jjvhh"]
+[ext_resource type="PackedScene" path="res://Scenes/end_game_ui.tscn" id="3_8gbba"]
 
 [node name="Main" type="Node2D"]
 
@@ -10,12 +11,17 @@
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = -1
+script = ExtResource("2_jjvhh")
+randomStrenght = 15.0
 
 [node name="LevelUI" parent="CanvasLayer" instance=ExtResource("2_bo1nx")]
 offset_left = 1.0
 offset_right = 1.0
+metadata/_edit_use_anchors_ = true
 
 [node name="CanvasLayer2" type="CanvasLayer" parent="."]
 
 [node name="EndGameUI" parent="CanvasLayer2" instance=ExtResource("3_8gbba")]
 visible = false
+
+[node name="CanvasLayer3" type="CanvasLayer" parent="."]

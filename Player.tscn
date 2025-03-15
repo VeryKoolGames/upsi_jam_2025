@@ -6,7 +6,6 @@
 [ext_resource type="Script" uid="uid://cmgbbh8o7nwm" path="res://shape_spawner.gd" id="5_5ncpa"]
 [ext_resource type="Script" path="res://enemy_spawner.gd" id="5_tdg3f"]
 [ext_resource type="PackedScene" path="res://Scenes/enemy.tscn" id="6_dtqjt"]
-[ext_resource type="Texture2D" uid="uid://cgkbts6k4taid" path="res://Sprites/LineGradient.svg" id="7_dtqjt"]
 [ext_resource type="PackedScene" path="res://shape_manager.tscn" id="8_5ncpa"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_o2i67"]
@@ -17,6 +16,10 @@ radius = 60.0333
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_e80uo"]
 normal = Vector2(-0.0120336, 0.999928)
+
+[sub_resource type="Gradient" id="Gradient_5ncpa"]
+offsets = PackedFloat32Array(0, 0.588415, 1)
+colors = PackedColorArray(0.145098, 0.176471, 0.909804, 1, 0.145098, 0.176471, 0.909804, 0, 0.145098, 0.176471, 0.909804, 0)
 
 [node name="Player" type="Node2D"]
 
@@ -112,7 +115,9 @@ spawn_margin = 1000
 camera = NodePath("../Camera2D")
 
 [node name="Line2D" type="Line2D" parent="."]
-texture = ExtResource("7_dtqjt")
+z_index = -1
+width = 3.0
+gradient = SubResource("Gradient_5ncpa")
 
 [node name="ShapeManager" parent="." node_paths=PackedStringArray("aim_line") instance=ExtResource("8_5ncpa")]
 unique_name_in_owner = true
