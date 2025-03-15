@@ -9,6 +9,7 @@ extends Control
 
 func _process(delta: float) -> void:
 	btn_hovered(play)
+	btn_hovered(mainMenu)
 	btn_hovered(quit)
 
 func startTween(object: Object, property: String, final_val: Variant, duration:float):
