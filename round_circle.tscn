@@ -1,0 +1,47 @@
+[gd_scene load_steps=7 format=3 uid="uid://cqd4scgty1wlb"]
+
+[ext_resource type="Script" uid="uid://cdsvvbrrgasar" path="res://shape.gd" id="1_hprad"]
+[ext_resource type="PackedScene" uid="uid://bi7yny72t34p4" path="res://Scenes/snap_particles.tscn" id="4_3f16y"]
+[ext_resource type="Texture2D" uid="uid://cv3a0cfqdadm7" path="res://Sprites/Cercle.svg" id="4_rl5m2"]
+[ext_resource type="Texture2D" uid="uid://dl4o5p6uwo4l8" path="res://Sprites/Cercle_Dotted.svg" id="5_3f16y"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_77gc5"]
+radius = 34.1321
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_c22ey"]
+radius = 32.0
+
+[node name="CircleShape" type="RigidBody2D" node_paths=PackedStringArray("sprite", "outline_sprite", "snap_particle")]
+collision_layer = 2
+collision_mask = 2
+gravity_scale = 0.0
+script = ExtResource("1_hprad")
+possible_colors = Array[Color]([Color(0.737255, 1, 0.00784314, 1), Color(0.145098, 0.176471, 0.909804, 1), Color(1, 0.784314, 0.215686, 1)])
+possible_shapes = Array[Texture2D]([ExtResource("4_rl5m2")])
+possible_shapes_outlines = Array[Texture2D]([ExtResource("5_3f16y")])
+sprite = NodePath("Node2D/MainSprite")
+outline_sprite = NodePath("Node2D/OutlineSprite")
+snap_particle = NodePath("SnapParticles")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_77gc5")
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="MainSprite" type="Sprite2D" parent="Node2D"]
+scale = Vector2(0.639999, 0.639999)
+texture = ExtResource("4_rl5m2")
+
+[node name="OutlineSprite" type="Sprite2D" parent="Node2D"]
+visible = false
+scale = Vector2(0.639999, 0.639999)
+texture = ExtResource("5_3f16y")
+
+[node name="Area2D" type="Area2D" parent="Node2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Area2D"]
+shape = SubResource("CircleShape2D_c22ey")
+
+[node name="SnapParticles" parent="." instance=ExtResource("4_3f16y")]
+
+[connection signal="area_entered" from="Node2D/Area2D" to="." method="_on_area_2d_area_entered"]

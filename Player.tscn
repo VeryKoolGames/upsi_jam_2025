@@ -1,19 +1,24 @@
-[gd_scene load_steps=12 format=3 uid="uid://otlm4qvh6cx"]
+[gd_scene load_steps=18 format=3 uid="uid://otlm4qvh6cx"]
 
 [ext_resource type="Script" uid="uid://cd4rt1lm4asto" path="res://Scripts/player_movement.gd" id="1_2ibxi"]
 [ext_resource type="Texture2D" uid="uid://4lc7xuy3cfr5" path="res://Sprites/Coeur.svg" id="2_tdg3f"]
-[ext_resource type="PackedScene" uid="uid://dqsvnfjk7e8rf" path="res://shape.tscn" id="3_2feor"]
+[ext_resource type="PackedScene" uid="uid://dqsvnfjk7e8rf" path="res://shape_square.tscn" id="3_2feor"]
 [ext_resource type="Script" uid="uid://cmgbbh8o7nwm" path="res://shape_spawner.gd" id="5_5ncpa"]
 [ext_resource type="Script" uid="uid://i0w0tr8g0c2j" path="res://enemy_spawner.gd" id="5_tdg3f"]
+[ext_resource type="PackedScene" uid="uid://clulk1x55eb3t" path="res://half_circle.tscn" id="5_wi0c6"]
 [ext_resource type="PackedScene" uid="uid://n8nx7vjj0lqy" path="res://Scenes/enemy.tscn" id="6_dtqjt"]
-[ext_resource type="Texture2D" uid="uid://cgkbts6k4taid" path="res://Sprites/LineGradient.svg" id="7_dtqjt"]
+[ext_resource type="PackedScene" uid="uid://cqd4scgty1wlb" path="res://round_circle.tscn" id="6_wi0c6"]
+[ext_resource type="PackedScene" uid="uid://brhpedrkppwpj" path="res://triangle_shape.tscn" id="7_hp6x6"]
+[ext_resource type="PackedScene" uid="uid://w31jg8pbth22" path="res://triangle_diago_shape.tscn" id="8_3tkgg"]
 [ext_resource type="PackedScene" uid="uid://gbrrr4ey6d5t" path="res://shape_manager.tscn" id="8_5ncpa"]
+[ext_resource type="PackedScene" uid="uid://be7xl7udyyv2y" path="res://triangle_small_shape.tscn" id="9_oudfo"]
+[ext_resource type="PackedScene" uid="uid://73q7pvbppq41" path="res://circle_letter_shape.tscn" id="10_d6rpx"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_o2i67"]
 radius = 34.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tdg3f"]
-radius = 60.0333
+radius = 41.1096
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_e80uo"]
 normal = Vector2(-0.0120336, 0.999928)
@@ -44,31 +49,31 @@ shape = SubResource("CircleShape2D_tdg3f")
 [node name="SpawnPoints" type="Node2D" parent="CharacterBody2D"]
 
 [node name="SpawnPoint1" type="Node2D" parent="CharacterBody2D/SpawnPoints"]
-position = Vector2(122, -129)
+position = Vector2(83, -71)
 metadata/_edit_group_ = true
 
 [node name="SpawnPoint2" type="Node2D" parent="CharacterBody2D/SpawnPoints"]
-position = Vector2(198, -2)
+position = Vector2(124, 30)
 
 [node name="SpawnPoint3" type="Node2D" parent="CharacterBody2D/SpawnPoints"]
-position = Vector2(-10, -173)
+position = Vector2(-8, -99)
 
 [node name="SpawnPoint4" type="Node2D" parent="CharacterBody2D/SpawnPoints"]
-position = Vector2(-162, -95)
+position = Vector2(-98, -51)
 
 [node name="SpawnPoint5" type="Node2D" parent="CharacterBody2D/SpawnPoints"]
-position = Vector2(104, 155)
+position = Vector2(58, 102)
 
 [node name="SpawnPoint6" type="Node2D" parent="CharacterBody2D/SpawnPoints"]
-position = Vector2(-91, 170)
+position = Vector2(-40, 93)
 
 [node name="SpawnPoint7" type="Node2D" parent="CharacterBody2D/SpawnPoints"]
-position = Vector2(-163, 56)
+position = Vector2(-101, 23)
 
 [node name="ShapeSpawner" type="Node2D" parent="CharacterBody2D" node_paths=PackedStringArray("spawn_points")]
 script = ExtResource("5_5ncpa")
 spawn_points = [NodePath("../SpawnPoints/SpawnPoint1"), NodePath("../SpawnPoints/SpawnPoint2"), NodePath("../SpawnPoints/SpawnPoint3"), NodePath("../SpawnPoints/SpawnPoint4"), NodePath("../SpawnPoints/SpawnPoint5"), NodePath("../SpawnPoints/SpawnPoint6"), NodePath("../SpawnPoints/SpawnPoint7")]
-shape_scenes = Array[PackedScene]([ExtResource("3_2feor")])
+shape_scenes = Array[PackedScene]([ExtResource("3_2feor"), ExtResource("5_wi0c6"), ExtResource("6_wi0c6"), ExtResource("7_hp6x6"), ExtResource("8_3tkgg"), ExtResource("9_oudfo"), ExtResource("10_d6rpx")])
 
 [node name="Walls" type="Node2D" parent="."]
 metadata/_edit_lock_ = true
