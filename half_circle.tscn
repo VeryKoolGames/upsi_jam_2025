@@ -7,7 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://bi7yny72t34p4" path="res://Scenes/snap_particles.tscn" id="14_idtxk"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_77gc5"]
-radius = 34.1321
 
 [node name="HalfCircleShape" type="RigidBody2D" node_paths=PackedStringArray("sprite", "outline_sprite", "snap_particle", "piece_mort_particle")]
 collision_layer = 2

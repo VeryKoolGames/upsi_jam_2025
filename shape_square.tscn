@@ -1,15 +1,13 @@
-[gd_scene load_steps=9 format=3 uid="uid://dqsvnfjk7e8rf"]
+[gd_scene load_steps=7 format=3 uid="uid://dqsvnfjk7e8rf"]
 
 [ext_resource type="Script" uid="uid://cdsvvbrrgasar" path="res://shape.gd" id="1_seg8l"]
-[ext_resource type="Texture2D" uid="uid://dudo877wy0wgq" path="res://Sprites/Carré.svg" id="2_cwbt1"]
 [ext_resource type="Texture2D" uid="uid://cwsnmwvpjxh1v" path="res://Sprites/Croix.svg" id="4_nkf8i"]
 [ext_resource type="Texture2D" uid="uid://dth058gx7crax" path="res://Sprites/Croix_Dotted.svg" id="5_475gu"]
 [ext_resource type="PackedScene" uid="uid://bw758m4gx7dj4" path="res://Scenes/piece_mort_particles.tscn" id="5_j0x15"]
-[ext_resource type="Texture2D" uid="uid://dxqetl4tmw8dr" path="res://Sprites/Carré_Dotted.svg" id="8_dk3cl"]
 [ext_resource type="PackedScene" uid="uid://bi7yny72t34p4" path="res://Scenes/snap_particles.tscn" id="14_ghnil"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_77gc5"]
-radius = 45.0
+radius = 15.1327
 
 [node name="SquareShape" type="RigidBody2D" node_paths=PackedStringArray("sprite", "outline_sprite", "snap_particle", "piece_mort_particle")]
 collision_layer = 2
@@ -17,8 +15,8 @@ collision_mask = 2
 gravity_scale = 0.0
 script = ExtResource("1_seg8l")
 possible_colors = Array[Color]([Color(0.737255, 1, 0.00784314, 1), Color(0.145098, 0.176471, 0.909804, 1), Color(1, 0.784314, 0.215686, 1)])
-possible_shapes = Array[Texture2D]([ExtResource("2_cwbt1")])
-possible_shapes_outlines = Array[Texture2D]([ExtResource("8_dk3cl")])
+possible_shapes = Array[Texture2D]([ExtResource("4_nkf8i")])
+possible_shapes_outlines = Array[Texture2D]([ExtResource("5_475gu")])
 sprite = NodePath("Node2D/MainSprite")
 outline_sprite = NodePath("Node2D/OutlineSprite")
 snap_particle = NodePath("SnapParticles")

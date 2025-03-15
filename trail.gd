@@ -2,7 +2,9 @@ class_name Trail
 extends Line2D
 
 
-const MAX_POINTS : int = 1000
+const MAX_POINTS : int = 70
+
+@onready var trailColor : Color
 @onready var curve := Curve2D.new()
 
 func _process(delta: float) -> void:
@@ -13,11 +15,13 @@ func _process(delta: float) -> void:
 	
 func stop() -> void:
 	set_process(false)
-	var tw = get_tree().create_tween()
-	tw.tween_property(self, "modulate:a", 0.0, 3.0)
-	await tw.finished
 	queue_free()
 	
 static func create() -> Trail:
 	var scn = preload("res://trail.tscn")
 	return scn.instantiate()
+	
+func setColor(color: Color) -> void:
+	if gradient:
+		gradient.set_color(0, "#011f37")
+		gradient.set_color(1, color)
