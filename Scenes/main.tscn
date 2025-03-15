@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://otlm4qvh6cx" path="res://Player.tscn" id="1_jjgbg"]
 [ext_resource type="PackedScene" uid="uid://c8s8qyrng86ep" path="res://Scenes/LevelAndScore.tscn" id="2_bo1nx"]
 [ext_resource type="Script" uid="uid://cnsvfodv6y40p" path="res://cameraShake.gd" id="2_jjvhh"]
-[ext_resource type="PackedScene" path="res://Scenes/end_game_ui.tscn" id="3_8gbba"]
+[ext_resource type="PackedScene" uid="uid://vs2gc7hbww43" path="res://Scenes/end_game_ui.tscn" id="3_8gbba"]
 
 [node name="Main" type="Node2D"]
 
