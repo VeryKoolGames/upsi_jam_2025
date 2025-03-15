@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://c8s8qyrng86ep"]
+[gd_scene load_steps=12 format=3 uid="uid://c8s8qyrng86ep"]
 
 [ext_resource type="FontFile" uid="uid://4b21mf5p1g08" path="res://Sprites/Orbitron-Regular.ttf" id="1_1kq1x"]
 [ext_resource type="Texture2D" uid="uid://cg7j1xgsstomy" path="res://Sprites/TimerBackground.svg" id="1_al4uf"]
@@ -8,6 +8,11 @@
 [ext_resource type="Texture2D" uid="uid://fdsk4ws4k5j0" path="res://Sprites/Cadre.png" id="4_cqqkl"]
 [ext_resource type="Texture2D" uid="uid://d38226rqoridu" path="res://Sprites/BorderGradient.png" id="5_x5q7b"]
 [ext_resource type="Texture2D" uid="uid://cwps7srghtsga" path="res://Sprites/Grid.svg" id="6_l1b5m"]
+[ext_resource type="Script" uid="uid://d0a5ubnypfyo2" path="res://Scenes/enemy_detection.gd" id="9_b4ac1"]
+[ext_resource type="Texture2D" uid="uid://du1j5slratbhn" path="res://Sprites/EnnemiesAlert.png" id="10_6fxjm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6fxjm"]
+size = Vector2(1919, 97)
 
 [node name="LevelUI" type="Control" node_paths=PackedStringArray("score_label", "timer_label", "game_timer")]
 layout_mode = 3
@@ -136,3 +141,20 @@ texture = ExtResource("6_l1b5m")
 unique_name_in_owner = true
 wait_time = 30.0
 one_shot = true
+
+[node name="EnemyDetection" type="Node2D" parent="." node_paths=PackedStringArray("warning_sprite")]
+script = ExtResource("9_b4ac1")
+warning_sprite = NodePath("Sprite2D")
+
+[node name="Area2D" type="Area2D" parent="EnemyDetection"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyDetection/Area2D"]
+position = Vector2(949.5, -58.5)
+shape = SubResource("RectangleShape2D_6fxjm")
+
+[node name="Sprite2D" type="Sprite2D" parent="EnemyDetection"]
+visible = false
+position = Vector2(181, 36)
+texture = ExtResource("10_6fxjm")
+
+[connection signal="area_entered" from="EnemyDetection/Area2D" to="EnemyDetection" method="_on_area_2d_area_entered"]

@@ -1,13 +1,13 @@
-[gd_scene load_steps=9 format=3 uid="uid://baqdtsftj30c8"]
+[gd_scene load_steps=9 format=3 uid="uid://bd2va6fqq64dt"]
 
 [ext_resource type="Texture2D" uid="uid://dudo877wy0wgq" path="res://Sprites/Carré.svg" id="1_opfnp"]
 [ext_resource type="Texture2D" uid="uid://fdsk4ws4k5j0" path="res://Sprites/Cadre.png" id="2_cp0ys"]
 [ext_resource type="Texture2D" uid="uid://d38226rqoridu" path="res://Sprites/BorderGradient.png" id="3_yhxw7"]
 [ext_resource type="Texture2D" uid="uid://cwps7srghtsga" path="res://Sprites/Grid.svg" id="4_trj04"]
-[ext_resource type="PackedScene" uid="uid://pgblr8gkwaxn" path="res://Scenes/TitleLogo.tscn" id="6_cp0ys"]
-[ext_resource type="PackedScene" uid="uid://ux5cvlxw14op" path="res://Scenes/MainMenuButtons.tscn" id="6_opfnp"]
-[ext_resource type="PackedScene" uid="uid://cuk8ucch5tfpd" path="res://Scenes/pause_menu.tscn" id="7_cp0ys"]
-[ext_resource type="PackedScene" uid="uid://d2mnoo73rlj0n" path="res://Scenes/post_pro.tscn" id="8_yhxw7"]
+[ext_resource type="PackedScene" path="res://Scenes/TitleLogo.tscn" id="6_cp0ys"]
+[ext_resource type="PackedScene" uid="uid://f6ggcfwbj2is" path="res://Scenes/MainMenuButtons.tscn" id="6_opfnp"]
+[ext_resource type="PackedScene" path="res://Scenes/pause_menu.tscn" id="7_cp0ys"]
+[ext_resource type="PackedScene" path="res://Scenes/post_pro.tscn" id="8_yhxw7"]
 
 [node name="MAIN_MENU" type="Control"]
 layout_mode = 3

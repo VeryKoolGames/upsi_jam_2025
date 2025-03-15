@@ -2,7 +2,7 @@ extends Node2D
 
 @export var enemy_scene: PackedScene
 @export var spawn_margin: int = 100
-var spawn_interval = 2
+var spawn_interval = 0.2
 @export var camera: Camera2D
 
 func _ready() -> void:
