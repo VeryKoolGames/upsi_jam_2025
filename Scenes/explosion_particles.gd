@@ -4,5 +4,4 @@ class_name ExplosionParticle
 @export var particle_one: CPUParticles2D
 
 func play_death_particles():
-	print("PLaying particlesawait get_tree().create_timer(2.0).timeout")
 	particle_one.emitting = true

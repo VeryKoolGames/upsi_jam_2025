@@ -4,9 +4,10 @@
 [ext_resource type="Texture2D" uid="uid://4lc7xuy3cfr5" path="res://Sprites/Coeur.svg" id="2_tdg3f"]
 [ext_resource type="PackedScene" uid="uid://dqsvnfjk7e8rf" path="res://shape.tscn" id="3_2feor"]
 [ext_resource type="Script" uid="uid://cmgbbh8o7nwm" path="res://shape_spawner.gd" id="5_5ncpa"]
-[ext_resource type="Script" path="res://enemy_spawner.gd" id="5_tdg3f"]
-[ext_resource type="PackedScene" path="res://Scenes/enemy.tscn" id="6_dtqjt"]
-[ext_resource type="PackedScene" path="res://shape_manager.tscn" id="8_5ncpa"]
+[ext_resource type="Script" uid="uid://i0w0tr8g0c2j" path="res://enemy_spawner.gd" id="5_tdg3f"]
+[ext_resource type="PackedScene" uid="uid://n8nx7vjj0lqy" path="res://Scenes/enemy.tscn" id="6_dtqjt"]
+[ext_resource type="Texture2D" uid="uid://cgkbts6k4taid" path="res://Sprites/LineGradient.svg" id="7_dtqjt"]
+[ext_resource type="PackedScene" uid="uid://gbrrr4ey6d5t" path="res://shape_manager.tscn" id="8_5ncpa"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_o2i67"]
 radius = 34.0

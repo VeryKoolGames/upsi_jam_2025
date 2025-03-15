@@ -2,16 +2,17 @@ extends Node2D
 
 @export var enemy_scene: PackedScene
 @export var spawn_margin: int = 100
-var spawn_interval = 2
+var max_spawn_interval = 2
 @export var camera: Camera2D
 
 func _ready() -> void:
 	randomize()
 	spawn_loop()
+	Events.game_progressed.connect(on_timer_progress)
 
 func spawn_loop():
 	while true:
-		await get_tree().create_timer(spawn_interval).timeout
+		await get_tree().create_timer(randf_range(max_spawn_interval - 0.5, max_spawn_interval)).timeout
 		_spawn_enemy()
 
 func _spawn_enemy():
@@ -36,3 +37,6 @@ func get_spawn_position(cam_pos: Vector2, cam_size: Vector2) -> Vector2:
 		3: return Vector2(cam_pos.x + cam_size.x / 2 + spawn_margin, randf_range(cam_pos.y - cam_size.y / 2, cam_pos.y + cam_size.y / 2))
 	
 	return Vector2.ZERO
+
+func on_timer_progress():
+	max_spawn_interval -= 0.5

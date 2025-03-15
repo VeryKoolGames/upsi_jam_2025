@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://bi7yny72t34p4"]
 
-[ext_resource type="Script" path="res://Scenes/snap_particles.gd" id="1_iqlsw"]
+[ext_resource type="Script" uid="uid://b74a8bfo86ehr" path="res://Scenes/snap_particles.gd" id="1_iqlsw"]
 [ext_resource type="Texture2D" uid="uid://dxqetl4tmw8dr" path="res://Sprites/Carré_Dotted.svg" id="1_p10l6"]
 [ext_resource type="Texture2D" uid="uid://dudo877wy0wgq" path="res://Sprites/Carré.svg" id="2_s8kgx"]
 
