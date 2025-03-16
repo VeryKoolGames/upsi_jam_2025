@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://otlm4qvh6cx"]
+[gd_scene load_steps=24 format=3 uid="uid://otlm4qvh6cx"]
 
 [ext_resource type="Script" uid="uid://cd4rt1lm4asto" path="res://Scripts/player_movement.gd" id="1_2ibxi"]
 [ext_resource type="Texture2D" uid="uid://4lc7xuy3cfr5" path="res://Sprites/Coeur.svg" id="2_tdg3f"]
@@ -16,8 +16,9 @@
 [ext_resource type="PackedScene" uid="uid://73q7pvbppq41" path="res://circle_letter_shape.tscn" id="10_d6rpx"]
 [ext_resource type="PackedScene" uid="uid://c80uwbkjp4xio" path="res://cross_shape.tscn" id="11_d6rpx"]
 [ext_resource type="Texture2D" uid="uid://dhii2obai8q5f" path="res://Sprites/RadialGradient.svg" id="11_efikj"]
-[ext_resource type="AudioStream" uid="uid://b4pma7vpmq455" path="res://Sounds/pickupSound.wav" id="16_jatw7"]
+[ext_resource type="AudioStream" uid="uid://cgapj3v4mu867" path="res://Sounds/SNAP.mp3" id="17_efikj"]
 [ext_resource type="AudioStream" uid="uid://bn7urc6q85x2s" path="res://Sounds/synth.wav" id="17_rv870"]
+[ext_resource type="AudioStream" uid="uid://dub1sbfxl7x1h" path="res://Sounds/ShapeDeath.mp3" id="18_itxgx"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_o2i67"]
 radius = 34.0
@@ -199,8 +200,13 @@ stream = ExtResource("8_wi0c6")
 
 [node name="PickUpSound" type="AudioStreamPlayer2D" parent="."]
 unique_name_in_owner = true
-stream = ExtResource("16_jatw7")
-volume_db = -0.377
+stream = ExtResource("17_efikj")
+volume_db = -12.0
+
+[node name="ShapeDeathSound" type="AudioStreamPlayer2D" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("18_itxgx")
+volume_db = -12.0
 
 [node name="FioushSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("17_rv870")
