@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://vs2gc7hbww43"]
+[gd_scene load_steps=13 format=3 uid="uid://vs2gc7hbww43"]
 
 [ext_resource type="Script" uid="uid://bi5mxfiwluard" path="res://Scenes/end_game_ui.gd" id="1_x2uj6"]
 [ext_resource type="Texture2D" uid="uid://dxqfj1u5rq566" path="res://Sprites/REPLAY.png" id="2_i2676"]
@@ -10,6 +10,8 @@
 [ext_resource type="Texture2D" uid="uid://crpwfnj5qwttw" path="res://Sprites/yourScore.png" id="6_yjtpl"]
 [ext_resource type="Texture2D" uid="uid://dudo877wy0wgq" path="res://Sprites/Carré.svg" id="7_x6ham"]
 [ext_resource type="Texture2D" uid="uid://bn51tqyg5qqsq" path="res://Sprites/heart.png" id="7_xnyjb"]
+[ext_resource type="Texture2D" uid="uid://chc513t4macs8" path="res://Sprites/MAINMENU.png" id="9_gtdt6"]
+[ext_resource type="Texture2D" uid="uid://bsykoflj1sxhi" path="res://Sprites/MAINMENU_HOVER.png" id="10_h0nbf"]
 
 [node name="EndGameUI" type="Control" node_paths=PackedStringArray("end_game_label", "scoreLabel")]
 layout_mode = 3
@@ -89,6 +91,14 @@ texture_normal = ExtResource("2_i2676")
 texture_pressed = ExtResource("2_i2676")
 texture_hover = ExtResource("3_x6ham")
 
+[node name="MainMenuButton" type="TextureButton" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("9_gtdt6")
+texture_pressed = ExtResource("9_gtdt6")
+texture_hover = ExtResource("10_h0nbf")
+
 [node name="quit_button" type="TextureButton" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
@@ -98,4 +108,5 @@ texture_pressed = ExtResource("4_xnyjb")
 texture_hover = ExtResource("5_ugxrw")
 
 [connection signal="pressed" from="VBoxContainer/replay_button" to="." method="_on_replay_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/MainMenuButton" to="." method="_on_main_menu_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/quit_button" to="." method="_on_quit_button_pressed"]

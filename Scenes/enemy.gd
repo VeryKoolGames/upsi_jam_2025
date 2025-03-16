@@ -10,12 +10,16 @@ var current_trail: Trail
 @export var death_sound: AudioStreamPlayer2D
 
 func _ready():
+	_randomize_speed()
 	Events.game_progressed.connect(on_game_state_change)
 	make_trail()
 	add_to_group("enemy")
 	player = get_tree().get_first_node_in_group("player")
 	if !player:
 		push_error("Enemy cannot find player node!")
+
+func _randomize_speed():
+	speed *= randf_range(1.1, 1.3)
 
 func _process(delta):
 	if !player:

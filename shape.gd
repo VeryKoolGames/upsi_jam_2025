@@ -47,6 +47,7 @@ func _ready() -> void:
 	_set_random_shape()
 	_set_random_scale()
 	_set_random_rotation()
+	pick_up_sound.pitch_scale = randf_range(0.8, 1.4)
 	pick_up_sound.playing = true
 	await get_tree().create_timer(start_offset).timeout
 	_move_to_target()
@@ -86,7 +87,7 @@ func _set_random_scale():
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if is_dead || PlayerScore.start_phase:
 		return
-	if area.get_parent().is_in_group("enemy") and (is_attached or is_standing_still):
+	if area.get_parent().is_in_group("enemy") and (is_attached or is_standing_still) and not is_dead:
 		destroy_sound.playing = true
 		is_dead = true
 		shape_manager.remove_shape(self)

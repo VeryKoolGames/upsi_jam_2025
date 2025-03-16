@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bd2va6fqq64dt"]
+[gd_scene load_steps=18 format=3 uid="uid://bd2va6fqq64dt"]
 
 [ext_resource type="Texture2D" uid="uid://dudo877wy0wgq" path="res://Sprites/Carré.svg" id="1_opfnp"]
 [ext_resource type="Texture2D" uid="uid://fdsk4ws4k5j0" path="res://Sprites/Cadre.png" id="2_cp0ys"]
@@ -8,7 +8,6 @@
 [ext_resource type="Texture2D" uid="uid://cnmv4e68cep7s" path="res://Sprites/BackGroundFade.png" id="4_vr1f0"]
 [ext_resource type="PackedScene" uid="uid://f6ggcfwbj2is" path="res://Scenes/MainMenuButtons.tscn" id="6_opfnp"]
 [ext_resource type="Texture2D" uid="uid://2bu2vcw3fce6" path="res://Sprites/Title.png" id="6_yhxw7"]
-[ext_resource type="PackedScene" uid="uid://stnv4kvm8g88" path="res://Scenes/pause_menu.tscn" id="7_cp0ys"]
 [ext_resource type="Texture2D" uid="uid://btbbpiieap8rf" path="res://Sprites/VKG.png" id="11_vr1f0"]
 [ext_resource type="Texture2D" uid="uid://wd8u2x1ahwdw" path="res://Sprites/HowTo.png" id="11_vtepg"]
 [ext_resource type="PackedScene" uid="uid://cal7ivpltj6oo" path="res://world_environment.tscn" id="12_t1dhk"]
@@ -166,14 +165,6 @@ offset_bottom = 484.0
 scale = Vector2(1.01, 1.01)
 pivot_offset = Vector2(340, 237)
 texture = ExtResource("6_yhxw7")
-
-[node name="PauseMenu" parent="." instance=ExtResource("7_cp0ys")]
-visible = false
-layout_mode = 1
-offset_left = 3.0
-offset_top = -4.0
-offset_right = 3.0
-offset_bottom = -4.0
 
 [node name="LOGO" type="TextureRect" parent="."]
 layout_mode = 1
