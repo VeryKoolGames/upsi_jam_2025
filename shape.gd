@@ -21,6 +21,7 @@ var shape_manager: ShapeManager
 var is_dead: bool
 @export var bounce_sound_manager: Node2D
 var pick_up_sound: AudioStreamPlayer2D
+var destroy_sound: AudioStreamPlayer2D
 var start_offset: float = 3.5
 var is_standing_still: bool
 
@@ -38,6 +39,7 @@ func _ready() -> void:
 	first_time = true
 	shape_manager = get_node("../%ShapeManager")
 	pick_up_sound = get_node("../%PickUpSound")
+	destroy_sound = get_node("../%ShapeDeathSound")
 	scale = Vector2.ZERO
 	var tween = create_tween()
 	tween.tween_property(self, "scale", Vector2(1, 1), 0.2)
@@ -85,6 +87,7 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 	if is_dead || PlayerScore.start_phase:
 		return
 	if area.get_parent().is_in_group("enemy") and (is_attached or is_standing_still):
+		destroy_sound.playing = true
 		is_dead = true
 		shape_manager.remove_shape(self)
 		area.owner.on_enemy_killed()
