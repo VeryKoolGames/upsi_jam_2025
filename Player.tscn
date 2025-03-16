@@ -85,25 +85,25 @@ position = Vector2(4, -370)
 [node name="OriginalSpawnPoints" type="Node2D" parent="CharacterBody2D"]
 
 [node name="SpawnPoint1" type="Node2D" parent="CharacterBody2D/OriginalSpawnPoints"]
-position = Vector2(132, -126)
+position = Vector2(133, -126)
 
 [node name="SpawnPoint2" type="Node2D" parent="CharacterBody2D/OriginalSpawnPoints"]
-position = Vector2(142, 16)
+position = Vector2(108, 20)
 
 [node name="SpawnPoint3" type="Node2D" parent="CharacterBody2D/OriginalSpawnPoints"]
-position = Vector2(61, 150)
+position = Vector2(46, 102)
 
 [node name="SpawnPoint4" type="Node2D" parent="CharacterBody2D/OriginalSpawnPoints"]
-position = Vector2(-110, 127)
+position = Vector2(-72, 82)
 
 [node name="SpawnPoint5" type="Node2D" parent="CharacterBody2D/OriginalSpawnPoints"]
-position = Vector2(-152, -4)
+position = Vector2(-123, -4)
 
 [node name="SpawnPoint6" type="Node2D" parent="CharacterBody2D/OriginalSpawnPoints"]
-position = Vector2(-127, -108)
+position = Vector2(-73, -70)
 
 [node name="SpawnPoint7" type="Node2D" parent="CharacterBody2D/OriginalSpawnPoints"]
-position = Vector2(-5, -166)
+position = Vector2(0, -110)
 
 [node name="Walls" type="Node2D" parent="."]
 metadata/_edit_lock_ = true

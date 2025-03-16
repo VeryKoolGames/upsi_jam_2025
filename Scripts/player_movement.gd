@@ -18,9 +18,9 @@ func _ready() -> void:
 	tween.tween_property(self, "scale", Vector2(1, 1), 0.5)
 	Events.game_ended.connect(on_game_end)
 	make_trail()
-	await get_tree().create_timer(2.6).timeout
+	await get_tree().create_timer(2.8).timeout
 	fioush_sound.playing = true
-	await get_tree().create_timer(1).timeout
+	await get_tree().create_timer(.7).timeout
 	PlayerScore.start_phase = false
 
 func _physics_process(delta):
