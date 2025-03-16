@@ -31,7 +31,7 @@ func _on_play_button_pressed() -> void:
 	fade_overlay.mouse_filter = 0
 	var tween = create_tween()
 	tween.set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
-	tween.tween_property(fade_overlay, "modulate:a", 1.0, 1.3)
+	tween.tween_property(fade_overlay, "modulate:a", 1.0, 0.5)
 	await tween.finished
 	get_tree().change_scene_to_file("res://Scenes/main.tscn")
 
