@@ -6,6 +6,7 @@ var player: Node2D  # Reference to player node
 @export var explosionParticles: ExplosionParticle
 
 var current_trail: Trail
+@export var glow: Sprite2D
 @export var death_sound: AudioStreamPlayer2D
 
 func _ready():
@@ -28,6 +29,7 @@ func on_enemy_killed():
 	death_sound.pitch_scale = randf_range(1, 2.3)
 	death_sound.playing = true
 	remove_from_group("enemy")
+	glow.queue_free()
 	explosionParticles.play_death_particles()
 	current_trail.stop()
 	await get_tree().create_timer(6.0).timeout

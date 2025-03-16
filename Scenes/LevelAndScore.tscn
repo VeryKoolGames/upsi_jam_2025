@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://cmyw8rhyy28tf" path="res://Scenes/score_manager.gd" id="1_l062w"]
 [ext_resource type="FontFile" uid="uid://b7ishda7ounim" path="res://Fonts/Orbitron-Regular.ttf" id="1_yg28j"]
 [ext_resource type="Texture2D" uid="uid://fdsk4ws4k5j0" path="res://Sprites/Cadre.png" id="4_cqqkl"]
-[ext_resource type="Shader" path="res://Shaders/Pattern.gdshader" id="4_npo8i"]
+[ext_resource type="Shader" uid="uid://bb55b1b27vwjp" path="res://Shaders/Pattern.gdshader" id="4_npo8i"]
 [ext_resource type="Texture2D" uid="uid://dllh45ivq315l" path="res://Sprites/GridPattern.png" id="5_q25xh"]
 [ext_resource type="Texture2D" uid="uid://d38226rqoridu" path="res://Sprites/BorderGradient.png" id="5_x5q7b"]
 [ext_resource type="Texture2D" uid="uid://cnmv4e68cep7s" path="res://Sprites/BackGroundFade.png" id="6_r6o7g"]

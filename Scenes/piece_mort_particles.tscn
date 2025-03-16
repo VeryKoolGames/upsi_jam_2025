@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://dudo877wy0wgq" path="res://Sprites/Carré.svg" id="1_850f4"]
 [ext_resource type="Script" uid="uid://b2j58uij8la6k" path="res://Scenes/piece_mort_particles.gd" id="1_m8ykb"]
-[ext_resource type="Shader" path="res://Shaders/piece_mort_particles.gdshader" id="2_fiveg"]
+[ext_resource type="Shader" uid="uid://c6ys235ls4hnd" path="res://Shaders/piece_mort_particles.gdshader" id="2_fiveg"]
 [ext_resource type="Texture2D" uid="uid://cd7e7ngvdtcdk" path="res://Sprites/Croissant.svg" id="2_hl0qe"]
 [ext_resource type="Texture2D" uid="uid://byw02m6dhbn26" path="res://Sprites/Triangle1.svg" id="4_fiveg"]
 
@@ -25,6 +25,7 @@ particle_two = NodePath("Croissant")
 particle_three = NodePath("Triangle")
 
 [node name="Square" type="CPUParticles2D" parent="."]
+z_index = -1
 emitting = false
 amount = 5
 texture = ExtResource("1_850f4")
@@ -49,6 +50,7 @@ scale_amount_max = 0.2
 scale_amount_curve = SubResource("Curve_hl0qe")
 
 [node name="Croissant" type="CPUParticles2D" parent="."]
+z_index = -1
 material = SubResource("ShaderMaterial_4x0lm")
 emitting = false
 amount = 5
@@ -74,6 +76,7 @@ scale_amount_max = 0.2
 scale_amount_curve = SubResource("Curve_hl0qe")
 
 [node name="Triangle" type="CPUParticles2D" parent="."]
+z_index = -1
 material = SubResource("ShaderMaterial_4x0lm")
 emitting = false
 amount = 5

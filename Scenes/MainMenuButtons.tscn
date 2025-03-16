@@ -1,10 +1,14 @@
-[gd_scene load_steps=6 format=3 uid="uid://f6ggcfwbj2is"]
+[gd_scene load_steps=10 format=3 uid="uid://f6ggcfwbj2is"]
 
 [ext_resource type="Script" uid="uid://ccdansdssd61n" path="res://Scenes/main_menu_buttons.gd" id="1_hvmtc"]
 [ext_resource type="Texture2D" uid="uid://digi6ndru6wwr" path="res://Sprites/PLAY.png" id="2_hvmtc"]
 [ext_resource type="Texture2D" uid="uid://cuw5qx4rbqoyt" path="res://Sprites/QuitGame.png" id="3_awi2t"]
 [ext_resource type="Texture2D" uid="uid://c1fkoq0h5n6hr" path="res://Sprites/PLAY_HOVER.png" id="3_q8r77"]
+[ext_resource type="Texture2D" uid="uid://c6mwvfpwmdy8l" path="res://Sprites/HARDCORE.png" id="4_fwbfh"]
 [ext_resource type="Texture2D" uid="uid://dpjl5i5s4i0ft" path="res://Sprites/QuitGames_Hover.png" id="4_maihn"]
+[ext_resource type="Texture2D" uid="uid://g2b158nkklfe" path="res://Sprites/HARDCORE-1.png" id="5_3xagk"]
+[ext_resource type="Texture2D" uid="uid://djyqttnv3wfcp" path="res://Sprites/INFINITE.png" id="6_8i1sb"]
+[ext_resource type="Texture2D" uid="uid://disov7ymghose" path="res://Sprites/INFINITE_HOVER.png" id="7_ejr2c"]
 
 [node name="MarginContainer" type="MarginContainer"]
 offset_right = 516.0
@@ -16,7 +20,7 @@ tween_duration = 0.2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
-theme_override_constants/separation = -35
+theme_override_constants/separation = -50
 
 [node name="PlayButton" type="TextureButton" parent="VBoxContainer"]
 layout_mode = 2
@@ -30,9 +34,17 @@ texture_hover = ExtResource("3_q8r77")
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-texture_normal = ExtResource("2_hvmtc")
-texture_pressed = ExtResource("2_hvmtc")
-texture_hover = ExtResource("3_q8r77")
+texture_normal = ExtResource("4_fwbfh")
+texture_pressed = ExtResource("4_fwbfh")
+texture_hover = ExtResource("5_3xagk")
+
+[node name="InfiniteMode" type="TextureButton" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("6_8i1sb")
+texture_pressed = ExtResource("6_8i1sb")
+texture_hover = ExtResource("7_ejr2c")
 
 [node name="QuitButton" type="TextureButton" parent="VBoxContainer"]
 layout_mode = 2
@@ -45,4 +57,5 @@ texture_hover = ExtResource("4_maihn")
 [connection signal="mouse_entered" from="VBoxContainer/PlayButton" to="." method="_on_play_button_mouse_entered"]
 [connection signal="pressed" from="VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/HardCoreButton" to="." method="_on_hard_core_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/InfiniteMode" to="." method="_on_hard_core_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
