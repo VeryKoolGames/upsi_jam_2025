@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://cmyw8rhyy28tf" path="res://Scenes/score_manager.gd" id="1_l062w"]
 [ext_resource type="FontFile" uid="uid://b7ishda7ounim" path="res://Fonts/Orbitron-Regular.ttf" id="1_yg28j"]
 [ext_resource type="Texture2D" uid="uid://fdsk4ws4k5j0" path="res://Sprites/Cadre.png" id="4_cqqkl"]
-[ext_resource type="Shader" uid="uid://bb55b1b27vwjp" path="res://Shaders/Pattern.gdshader" id="4_npo8i"]
+[ext_resource type="Shader" path="res://Shaders/Pattern.gdshader" id="4_npo8i"]
 [ext_resource type="Texture2D" uid="uid://dllh45ivq315l" path="res://Sprites/GridPattern.png" id="5_q25xh"]
 [ext_resource type="Texture2D" uid="uid://d38226rqoridu" path="res://Sprites/BorderGradient.png" id="5_x5q7b"]
 [ext_resource type="Texture2D" uid="uid://cnmv4e68cep7s" path="res://Sprites/BackGroundFade.png" id="6_r6o7g"]
@@ -45,6 +45,7 @@ grow_vertical = 2
 texture = ExtResource("1_l1b5m")
 
 [node name="LEVEL" type="Label" parent="."]
+z_index = 10
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -60,9 +61,10 @@ grow_vertical = 2
 theme_override_colors/font_color = Color(0.145098, 0.176471, 0.909804, 1)
 theme_override_fonts/font = ExtResource("1_1kq1x")
 theme_override_font_sizes/font_size = 35
-text = "Level 1"
+text = "Normal Mode"
 
 [node name="SCORE" type="Label" parent="."]
+z_index = 10
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -79,6 +81,7 @@ text = "SCORE: "
 
 [node name="ColorRect" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_mbjim")
+layout_mode = 0
 offset_right = 1920.0
 offset_bottom = 1080.0
 

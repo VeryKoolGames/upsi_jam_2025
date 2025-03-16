@@ -5,6 +5,7 @@ var shapes: Array[Node]
 var closest_shape: GameShape
 var should_launch: bool = true
 @export var aim_line: Line2D
+@onready var shoot_sound: AudioStreamPlayer2D = $ShootSound
 
 	
 func _input(event: InputEvent) -> void:
@@ -12,7 +13,7 @@ func _input(event: InputEvent) -> void:
 		if event.is_pressed():
 			return
 		if closest_shape:
-			print(closest_shape)
+			shoot_sound.play(0)
 			should_launch = false
 			_launch_shape_towards_mouse()
 
@@ -58,8 +59,8 @@ func _launch_shape_towards_mouse() -> void:
 	var velocity_vector = mouse_pos - closest_shape.global_position
 	velocity_vector = velocity_vector * 4
 	closest_shape.on_shoot()
-	var rotation_direction = sign(velocity_vector.x)  # -1 (left), 1 (right), or 0
-	closest_shape.angular_velocity = rotation_direction * randf_range(5, 15)  # Random spin speed
+	var rotation_direction = sign(velocity_vector.x)
+	closest_shape.angular_velocity = rotation_direction * randf_range(5, 15)
 	closest_shape.new_velocity = velocity_vector
 	should_launch = true
 	closest_shape = null

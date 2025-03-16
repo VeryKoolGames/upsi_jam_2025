@@ -1,14 +1,16 @@
-[gd_scene load_steps=7 format=3 uid="uid://clulk1x55eb3t"]
+[gd_scene load_steps=8 format=3 uid="uid://clulk1x55eb3t"]
 
 [ext_resource type="Script" uid="uid://cdsvvbrrgasar" path="res://shape.gd" id="1_6aw0f"]
 [ext_resource type="Texture2D" uid="uid://boo5wbqw8ag6b" path="res://Sprites/DemiCercle.svg" id="4_ugiug"]
 [ext_resource type="PackedScene" uid="uid://bw758m4gx7dj4" path="res://Scenes/piece_mort_particles.tscn" id="5_6ws7u"]
+[ext_resource type="PackedScene" uid="uid://2buprn62e2id" path="res://Sprites/bounce_sound_manager.tscn" id="6_lqk87"]
 [ext_resource type="Texture2D" uid="uid://b22778b65br5c" path="res://Sprites/DemiCercle_Dotted.svg" id="10_i16gj"]
 [ext_resource type="PackedScene" uid="uid://bi7yny72t34p4" path="res://Scenes/snap_particles.tscn" id="14_idtxk"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_77gc5"]
+radius = 18.0
 
-[node name="HalfCircleShape" type="RigidBody2D" node_paths=PackedStringArray("sprite", "outline_sprite", "snap_particle", "piece_mort_particle")]
+[node name="HalfCircleShape" type="RigidBody2D" node_paths=PackedStringArray("sprite", "outline_sprite", "snap_particle", "piece_mort_particle", "bounce_sound_manager")]
 collision_layer = 2
 collision_mask = 2
 gravity_scale = 0.0
@@ -20,6 +22,7 @@ sprite = NodePath("Node2D/MainSprite")
 outline_sprite = NodePath("Node2D/OutlineSprite")
 snap_particle = NodePath("SnapParticles")
 piece_mort_particle = NodePath("PieceMortParticles")
+bounce_sound_manager = NodePath("BounceSoundManager")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_77gc5")
@@ -44,5 +47,8 @@ polygon = PackedVector2Array(-49.5, -24.5, -49.5, -4.7, -43.5, 5, -43.5, 7.4, -3
 [node name="SnapParticles" parent="." instance=ExtResource("14_idtxk")]
 
 [node name="PieceMortParticles" parent="." instance=ExtResource("5_6ws7u")]
+
+[node name="BounceSoundManager" parent="." instance=ExtResource("6_lqk87")]
+position = Vector2(-5, -1)
 
 [connection signal="area_entered" from="Node2D/Area2D" to="." method="_on_area_2d_area_entered"]

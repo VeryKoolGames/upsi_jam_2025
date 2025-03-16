@@ -46,7 +46,6 @@ func _on_mainmenu_pressed() -> void:
 func _on_resume_pressed() -> void:
 	toggle_pause()
 
-
 func _on_resume_mouse_entered() -> void:
 	startTween(play, "scale", Vector2.ONE * tween_intensity, tween_duration)
 

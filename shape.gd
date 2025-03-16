@@ -5,7 +5,10 @@ var is_shot: bool
 var can_be_picked_up: bool
 var new_velocity
 var score_to_be_added: int = 10
-var is_attached
+var base_score: int
+var is_attached: bool
+var first_time: bool
+var target_spawn_point: Node2D
 @export var possible_colors: Array[Color]
 @export var possible_shapes: Array[Texture2D]
 @export var possible_shapes_outlines: Array[Texture2D]
@@ -16,15 +19,37 @@ var is_attached
 var shape_manager: ShapeManager
 @export var max_velocity: float = 3000.0
 var is_dead: bool
+@export var bounce_sound_manager: Node2D
+var pick_up_sound: AudioStreamPlayer2D
+var start_offset: float = 2.5
 
 func _ready() -> void:
 	add_to_group("shapes")
+	base_score = score_to_be_added
 	can_be_picked_up = true
+	is_dead = true
+	first_time = true
 	shape_manager = get_node("../%ShapeManager")
+	pick_up_sound = get_node("../%PickUpSound")
+	scale = Vector2.ZERO
+	var tween = create_tween()
+	tween.tween_property(self, "scale", Vector2(1, 1), 0.2)
 	_set_random_color()
 	_set_random_shape()
 	_set_random_scale()
+	pick_up_sound.playing = true
+	await get_tree().create_timer(start_offset).timeout
+	_move_to_target()
+	await get_tree().create_timer(0.4).timeout
 	_switch_sprites_to_outline()
+
+func _move_to_target():
+	if target_spawn_point == null:
+		return
+	var tween = create_tween()
+	tween.set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+	tween.tween_property(self, "global_position", target_spawn_point.global_position, 0.4)
+
 
 func _set_random_shape():
 	var random_index = randi_range(0, possible_shapes.size() - 1)
@@ -45,7 +70,7 @@ func _set_random_scale():
 	test.apply_scale(Vector2(rand_scale, rand_scale))
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
-	if is_dead:
+	if is_dead || PlayerScore.start_phase:
 		return
 	if area.get_parent().is_in_group("enemy") and !is_shot:
 		is_dead = true
@@ -60,9 +85,17 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 		score_to_be_added *= 2
 		area.owner.on_enemy_killed()
 		Events.emit_signal("player_scored", score_to_be_added)
-	elif area.owner.is_in_group("shapes") and area.owner.can_be_picked_up and not is_shot:
+		var new_scale = scale * 1.1
+
+		var tween = create_tween()
+		tween.set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+		tween.tween_property(self, "scale", new_scale, 0.2)
+	elif area.owner.is_in_group("shapes") and area.owner.can_be_picked_up and is_attached:
 		var shape: GameShape = area.owner
+		pick_up_sound.playing = true
+		shape.is_attached = true
 		shape.is_shot = false
+		shape.is_dead = false
 		shape.can_be_picked_up = false
 		shape.reparent(self.get_parent())
 		shape.snap_particle.play_pickup_particles()
@@ -73,17 +106,20 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 		tween.tween_property(shape, "angular_velocity", 0.0, 0.2)
 
 func on_shoot():
+	is_attached = false
 	await get_tree().create_timer(0.5).timeout
 	can_be_picked_up = true
 
 func _physics_process(delta: float) -> void:
-	if is_shot and not is_dead:
+	if is_shot:
 		if new_velocity.x <= 10 and new_velocity.y <= 10 and can_be_picked_up:
 			_switch_sprites_to_outline()
+			score_to_be_added = base_score
 		new_velocity *= 0.99
 		var collision_info = move_and_collide(new_velocity * delta)
 		if collision_info:
 			new_velocity = new_velocity.bounce(collision_info.get_normal())
+			on_collision()
 			if collision_info.get_collider().is_in_group("shapes"):
 				new_velocity.x *= 1.5
 				new_velocity.y *= 1.5
@@ -93,6 +129,17 @@ func _physics_process(delta: float) -> void:
 			if new_velocity.length() > max_velocity:
 				new_velocity = new_velocity.normalized() * max_velocity
 				Events.on_hard_hit.emit()
+
+func on_collision():
+	bounce_sound_manager.play_bounce_sound()
+	var tween = create_tween()
+	tween.set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_OUT)
+	var current_scale := scale
+	current_scale.x += 0.3
+	current_scale.y += 0.3
+	tween.tween_property(self, "scale", current_scale, 0.1)
+	tween.tween_property(self, "scale", Vector2(1.0, 1.0), 0.1)
+	
 
 func _switch_sprites_to_outline():
 	outline_sprite.show()

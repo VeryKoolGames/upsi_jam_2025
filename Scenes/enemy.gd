@@ -6,6 +6,7 @@ var player: Node2D  # Reference to player node
 @export var explosionParticles: ExplosionParticle
 
 var current_trail: Trail
+@export var death_sound: AudioStreamPlayer2D
 
 func _ready():
 	make_trail()
@@ -24,6 +25,8 @@ func _process(delta):
 func on_enemy_killed():
 	Events.on_soft_hit.emit()
 	get_node("Sprite2D").hide()
+	death_sound.pitch_scale = randf_range(1, 2.3)
+	death_sound.playing = true
 	remove_from_group("enemy")
 	explosionParticles.play_death_particles()
 	current_trail.stop()

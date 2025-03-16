@@ -1,8 +1,8 @@
-[gd_scene load_steps=16 format=3 uid="uid://bd2va6fqq64dt"]
+[gd_scene load_steps=18 format=3 uid="uid://bd2va6fqq64dt"]
 
 [ext_resource type="Texture2D" uid="uid://dudo877wy0wgq" path="res://Sprites/Carré.svg" id="1_opfnp"]
 [ext_resource type="Texture2D" uid="uid://fdsk4ws4k5j0" path="res://Sprites/Cadre.png" id="2_cp0ys"]
-[ext_resource type="Shader" uid="uid://bb55b1b27vwjp" path="res://Shaders/Pattern.gdshader" id="3_trj04"]
+[ext_resource type="Shader" path="res://Shaders/Pattern.gdshader" id="3_trj04"]
 [ext_resource type="Texture2D" uid="uid://d38226rqoridu" path="res://Sprites/BorderGradient.png" id="3_yhxw7"]
 [ext_resource type="Texture2D" uid="uid://dllh45ivq315l" path="res://Sprites/GridPattern.png" id="4_16hvj"]
 [ext_resource type="Texture2D" uid="uid://cnmv4e68cep7s" path="res://Sprites/BackGroundFade.png" id="4_vr1f0"]
@@ -10,7 +10,9 @@
 [ext_resource type="Texture2D" uid="uid://2bu2vcw3fce6" path="res://Sprites/Title.png" id="6_yhxw7"]
 [ext_resource type="PackedScene" uid="uid://stnv4kvm8g88" path="res://Scenes/pause_menu.tscn" id="7_cp0ys"]
 [ext_resource type="Texture2D" uid="uid://btbbpiieap8rf" path="res://Sprites/VKG.png" id="11_vr1f0"]
+[ext_resource type="AudioStream" uid="uid://8iwh3t0xj8oq" path="res://Sounds/button.wav" id="12_5egv6"]
 [ext_resource type="PackedScene" uid="uid://cal7ivpltj6oo" path="res://world_environment.tscn" id="12_t1dhk"]
+[ext_resource type="AudioStream" uid="uid://m347ow524jsl" path="res://Sounds/mainMusic.wav" id="13_5egv6"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_trj04"]
 shader = ExtResource("3_trj04")
@@ -132,7 +134,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("3_yhxw7")
 
-[node name="MarginContainer" parent="." instance=ExtResource("6_opfnp")]
+[node name="MarginContainer" parent="." node_paths=PackedStringArray("button_sound", "fade_overlay") instance=ExtResource("6_opfnp")]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -145,6 +147,8 @@ offset_right = -447.0
 offset_bottom = -28.0
 grow_horizontal = 2
 grow_vertical = 0
+button_sound = NodePath("../AudioStreamPlayer2D")
+fade_overlay = NodePath("../FadeOverlay")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("TextureRect")
@@ -186,3 +190,24 @@ grow_vertical = 0
 texture = ExtResource("11_vr1f0")
 
 [node name="WorldEnvironment" parent="." instance=ExtResource("12_t1dhk")]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("12_5egv6")
+
+[node name="FadeOverlay" type="ColorRect" parent="."]
+process_mode = 4
+modulate = Color(1, 1, 1, 0)
+z_index = 60
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="AudioStreamPlayer2D2" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("13_5egv6")
+volume_db = -10.0
+autoplay = true

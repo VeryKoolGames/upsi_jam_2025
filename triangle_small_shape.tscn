@@ -1,15 +1,16 @@
-[gd_scene load_steps=7 format=3 uid="uid://be7xl7udyyv2y"]
+[gd_scene load_steps=8 format=3 uid="uid://be7xl7udyyv2y"]
 
 [ext_resource type="Script" uid="uid://cdsvvbrrgasar" path="res://shape.gd" id="1_1divk"]
 [ext_resource type="Texture2D" uid="uid://b5stmv1rvqo5w" path="res://Sprites/Triangle3.svg" id="2_1divk"]
 [ext_resource type="Texture2D" uid="uid://b3v4ulxatg6yr" path="res://Sprites/Triangle3_Dotted.svg" id="3_sofpb"]
 [ext_resource type="PackedScene" uid="uid://bi7yny72t34p4" path="res://Scenes/snap_particles.tscn" id="4_8lgy7"]
 [ext_resource type="PackedScene" uid="uid://bw758m4gx7dj4" path="res://Scenes/piece_mort_particles.tscn" id="5_sofpb"]
+[ext_resource type="PackedScene" uid="uid://2buprn62e2id" path="res://Sprites/bounce_sound_manager.tscn" id="6_cph2s"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_77gc5"]
-radius = 34.1321
+radius = 17.1172
 
-[node name="CircleShape" type="RigidBody2D" node_paths=PackedStringArray("sprite", "outline_sprite", "snap_particle", "piece_mort_particle")]
+[node name="CircleShape" type="RigidBody2D" node_paths=PackedStringArray("sprite", "outline_sprite", "snap_particle", "piece_mort_particle", "bounce_sound_manager")]
 collision_layer = 2
 collision_mask = 2
 gravity_scale = 0.0
@@ -21,6 +22,7 @@ sprite = NodePath("Node2D/MainSprite")
 outline_sprite = NodePath("Node2D/OutlineSprite")
 snap_particle = NodePath("SnapParticles")
 piece_mort_particle = NodePath("PieceMortParticles")
+bounce_sound_manager = NodePath("BounceSoundManager")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_77gc5")
@@ -45,5 +47,8 @@ polygon = PackedVector2Array(6.5, -24.5, -6.5, -24.5, -67.1, 18.5, -69.5, 18.5, 
 [node name="SnapParticles" parent="." instance=ExtResource("4_8lgy7")]
 
 [node name="PieceMortParticles" parent="." instance=ExtResource("5_sofpb")]
+
+[node name="BounceSoundManager" parent="." instance=ExtResource("6_cph2s")]
+position = Vector2(-5, 17)
 
 [connection signal="area_entered" from="Node2D/Area2D" to="." method="_on_area_2d_area_entered"]

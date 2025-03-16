@@ -1,19 +1,22 @@
-[gd_scene load_steps=11 format=3 uid="uid://otlm4qvh6cx"]
+[gd_scene load_steps=22 format=3 uid="uid://otlm4qvh6cx"]
 
 [ext_resource type="Script" uid="uid://cd4rt1lm4asto" path="res://Scripts/player_movement.gd" id="1_2ibxi"]
 [ext_resource type="Texture2D" uid="uid://4lc7xuy3cfr5" path="res://Sprites/Coeur.svg" id="2_tdg3f"]
 [ext_resource type="PackedScene" uid="uid://dqsvnfjk7e8rf" path="res://shape_square.tscn" id="3_2feor"]
 [ext_resource type="Script" uid="uid://cmgbbh8o7nwm" path="res://shape_spawner.gd" id="5_5ncpa"]
 [ext_resource type="Script" uid="uid://i0w0tr8g0c2j" path="res://enemy_spawner.gd" id="5_tdg3f"]
-[ext_resource type="PackedScene" uid="uid://clulk1x55eb3t" path="res://half_circle.tscn" id="5_wi0c6"]
 [ext_resource type="PackedScene" uid="uid://n8nx7vjj0lqy" path="res://Scenes/enemy.tscn" id="6_dtqjt"]
-[ext_resource type="PackedScene" uid="uid://cqd4scgty1wlb" path="res://round_circle.tscn" id="6_wi0c6"]
+[ext_resource type="PackedScene" uid="uid://w31jg8pbth22" path="res://triangle_diago_shape.tscn" id="6_l6ohk"]
 [ext_resource type="PackedScene" uid="uid://brhpedrkppwpj" path="res://triangle_shape.tscn" id="7_hp6x6"]
-[ext_resource type="PackedScene" uid="uid://w31jg8pbth22" path="res://triangle_diago_shape.tscn" id="8_3tkgg"]
+[ext_resource type="PackedScene" uid="uid://be7xl7udyyv2y" path="res://triangle_small_shape.tscn" id="7_oudfo"]
 [ext_resource type="PackedScene" uid="uid://c2u0po1yo75pc" path="res://shape_manager.tscn" id="8_5ncpa"]
-[ext_resource type="PackedScene" uid="uid://be7xl7udyyv2y" path="res://triangle_small_shape.tscn" id="9_oudfo"]
+[ext_resource type="PackedScene" uid="uid://cqd4scgty1wlb" path="res://round_circle.tscn" id="8_d6rpx"]
+[ext_resource type="AudioStream" uid="uid://c5dyiq2iidswq" path="res://Sounds/evolution.wav" id="8_wi0c6"]
+[ext_resource type="PackedScene" uid="uid://clulk1x55eb3t" path="res://half_circle.tscn" id="9_r3kul"]
 [ext_resource type="PackedScene" uid="uid://73q7pvbppq41" path="res://circle_letter_shape.tscn" id="10_d6rpx"]
 [ext_resource type="PackedScene" uid="uid://c80uwbkjp4xio" path="res://cross_shape.tscn" id="11_d6rpx"]
+[ext_resource type="AudioStream" uid="uid://b4pma7vpmq455" path="res://Sounds/pickupSound.wav" id="16_jatw7"]
+[ext_resource type="AudioStream" uid="uid://bn7urc6q85x2s" path="res://Sounds/synth.wav" id="17_rv870"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_o2i67"]
 radius = 34.0
@@ -32,12 +35,17 @@ colors = PackedColorArray(0.145098, 0.176471, 0.909804, 1, 0.145098, 0.176471, 0
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
-[node name="ShapeSpawner" type="Node2D" parent="." node_paths=PackedStringArray("spawn_points")]
+[node name="ShapeSpawner" type="Node2D" parent="." node_paths=PackedStringArray("spawn_points", "original_spawn_points")]
 script = ExtResource("5_5ncpa")
 spawn_points = [NodePath("../CharacterBody2D/SpawnPoints/SpawnPoint1"), NodePath("../CharacterBody2D/SpawnPoints/SpawnPoint2"), NodePath("../CharacterBody2D/SpawnPoints/SpawnPoint3"), NodePath("../CharacterBody2D/SpawnPoints/SpawnPoint4"), NodePath("../CharacterBody2D/SpawnPoints/SpawnPoint5"), NodePath("../CharacterBody2D/SpawnPoints/SpawnPoint6"), NodePath("../CharacterBody2D/SpawnPoints/SpawnPoint7")]
+original_spawn_points = [NodePath("../CharacterBody2D/OriginalSpawnPoints/SpawnPoint1"), NodePath("../CharacterBody2D/OriginalSpawnPoints/SpawnPoint2"), NodePath("../CharacterBody2D/OriginalSpawnPoints/SpawnPoint3"), NodePath("../CharacterBody2D/OriginalSpawnPoints/SpawnPoint4"), NodePath("../CharacterBody2D/OriginalSpawnPoints/SpawnPoint5"), NodePath("../CharacterBody2D/OriginalSpawnPoints/SpawnPoint6"), NodePath("../CharacterBody2D/OriginalSpawnPoints/SpawnPoint7")]
+shape_scenes = Array[PackedScene]([ExtResource("11_d6rpx"), ExtResource("3_2feor"), ExtResource("7_hp6x6"), ExtResource("10_d6rpx"), ExtResource("6_l6ohk"), ExtResource("7_oudfo"), ExtResource("8_d6rpx"), ExtResource("9_r3kul")])
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+[node name="CharacterBody2D" type="CharacterBody2D" parent="." node_paths=PackedStringArray("spawn_sound", "pick_up_sound", "fioush_sound")]
 script = ExtResource("1_2ibxi")
+spawn_sound = NodePath("../SpawnSound")
+pick_up_sound = NodePath("../PickUpSound")
+fioush_sound = NodePath("../FioushSound")
 
 [node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
 modulate = Color(1, 0.192157, 0.203922, 1)
@@ -54,27 +62,48 @@ shape = SubResource("CircleShape2D_tdg3f")
 [node name="SpawnPoints" type="Node2D" parent="CharacterBody2D"]
 
 [node name="SpawnPoint1" type="Node2D" parent="CharacterBody2D/SpawnPoints"]
-position = Vector2(202, -255)
-metadata/_edit_group_ = true
+position = Vector2(329, -234)
 
 [node name="SpawnPoint2" type="Node2D" parent="CharacterBody2D/SpawnPoints"]
-position = Vector2(307, 168)
+position = Vector2(418, 21)
 
 [node name="SpawnPoint3" type="Node2D" parent="CharacterBody2D/SpawnPoints"]
-position = Vector2(-205, -238)
+position = Vector2(210, 330)
 
 [node name="SpawnPoint4" type="Node2D" parent="CharacterBody2D/SpawnPoints"]
-position = Vector2(-387, 60)
+position = Vector2(-284, 295)
 
 [node name="SpawnPoint5" type="Node2D" parent="CharacterBody2D/SpawnPoints"]
-position = Vector2(-40, 307)
+position = Vector2(-578, 46)
 
 [node name="SpawnPoint6" type="Node2D" parent="CharacterBody2D/SpawnPoints"]
-position = Vector2(-268, 236)
+position = Vector2(-296, -181)
 
 [node name="SpawnPoint7" type="Node2D" parent="CharacterBody2D/SpawnPoints"]
-position = Vector2(-527, -161)
-metadata/_edit_group_ = true
+position = Vector2(4, -370)
+
+[node name="OriginalSpawnPoints" type="Node2D" parent="CharacterBody2D"]
+
+[node name="SpawnPoint1" type="Node2D" parent="CharacterBody2D/OriginalSpawnPoints"]
+position = Vector2(132, -126)
+
+[node name="SpawnPoint2" type="Node2D" parent="CharacterBody2D/OriginalSpawnPoints"]
+position = Vector2(142, 16)
+
+[node name="SpawnPoint3" type="Node2D" parent="CharacterBody2D/OriginalSpawnPoints"]
+position = Vector2(61, 150)
+
+[node name="SpawnPoint4" type="Node2D" parent="CharacterBody2D/OriginalSpawnPoints"]
+position = Vector2(-110, 127)
+
+[node name="SpawnPoint5" type="Node2D" parent="CharacterBody2D/OriginalSpawnPoints"]
+position = Vector2(-152, -4)
+
+[node name="SpawnPoint6" type="Node2D" parent="CharacterBody2D/OriginalSpawnPoints"]
+position = Vector2(-127, -108)
+
+[node name="SpawnPoint7" type="Node2D" parent="CharacterBody2D/OriginalSpawnPoints"]
+position = Vector2(-5, -166)
 
 [node name="Walls" type="Node2D" parent="."]
 metadata/_edit_lock_ = true
@@ -128,5 +157,16 @@ gradient = SubResource("Gradient_5ncpa")
 [node name="ShapeManager" parent="." node_paths=PackedStringArray("aim_line") instance=ExtResource("8_5ncpa")]
 unique_name_in_owner = true
 aim_line = NodePath("../Line2D")
+
+[node name="SpawnSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_wi0c6")
+
+[node name="PickUpSound" type="AudioStreamPlayer2D" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("16_jatw7")
+volume_db = -0.377
+
+[node name="FioushSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("17_rv870")
 
 [connection signal="area_entered" from="CharacterBody2D/Area2D" to="CharacterBody2D" method="_on_area_2d_area_entered"]
