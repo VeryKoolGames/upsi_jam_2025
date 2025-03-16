@@ -9,14 +9,14 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_1f0kj"]
 radius = 23.0
 
-[node name="Enemy" type="Node2D" node_paths=PackedStringArray("explosionParticles", "glow", "death_sound")]
+[node name="Enemy" type="Node2D" node_paths=PackedStringArray("explosionParticles", "death_sound")]
 modulate = Color(1, 0, 0.0156863, 1)
 script = ExtResource("1_1f0kj")
 explosionParticles = NodePath("Explosion_Particles")
-glow = NodePath("Glow")
 death_sound = NodePath("AudioStreamPlayer2D")
 
 [node name="Glow" type="Sprite2D" parent="."]
+unique_name_in_owner = true
 modulate = Color(1, 1, 1, 0.314)
 rotation = -1.5708
 scale = Vector2(0.496358, 0.496358)

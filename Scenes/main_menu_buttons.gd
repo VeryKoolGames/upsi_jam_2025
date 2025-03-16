@@ -6,6 +6,7 @@ extends MarginContainer
 @onready var play:TextureButton = $VBoxContainer/PlayButton
 @onready var quit:TextureButton = $VBoxContainer/QuitButton
 @onready var hardcore:TextureButton = $VBoxContainer/HardCoreButton
+@onready var infinite:TextureButton = $VBoxContainer/InfiniteMode
 
 @export var button_sound: AudioStreamPlayer2D
 @export var fade_overlay: ColorRect
@@ -14,6 +15,7 @@ func _process(delta: float) -> void:
 	btn_hovered(play)
 	btn_hovered(quit)
 	btn_hovered(hardcore)
+	btn_hovered(infinite)
 
 func startTween(object: Object, property: String, final_val: Variant, duration:float):
 	var tween = create_tween()
@@ -48,3 +50,13 @@ func _on_hard_core_button_pressed() -> void:
 	tween.tween_property(fade_overlay, "modulate:a", 1.0, 1.3)
 	await tween.finished
 	get_tree().change_scene_to_file("res://Scenes/hardcore.tscn")
+
+
+func _on_infinite_mode_pressed() -> void:
+	button_sound.play()
+	fade_overlay.mouse_filter = 0
+	var tween = create_tween()
+	tween.set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+	tween.tween_property(fade_overlay, "modulate:a", 1.0, 1.3)
+	await tween.finished
+	get_tree().change_scene_to_file("res://Scenes/infinite.tscn")

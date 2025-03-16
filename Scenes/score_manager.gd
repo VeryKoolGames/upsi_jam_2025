@@ -5,13 +5,14 @@ var score: int
 @export var timer_label: Label
 @export var game_timer: Timer
 @export var fade_overlay: ColorRect
+@export var is_infinite: bool
 
-var is_starting: bool = true
+var is_starting: bool = true 
 var game_length := 120
 
 func _ready() -> void:
 	score_label.text = "0"
-	timer_label.text = "TIMER: 120"
+	timer_label.text = "TIMER: 120" if not is_infinite else "INFINITE"
 	var tween = create_tween()
 	tween.set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 	tween.tween_property(fade_overlay, "modulate:a", 0.0, 1)
@@ -29,7 +30,8 @@ func _ready() -> void:
 	_schedule_checkpoint(game_length * 1 / 3)
 
 func _process(delta: float) -> void:
-	_update_timer()
+	if not is_infinite:
+		_update_timer()
 
 func _update_timer():
 	if is_starting:

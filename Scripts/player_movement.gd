@@ -11,6 +11,7 @@ var current_trail: Trail
 @export var fioush_sound: AudioStreamPlayer2D
 
 func _ready() -> void:
+	PlayerScore.start_phase = true
 	add_to_group("player")
 	scale = Vector2.ZERO
 	await get_tree().create_timer(1).timeout
@@ -19,7 +20,7 @@ func _ready() -> void:
 	tween.tween_property(self, "scale", Vector2(1, 1), 0.5)
 	Events.game_ended.connect(on_game_end)
 	make_trail()
-	await get_tree().create_timer(3.8).timeout
+	await get_tree().create_timer(4.3).timeout
 	fioush_sound.playing = true
 	await get_tree().create_timer(.7).timeout
 	PlayerScore.start_phase = false
