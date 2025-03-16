@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bd2va6fqq64dt"]
+[gd_scene load_steps=21 format=3 uid="uid://bd2va6fqq64dt"]
 
 [ext_resource type="Texture2D" uid="uid://dudo877wy0wgq" path="res://Sprites/Carré.svg" id="1_opfnp"]
 [ext_resource type="Texture2D" uid="uid://fdsk4ws4k5j0" path="res://Sprites/Cadre.png" id="2_cp0ys"]
@@ -13,6 +13,8 @@
 [ext_resource type="PackedScene" uid="uid://cal7ivpltj6oo" path="res://world_environment.tscn" id="12_t1dhk"]
 [ext_resource type="AudioStream" uid="uid://m347ow524jsl" path="res://Sounds/mainMusic.wav" id="13_5egv6"]
 [ext_resource type="AudioStream" uid="uid://drkilniwp46bo" path="res://Sounds/ButtonPressed.mp3" id="13_vtepg"]
+[ext_resource type="PackedScene" uid="uid://n8nx7vjj0lqy" path="res://Scenes/enemy.tscn" id="14_8dnnj"]
+[ext_resource type="Script" uid="uid://0mqq0bbmitjn" path="res://Scenes/enemy_main_menu.gd" id="15_m3bi6"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_trj04"]
 shader = ExtResource("3_trj04")
@@ -81,6 +83,9 @@ _data = {
 &"RESET": SubResource("Animation_trj04"),
 &"TitleAnim": SubResource("Animation_yhxw7")
 }
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wyh8j"]
+size = Vector2(1899, 1052)
 
 [node name="MAIN_MENU" type="Control"]
 layout_mode = 3
@@ -217,3 +222,55 @@ color = Color(0.00392157, 0.117647, 0.219608, 1)
 stream = ExtResource("13_5egv6")
 volume_db = -10.0
 autoplay = true
+
+[node name="Enemies" type="Node2D" parent="."]
+
+[node name="Area2D" type="Area2D" parent="Enemies"]
+position = Vector2(958, 547)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemies/Area2D"]
+position = Vector2(-176.5, -84)
+shape = SubResource("RectangleShape2D_wyh8j")
+
+[node name="Enemy" parent="Enemies" node_paths=PackedStringArray("box") instance=ExtResource("14_8dnnj")]
+position = Vector2(1385, 605)
+script = ExtResource("15_m3bi6")
+box = NodePath("../Area2D")
+speed = 200.0
+
+[node name="Enemy2" parent="Enemies" node_paths=PackedStringArray("box") instance=ExtResource("14_8dnnj")]
+position = Vector2(908, 752)
+script = ExtResource("15_m3bi6")
+box = NodePath("../Area2D")
+speed = 200.0
+
+[node name="Enemy3" parent="Enemies" node_paths=PackedStringArray("box") instance=ExtResource("14_8dnnj")]
+position = Vector2(955, 447)
+script = ExtResource("15_m3bi6")
+box = NodePath("../Area2D")
+speed = 200.0
+
+[node name="Enemy4" parent="Enemies" node_paths=PackedStringArray("box") instance=ExtResource("14_8dnnj")]
+position = Vector2(1260, 231)
+script = ExtResource("15_m3bi6")
+box = NodePath("../Area2D")
+speed = 200.0
+
+[node name="Enemy5" parent="Enemies" node_paths=PackedStringArray("box") instance=ExtResource("14_8dnnj")]
+position = Vector2(471, 482)
+script = ExtResource("15_m3bi6")
+box = NodePath("../Area2D")
+speed = 200.0
+
+[node name="Enemy6" parent="Enemies" node_paths=PackedStringArray("box") instance=ExtResource("14_8dnnj")]
+position = Vector2(539, 105)
+script = ExtResource("15_m3bi6")
+box = NodePath("../Area2D")
+speed = 200.0
+
+[node name="Enemy7" parent="Enemies" node_paths=PackedStringArray("box") instance=ExtResource("14_8dnnj")]
+position = Vector2(314, 672)
+script = ExtResource("15_m3bi6")
+box = NodePath("../Area2D")
+speed = 200.0

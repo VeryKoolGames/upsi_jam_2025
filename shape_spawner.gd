@@ -14,10 +14,10 @@ func _spawn_init_shapes():
 		if shape_scenes.size() == 0:
 			print("Error: No shape scenes available!")
 			return
-		await get_tree().create_timer(.25).timeout
+		await get_tree().create_timer(.2).timeout
 		var new_shape = shape_scenes[randi_range(0, shape_scenes.size() - 1)].instantiate()
 		new_shape.target_spawn_point = spawn_point
-		new_shape.start_offset -= 0.25 * i
+		new_shape.start_offset -= 0.2 * i
 		if new_shape == null:
 			print("Error: Failed to instantiate shape!")
 			return

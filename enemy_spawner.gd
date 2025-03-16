@@ -7,7 +7,7 @@ var max_spawn_interval = 1.5
 
 func _ready() -> void:
 	randomize()
-	await get_tree().create_timer(3.0).timeout
+	await get_tree().create_timer(2.5).timeout
 	spawn_loop()
 	Events.game_progressed.connect(on_timer_progress)
 
