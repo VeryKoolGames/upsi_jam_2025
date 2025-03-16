@@ -4,11 +4,23 @@ var score: int
 @export var score_label: Label
 @export var timer_label: Label
 @export var game_timer: Timer
+@export var fade_overlay: ColorRect
+
+var is_starting: bool = true
 var game_length := 120
 
 func _ready() -> void:
 	score_label.text = "0"
+	timer_label.text = "TIMER: 120"
+	var tween = create_tween()
+	tween.set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+	tween.tween_property(fade_overlay, "modulate:a", 0.0, 1)
+	await tween.finished
+	fade_overlay.queue_free()
 	Events.player_scored.connect(_update_score)
+	
+	await get_tree().create_timer(4).timeout
+	is_starting = false
 	game_timer.one_shot = true
 	game_timer.wait_time = game_length
 	game_timer.start()
@@ -20,6 +32,8 @@ func _process(delta: float) -> void:
 	_update_timer()
 
 func _update_timer():
+	if is_starting:
+		return
 	timer_label.text = "TIMER: " + str(int(game_timer.time_left))
 
 func _update_score(score_to_add: int):

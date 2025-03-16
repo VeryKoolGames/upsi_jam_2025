@@ -13,6 +13,7 @@ var current_trail: Trail
 func _ready() -> void:
 	add_to_group("player")
 	scale = Vector2.ZERO
+	await get_tree().create_timer(1).timeout
 	var tween = create_tween()
 	spawn_sound.playing = true
 	tween.tween_property(self, "scale", Vector2(1, 1), 0.5)
