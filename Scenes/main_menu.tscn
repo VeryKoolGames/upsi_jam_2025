@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bd2va6fqq64dt"]
+[gd_scene load_steps=21 format=3 uid="uid://bd2va6fqq64dt"]
 
 [ext_resource type="Texture2D" uid="uid://dudo877wy0wgq" path="res://Sprites/Carré.svg" id="1_opfnp"]
 [ext_resource type="Texture2D" uid="uid://fdsk4ws4k5j0" path="res://Sprites/Cadre.png" id="2_cp0ys"]
@@ -9,6 +9,8 @@
 [ext_resource type="PackedScene" uid="uid://f6ggcfwbj2is" path="res://Scenes/MainMenuButtons.tscn" id="6_opfnp"]
 [ext_resource type="Texture2D" uid="uid://2bu2vcw3fce6" path="res://Sprites/Title.png" id="6_yhxw7"]
 [ext_resource type="PackedScene" uid="uid://stnv4kvm8g88" path="res://Scenes/pause_menu.tscn" id="7_cp0ys"]
+[ext_resource type="Texture2D" uid="uid://dwapt4t8lmcnt" path="res://Sprites/howTO.png" id="11_5egv6"]
+[ext_resource type="Texture2D" uid="uid://d0ruxcctcfyxv" path="res://Sprites/transitionPannel.png" id="11_t1dhk"]
 [ext_resource type="Texture2D" uid="uid://btbbpiieap8rf" path="res://Sprites/VKG.png" id="11_vr1f0"]
 [ext_resource type="PackedScene" uid="uid://cal7ivpltj6oo" path="res://world_environment.tscn" id="12_t1dhk"]
 
@@ -78,6 +80,67 @@ tracks/1/keys = {
 _data = {
 &"RESET": SubResource("Animation_trj04"),
 &"TitleAnim": SubResource("Animation_yhxw7")
+}
+
+[sub_resource type="Animation" id="Animation_t1dhk"]
+resource_name = "Transi_One"
+length = 0.683
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../TRANSITION_PANEL:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(0.5, 0.5),
+"update": 0,
+"values": [Vector2(-1932, 0), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = false
+tracks/1/path = NodePath("../TRANSITION_PANEL:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_5egv6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../TRANSITION_PANEL:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-1932, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../TRANSITION_PANEL:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vtepg"]
+_data = {
+&"RESET": SubResource("Animation_5egv6"),
+&"Transi_One": SubResource("Animation_t1dhk")
 }
 
 [node name="MAIN_MENU" type="Control"]
@@ -184,5 +247,40 @@ offset_bottom = -115.0
 grow_horizontal = 0
 grow_vertical = 0
 texture = ExtResource("11_vr1f0")
+
+[node name="HowTo" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -1113.0
+offset_top = 97.0
+offset_right = -113.0
+offset_bottom = 428.0
+grow_horizontal = 0
+texture = ExtResource("11_5egv6")
+
+[node name="TRANSITION_PANEL" type="TextureRect" parent="."]
+z_index = 3
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -2892.0
+offset_top = -540.0
+offset_right = -972.0
+offset_bottom = 540.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("11_t1dhk")
+metadata/_edit_use_anchors_ = true
+
+[node name="Transition" type="AnimationPlayer" parent="TRANSITION_PANEL"]
+root_node = NodePath("../../AnimationPlayer")
+libraries = {
+&"": SubResource("AnimationLibrary_vtepg")
+}
 
 [node name="WorldEnvironment" parent="." instance=ExtResource("12_t1dhk")]

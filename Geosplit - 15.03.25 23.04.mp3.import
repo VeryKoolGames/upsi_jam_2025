@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://c4c0qi1b5uvm5"
+path="res://.godot/imported/Geosplit - 15.03.25 23.04.mp3-cad3dd9e89988f043d00d7f45e8aeb9c.mp3str"
+
+[deps]
+
+source_file="res://Geosplit - 15.03.25 23.04.mp3"
+dest_files=["res://.godot/imported/Geosplit - 15.03.25 23.04.mp3-cad3dd9e89988f043d00d7f45e8aeb9c.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

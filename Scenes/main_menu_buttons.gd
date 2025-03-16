@@ -6,6 +6,8 @@ extends MarginContainer
 @onready var play:TextureButton = $VBoxContainer/PlayButton
 @onready var quit:TextureButton = $VBoxContainer/QuitButton
 
+@onready  var anim_transi = get_node("/root/main_menu/Transition")  # Adapte ce chemin ! 
+
 func _process(delta: float) -> void:
 	btn_hovered(play)
 	btn_hovered(quit)
@@ -25,6 +27,8 @@ func btn_hovered(button: TextureButton):
 
 
 func _on_play_button_pressed() -> void:
+	anim_transi.play("Transi_One")
+	await get_tree().create_timer(0.6).timeout  # Pause de 2 secondes 
 	get_tree().change_scene_to_file("res://Scenes/main.tscn")
 
 
