@@ -11,6 +11,8 @@ var tween_duration := 0.2
 @onready var quit:TextureButton = $VBoxContainer/quit_button
 @onready var main_menu:TextureButton = $VBoxContainer/MainMenuButton
 
+@onready var hover_sound:AudioStreamPlayer2D = $HoverSound
+
 var win_text = "YOU WON ! "
 var lose_text = "GAME OVER !"
 
@@ -57,3 +59,8 @@ func _on_quit_button_pressed() -> void:
 
 func _on_main_menu_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")
+
+
+func _on_button_mouse_entered() -> void:
+	hover_sound.pitch_scale = randf_range(0.8, 1.1)
+	hover_sound.playing = true

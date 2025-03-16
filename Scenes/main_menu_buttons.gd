@@ -7,6 +7,7 @@ extends MarginContainer
 @onready var quit:TextureButton = $VBoxContainer/QuitButton
 @onready var hardcore:TextureButton = $VBoxContainer/HardCoreButton
 @onready var infinite:TextureButton = $VBoxContainer/InfiniteMode
+@onready var sound:AudioStreamPlayer2D = $AudioStreamPlayer2D
 
 @export var button_sound: AudioStreamPlayer2D
 @export var fade_overlay: ColorRect
@@ -60,3 +61,8 @@ func _on_infinite_mode_pressed() -> void:
 	tween.tween_property(fade_overlay, "modulate:a", 1.0, 1.3)
 	await tween.finished
 	get_tree().change_scene_to_file("res://Scenes/infinite.tscn")
+
+
+func _on_play_button_mouse_entered() -> void:
+	sound.pitch_scale = randf_range(0.9, 1.1)
+	sound.playing = true

@@ -209,5 +209,6 @@ volume_db = -12.0
 
 [node name="FioushSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("17_rv870")
+volume_db = -15.0
 
 [connection signal="area_entered" from="CharacterBody2D/Area2D" to="CharacterBody2D" method="_on_area_2d_area_entered"]

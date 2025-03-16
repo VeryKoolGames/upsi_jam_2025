@@ -7,6 +7,8 @@ extends Control
 @onready var mainMenu: TextureButton = $VBoxContainer/Menu
 @onready var quit: TextureButton = $VBoxContainer/QuitButton
 
+@onready var hover_sound: AudioStreamPlayer2D = $HoverSound
+
 var is_paused: bool = false
 
 func _ready():
@@ -31,7 +33,6 @@ func startTween(object: Object, property: String, final_val: Variant, duration: 
 
 func btn_hovered(button: TextureButton):
 	if button.is_hovered():
-		print("starting tween")
 		startTween(button, "scale", Vector2.ONE * tween_intensity, tween_duration)
 	else:
 		startTween(button, "scale", Vector2.ONE, tween_duration)
@@ -47,14 +48,19 @@ func _on_resume_pressed() -> void:
 	toggle_pause()
 
 func _on_resume_mouse_entered() -> void:
+	_play_hover_sound()
 	startTween(play, "scale", Vector2.ONE * tween_intensity, tween_duration)
 
+func _play_hover_sound():
+	hover_sound.pitch_scale = randf_range(0.8, 1.2)
+	hover_sound.playing = true
 
 func _on_resume_mouse_exited() -> void:
 	startTween(play, "scale", Vector2.ONE, tween_duration)
 
 
 func _on_quit_button_mouse_entered() -> void:
+	_play_hover_sound()
 	startTween(quit, "scale", Vector2.ONE * tween_intensity, tween_duration)
 
 
@@ -63,6 +69,7 @@ func _on_quit_button_mouse_exited() -> void:
 
 
 func _on_menu_mouse_entered() -> void:
+	_play_hover_sound()
 	startTween(mainMenu, "scale", Vector2.ONE * tween_intensity, tween_duration)
 
 
