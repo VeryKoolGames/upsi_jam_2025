@@ -18,7 +18,7 @@ shader_parameter/pattern_texture = ExtResource("5_q25xh")
 shader_parameter/uv_scale = Vector2(14, 7)
 shader_parameter/speed = -0.2
 
-[node name="LevelUI" type="Control" node_paths=PackedStringArray("score_label", "timer_label", "game_timer")]
+[node name="LevelUI" type="Control" node_paths=PackedStringArray("score_label", "timer_label", "game_timer", "fade_overlay")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -29,6 +29,7 @@ script = ExtResource("1_l062w")
 score_label = NodePath("TIMER")
 timer_label = NodePath("SCORE")
 game_timer = NodePath("GameTimer")
+fade_overlay = NodePath("ColorRect2")
 
 [node name="BG" type="TextureRect" parent="."]
 modulate = Color(0.00784314, 0.121569, 0.215686, 1)
@@ -229,3 +230,13 @@ rotation = 1.5708
 [node name="EnemyDetection18" parent="EnemyDetect/RightDetect" instance=ExtResource("9_b4ac1")]
 position = Vector2(-8.69857e-05, -995)
 rotation = 1.5708
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+z_index = 100
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0274091, 0.0274092, 0.0274092, 1)
