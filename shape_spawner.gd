@@ -5,6 +5,7 @@ extends Node2D
 @export var shape_scenes: Array[PackedScene]
 
 func _ready() -> void:
+	await get_tree().create_timer(1.5).timeout
 	_spawn_init_shapes()
 
 func _spawn_init_shapes():

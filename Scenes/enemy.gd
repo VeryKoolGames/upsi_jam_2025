@@ -1,15 +1,16 @@
 extends Node2D
 
-var speed = 100  # Movement speed
-var player: Node2D  # Reference to player node
+var speed = 140
+var player: Node2D
 
 @export var explosionParticles: ExplosionParticle
 
 var current_trail: Trail
-@export var glow: Sprite2D
+@onready var glow = %Glow
 @export var death_sound: AudioStreamPlayer2D
 
 func _ready():
+	Events.game_progressed.connect(on_game_state_change)
 	make_trail()
 	add_to_group("enemy")
 	player = get_tree().get_first_node_in_group("player")
@@ -43,3 +44,5 @@ func make_trail() -> void:
 	current_trail.setColor("#FF0004")
 	add_child(current_trail)
 	
+func on_game_state_change():
+	speed += 20

@@ -23,6 +23,13 @@ var is_dead: bool
 var pick_up_sound: AudioStreamPlayer2D
 var destroy_sound: AudioStreamPlayer2D
 var start_offset: float = 3.5
+var is_standing_still: bool
+
+var previous_position: Vector2
+var time_since_last_check: float = 0.0
+var check_interval: float = 0.7
+var movement_threshold: float = 70.0
+
 
 func _ready() -> void:
 	add_to_group("shapes")
@@ -45,6 +52,7 @@ func _ready() -> void:
 	_move_to_target()
 	await get_tree().create_timer(0.4).timeout
 	_switch_sprites_to_outline()
+	previous_position = global_position
 
 func _move_to_target():
 	if target_spawn_point == null:
@@ -78,8 +86,8 @@ func _set_random_scale():
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if is_dead || PlayerScore.start_phase:
 		return
-	if area.get_parent().is_in_group("enemy") and is_attached:
-		destroy_sound.playing = true
+	if area.get_parent().is_in_group("enemy") and (is_attached or is_standing_still):
+    destroy_sound.playing = true
 		is_dead = true
 		shape_manager.remove_shape(self)
 		area.owner.on_enemy_killed()
@@ -113,14 +121,23 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 
 func on_shoot():
 	is_attached = false
-	await get_tree().create_timer(1).timeout
+	is_standing_still = false
+	await get_tree().create_timer(0.7).timeout
 	can_be_picked_up = true
 
 func _physics_process(delta: float) -> void:
-	if is_shot:
-		if new_velocity.x <= 1 and new_velocity.y <= 1 and can_be_picked_up:
-			_switch_sprites_to_outline()
-			score_to_be_added = base_score
+	if is_shot and not is_dead:
+		time_since_last_check += delta
+		if time_since_last_check >= check_interval:
+			time_since_last_check = 0.0
+			var distance_moved = global_position.distance_to(previous_position)
+
+			if distance_moved <= movement_threshold and can_be_picked_up:
+				_switch_sprites_to_outline()
+				score_to_be_added = base_score
+				is_standing_still = true
+			else:
+				previous_position = global_position
 		new_velocity *= 0.99
 		var collision_info = move_and_collide(new_velocity * delta)
 		if collision_info:

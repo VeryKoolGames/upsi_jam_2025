@@ -57,5 +57,5 @@ texture_hover = ExtResource("4_maihn")
 [connection signal="mouse_entered" from="VBoxContainer/PlayButton" to="." method="_on_play_button_mouse_entered"]
 [connection signal="pressed" from="VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/HardCoreButton" to="." method="_on_hard_core_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/InfiniteMode" to="." method="_on_hard_core_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/InfiniteMode" to="." method="_on_infinite_mode_pressed"]
 [connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
