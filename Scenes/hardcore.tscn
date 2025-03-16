@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://d2n072iot7wvl"]
+[gd_scene load_steps=10 format=3 uid="uid://d2n072iot7wvl"]
 
 [ext_resource type="PackedScene" uid="uid://otlm4qvh6cx" path="res://Player.tscn" id="1_15yij"]
 [ext_resource type="PackedScene" uid="uid://cqd4scgty1wlb" path="res://round_circle.tscn" id="2_6r01x"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://stnv4kvm8g88" path="res://Scenes/pause_menu.tscn" id="5_iiv00"]
 [ext_resource type="AudioStream" uid="uid://m347ow524jsl" path="res://Sounds/mainMusic.wav" id="6_brqoi"]
 [ext_resource type="PackedScene" uid="uid://cal7ivpltj6oo" path="res://world_environment.tscn" id="7_d10wb"]
+[ext_resource type="PackedScene" uid="uid://bq6hwv126v0ac" path="res://player_death_events.tscn" id="9_6r01x"]
 
 [node name="Main" type="Node2D"]
 
@@ -46,6 +47,10 @@ volume_db = -10.0
 autoplay = true
 
 [node name="WorldEnvironment" parent="." instance=ExtResource("7_d10wb")]
+
+[node name="PlayerDeathEvents" parent="." node_paths=PackedStringArray("player", "main_music") instance=ExtResource("9_6r01x")]
+player = NodePath("../Player")
+main_music = NodePath("../AudioStreamPlayer2D")
 
 [editable path="Player"]
 [editable path="CanvasLayer/LevelUI"]

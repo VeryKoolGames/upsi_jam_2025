@@ -32,6 +32,7 @@ var movement_threshold: float = 70.0
 
 
 func _ready() -> void:
+	Events.game_ended.connect(on_player_death)
 	add_to_group("shapes")
 	base_score = score_to_be_added
 	can_be_picked_up = true
@@ -164,6 +165,12 @@ func on_collision():
 	tween.tween_property(self, "scale", current_scale, 0.1)
 	tween.tween_property(self, "scale", Vector2(1.0, 1.0), 0.1)
 	
+func on_player_death(_useless: bool):
+	destroy_sound.playing = true
+	is_dead = true
+	piece_mort_particle.emit_particles()
+	sprite.hide()
+	outline_sprite.hide()
 
 func _switch_sprites_to_outline():
 	outline_sprite.show()
@@ -172,3 +179,6 @@ func _switch_sprites_to_outline():
 func _switch_sprites_to_main():
 	outline_sprite.hide()
 	sprite.show()
+
+func _exit_tree() -> void:
+	shape_manager.remove_shape(self)

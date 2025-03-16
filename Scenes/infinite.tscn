@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://3wds8y6c67hk"]
+[gd_scene load_steps=12 format=3 uid="uid://3wds8y6c67hk"]
 
 [ext_resource type="PackedScene" uid="uid://otlm4qvh6cx" path="res://Player.tscn" id="1_xjj1v"]
 [ext_resource type="Script" uid="uid://cnsvfodv6y40p" path="res://cameraShake.gd" id="2_7h37y"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://stnv4kvm8g88" path="res://Scenes/pause_menu.tscn" id="5_fgyqw"]
 [ext_resource type="AudioStream" uid="uid://m347ow524jsl" path="res://Sounds/mainMusic.wav" id="6_kgum6"]
 [ext_resource type="PackedScene" uid="uid://cal7ivpltj6oo" path="res://world_environment.tscn" id="7_cpkv3"]
+[ext_resource type="PackedScene" uid="uid://bq6hwv126v0ac" path="res://player_death_events.tscn" id="8_7h37y"]
 
 [sub_resource type="Animation" id="Animation_6bp64"]
 resource_name = "FadeOut"
@@ -98,5 +99,9 @@ libraries = {
 &"": SubResource("AnimationLibrary_ynf5e")
 }
 autoplay = "FadeOut"
+
+[node name="PlayerDeathEvents" parent="." node_paths=PackedStringArray("player", "main_music") instance=ExtResource("8_7h37y")]
+player = NodePath("../Player")
+main_music = NodePath("../AudioStreamPlayer2D")
 
 [editable path="CanvasLayer/LevelUI"]

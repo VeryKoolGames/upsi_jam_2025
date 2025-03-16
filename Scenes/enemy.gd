@@ -5,11 +5,13 @@ var player: Node2D
 
 @export var explosionParticles: ExplosionParticle
 
+var is_dead: bool
 var current_trail: Trail
 @onready var glow = %Glow
 @export var death_sound: AudioStreamPlayer2D
 
 func _ready():
+	Events.game_ended.connect(on_player_death)
 	_randomize_speed()
 	Events.game_progressed.connect(on_game_state_change)
 	make_trail()
@@ -29,6 +31,9 @@ func _process(delta):
 	rotation = direction.angle()
 
 func on_enemy_killed():
+	if is_dead:
+		return
+	is_dead = true
 	Events.on_soft_hit.emit()
 	get_node("Sprite2D").hide()
 	death_sound.pitch_scale = randf_range(1, 2.3)
@@ -38,8 +43,7 @@ func on_enemy_killed():
 	explosionParticles.play_death_particles()
 	current_trail.stop()
 	await get_tree().create_timer(6.0).timeout
-	queue_free()
-	
+
 
 func make_trail() -> void:
 	if current_trail:
@@ -50,3 +54,6 @@ func make_trail() -> void:
 	
 func on_game_state_change():
 	speed += 20
+
+func on_player_death(_useless: bool):
+	on_enemy_killed()

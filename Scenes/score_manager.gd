@@ -6,11 +6,13 @@ var score: int
 @export var game_timer: Timer
 @export var fade_overlay: ColorRect
 @export var is_infinite: bool
+var has_ended: bool
 
 var is_starting: bool = true 
 var game_length := 120
 
 func _ready() -> void:
+	Events.game_ended.connect(on_player_death)
 	score_label.text = "0"
 	timer_label.text = "TIMER: 120" if not is_infinite else "INFINITE"
 	var tween = create_tween()
@@ -20,7 +22,7 @@ func _ready() -> void:
 	fade_overlay.queue_free()
 	Events.player_scored.connect(_update_score)
 	
-	await get_tree().create_timer(4).timeout
+	await get_tree().create_timer(6).timeout
 	is_starting = false
 	game_timer.one_shot = true
 	game_timer.wait_time = game_length
@@ -34,7 +36,7 @@ func _process(delta: float) -> void:
 		_update_timer()
 
 func _update_timer():
-	if is_starting:
+	if is_starting || has_ended:
 		return
 	timer_label.text = "TIMER: " + str(int(game_timer.time_left))
 
@@ -61,3 +63,6 @@ func _schedule_checkpoint(time_remaining: float) -> void:
 	var checkpoint_timer = get_tree().create_timer(game_timer.time_left - time_remaining)
 	await checkpoint_timer.timeout
 	Events.game_progressed.emit()
+
+func on_player_death(_useless: bool):
+	has_ended = true
