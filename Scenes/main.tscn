@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://stnv4kvm8g88" path="res://Scenes/pause_menu.tscn" id="5_kry3j"]
 [ext_resource type="AudioStream" uid="uid://m347ow524jsl" path="res://Sounds/mainMusic.wav" id="6_21xkr"]
 [ext_resource type="PackedScene" uid="uid://cal7ivpltj6oo" path="res://world_environment.tscn" id="7_6bp64"]
-[ext_resource type="PackedScene" path="res://player_death_events.tscn" id="8_344ge"]
+[ext_resource type="PackedScene" uid="uid://bq6hwv126v0ac" path="res://player_death_events.tscn" id="8_344ge"]
 
 [sub_resource type="Animation" id="Animation_6bp64"]
 resource_name = "FadeOut"

@@ -99,7 +99,8 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 		await get_tree().create_timer(4).timeout
 		queue_free()
 	elif area.owner.is_in_group("enemy") and is_shot:
-		score_to_be_added *= 2
+		if not score_to_be_added > 100 * base_score:
+			score_to_be_added *= 2
 		area.owner.on_enemy_killed()
 		Events.emit_signal("player_scored", score_to_be_added)
 		var new_scale = scale * 1.1
