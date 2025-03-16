@@ -5,6 +5,7 @@ extends MarginContainer
 
 @onready var play:TextureButton = $VBoxContainer/PlayButton
 @onready var quit:TextureButton = $VBoxContainer/QuitButton
+@onready var hardcore:TextureButton = $VBoxContainer/HardCoreButton
 
 @export var button_sound: AudioStreamPlayer2D
 @export var fade_overlay: ColorRect
@@ -12,6 +13,7 @@ extends MarginContainer
 func _process(delta: float) -> void:
 	btn_hovered(play)
 	btn_hovered(quit)
+	btn_hovered(hardcore)
 
 func startTween(object: Object, property: String, final_val: Variant, duration:float):
 	var tween = create_tween()
@@ -19,7 +21,6 @@ func startTween(object: Object, property: String, final_val: Variant, duration:f
 	
 
 func btn_hovered(button: TextureButton):
-	
 	if button.is_hovered():
 		startTween(button, "scale", Vector2.ONE * tween_intensity, tween_duration)
 	else:

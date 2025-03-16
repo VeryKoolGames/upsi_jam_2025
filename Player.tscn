@@ -37,8 +37,8 @@ colors = PackedColorArray(0.145098, 0.176471, 0.909804, 1, 0.145098, 0.176471, 0
 
 [node name="ShapeSpawner" type="Node2D" parent="." node_paths=PackedStringArray("spawn_points", "original_spawn_points")]
 script = ExtResource("5_5ncpa")
-spawn_points = [NodePath("../CharacterBody2D/SpawnPoints/SpawnPoint1"), NodePath("../CharacterBody2D/SpawnPoints/SpawnPoint2"), NodePath("../CharacterBody2D/SpawnPoints/SpawnPoint3"), NodePath("../CharacterBody2D/SpawnPoints/SpawnPoint4"), NodePath("../CharacterBody2D/SpawnPoints/SpawnPoint5"), NodePath("../CharacterBody2D/SpawnPoints/SpawnPoint6"), NodePath("../CharacterBody2D/SpawnPoints/SpawnPoint7")]
-original_spawn_points = [NodePath("../CharacterBody2D/OriginalSpawnPoints/SpawnPoint1"), NodePath("../CharacterBody2D/OriginalSpawnPoints/SpawnPoint2"), NodePath("../CharacterBody2D/OriginalSpawnPoints/SpawnPoint3"), NodePath("../CharacterBody2D/OriginalSpawnPoints/SpawnPoint4"), NodePath("../CharacterBody2D/OriginalSpawnPoints/SpawnPoint5"), NodePath("../CharacterBody2D/OriginalSpawnPoints/SpawnPoint6"), NodePath("../CharacterBody2D/OriginalSpawnPoints/SpawnPoint7")]
+spawn_points = [NodePath("../CharacterBody2D/SpawnPoints/SpawnPoint1"), NodePath("../CharacterBody2D/SpawnPoints/SpawnPoint2"), NodePath("../CharacterBody2D/SpawnPoints/SpawnPoint3"), NodePath("../CharacterBody2D/SpawnPoints/SpawnPoint4"), NodePath("../CharacterBody2D/SpawnPoints/SpawnPoint5"), NodePath("../CharacterBody2D/SpawnPoints/SpawnPoint6"), NodePath("../CharacterBody2D/SpawnPoints/SpawnPoint7"), NodePath("../CharacterBody2D/SpawnPoints/SpawnPoint8"), NodePath("../CharacterBody2D/SpawnPoints/SpawnPoint9"), NodePath("../CharacterBody2D/SpawnPoints/SpawnPoint10"), NodePath("../CharacterBody2D/SpawnPoints/SpawnPoint11"), NodePath("../CharacterBody2D/SpawnPoints/SpawnPoint12")]
+original_spawn_points = [NodePath("../CharacterBody2D/OriginalSpawnPoints/SpawnPoint1"), NodePath("../CharacterBody2D/OriginalSpawnPoints/SpawnPoint2"), NodePath("../CharacterBody2D/OriginalSpawnPoints/SpawnPoint3"), NodePath("../CharacterBody2D/OriginalSpawnPoints/SpawnPoint4"), NodePath("../CharacterBody2D/OriginalSpawnPoints/SpawnPoint5"), NodePath("../CharacterBody2D/OriginalSpawnPoints/SpawnPoint6"), NodePath("../CharacterBody2D/OriginalSpawnPoints/SpawnPoint7"), NodePath("../CharacterBody2D/OriginalSpawnPoints/SpawnPoint8"), NodePath("../CharacterBody2D/OriginalSpawnPoints/SpawnPoint9"), NodePath("../CharacterBody2D/OriginalSpawnPoints/SpawnPoint10"), NodePath("../CharacterBody2D/OriginalSpawnPoints/SpawnPoint11"), NodePath("../CharacterBody2D/OriginalSpawnPoints/SpawnPoint12")]
 shape_scenes = Array[PackedScene]([ExtResource("11_d6rpx"), ExtResource("3_2feor"), ExtResource("7_hp6x6"), ExtResource("10_d6rpx"), ExtResource("6_l6ohk"), ExtResource("7_oudfo"), ExtResource("8_d6rpx"), ExtResource("9_r3kul")])
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="." node_paths=PackedStringArray("spawn_sound", "pick_up_sound", "fioush_sound")]
@@ -82,6 +82,21 @@ position = Vector2(-296, -181)
 [node name="SpawnPoint7" type="Node2D" parent="CharacterBody2D/SpawnPoints"]
 position = Vector2(4, -370)
 
+[node name="SpawnPoint8" type="Node2D" parent="CharacterBody2D/SpawnPoints"]
+position = Vector2(586, -154)
+
+[node name="SpawnPoint9" type="Node2D" parent="CharacterBody2D/SpawnPoints"]
+position = Vector2(468, 296)
+
+[node name="SpawnPoint10" type="Node2D" parent="CharacterBody2D/SpawnPoints"]
+position = Vector2(-30, 446)
+
+[node name="SpawnPoint11" type="Node2D" parent="CharacterBody2D/SpawnPoints"]
+position = Vector2(-632, 322)
+
+[node name="SpawnPoint12" type="Node2D" parent="CharacterBody2D/SpawnPoints"]
+position = Vector2(-301, -450)
+
 [node name="OriginalSpawnPoints" type="Node2D" parent="CharacterBody2D"]
 
 [node name="SpawnPoint1" type="Node2D" parent="CharacterBody2D/OriginalSpawnPoints"]
@@ -104,6 +119,21 @@ position = Vector2(-73, -70)
 
 [node name="SpawnPoint7" type="Node2D" parent="CharacterBody2D/OriginalSpawnPoints"]
 position = Vector2(0, -110)
+
+[node name="SpawnPoint8" type="Node2D" parent="CharacterBody2D/OriginalSpawnPoints"]
+position = Vector2(209, -31)
+
+[node name="SpawnPoint9" type="Node2D" parent="CharacterBody2D/OriginalSpawnPoints"]
+position = Vector2(158, 96)
+
+[node name="SpawnPoint10" type="Node2D" parent="CharacterBody2D/OriginalSpawnPoints"]
+position = Vector2(-30, 167)
+
+[node name="SpawnPoint11" type="Node2D" parent="CharacterBody2D/OriginalSpawnPoints"]
+position = Vector2(-155, 88)
+
+[node name="SpawnPoint12" type="Node2D" parent="CharacterBody2D/OriginalSpawnPoints"]
+position = Vector2(-158, -83)
 
 [node name="Walls" type="Node2D" parent="."]
 metadata/_edit_lock_ = true

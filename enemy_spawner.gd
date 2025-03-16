@@ -2,7 +2,7 @@ extends Node2D
 
 @export var enemy_scene: PackedScene
 @export var spawn_margin: int = 100
-var max_spawn_interval = 2
+var max_spawn_interval = 1.5
 @export var camera: Camera2D
 
 func _ready() -> void:
@@ -39,4 +39,4 @@ func get_spawn_position(cam_pos: Vector2, cam_size: Vector2) -> Vector2:
 	return Vector2.ZERO
 
 func on_timer_progress():
-	max_spawn_interval -= 0.5
+	max_spawn_interval -= 0.3

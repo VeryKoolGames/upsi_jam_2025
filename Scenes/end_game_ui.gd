@@ -4,8 +4,8 @@ class_name EndGameUI
 @export var end_game_label: Label
 @export var scoreLabel: Label
 
-var win_text = "YOU WIN ! "
-var lose_text = "YOU LOSE !"
+var win_text = "YOU WON ! "
+var lose_text = "GAME OVER !"
 
 func _ready() -> void:
 	Events.game_ended.connect(on_game_end)
@@ -21,7 +21,7 @@ func on_game_end(is_win: bool):
 		end_game_label.text = win_text
 	else:
 		end_game_label.text = lose_text
-		scoreLabel.text += str(PlayerScore.player_score)
+	scoreLabel.text += str(PlayerScore.player_score)
 
 func _on_replay_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://Scenes/main.tscn")

@@ -21,7 +21,7 @@ var shape_manager: ShapeManager
 var is_dead: bool
 @export var bounce_sound_manager: Node2D
 var pick_up_sound: AudioStreamPlayer2D
-var start_offset: float = 2.5
+var start_offset: float = 3.5
 
 func _ready() -> void:
 	add_to_group("shapes")
@@ -37,6 +37,7 @@ func _ready() -> void:
 	_set_random_color()
 	_set_random_shape()
 	_set_random_scale()
+	_set_random_rotation()
 	pick_up_sound.playing = true
 	await get_tree().create_timer(start_offset).timeout
 	_move_to_target()
@@ -50,6 +51,9 @@ func _move_to_target():
 	tween.set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 	tween.tween_property(self, "global_position", target_spawn_point.global_position, 0.4)
 
+func _set_random_rotation():
+	var random_angle = randf_range(0, 360)
+	rotation = deg_to_rad(random_angle)
 
 func _set_random_shape():
 	var random_index = randi_range(0, possible_shapes.size() - 1)
@@ -72,7 +76,7 @@ func _set_random_scale():
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if is_dead || PlayerScore.start_phase:
 		return
-	if area.get_parent().is_in_group("enemy") and !is_shot:
+	if area.get_parent().is_in_group("enemy") and is_attached:
 		is_dead = true
 		shape_manager.remove_shape(self)
 		area.owner.on_enemy_killed()
@@ -81,12 +85,11 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 		outline_sprite.hide()
 		await get_tree().create_timer(4).timeout
 		queue_free()
-	elif area.owner.is_in_group("enemy"):
+	elif area.owner.is_in_group("enemy") and is_shot:
 		score_to_be_added *= 2
 		area.owner.on_enemy_killed()
 		Events.emit_signal("player_scored", score_to_be_added)
 		var new_scale = scale * 1.1
-
 		var tween = create_tween()
 		tween.set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 		tween.tween_property(self, "scale", new_scale, 0.2)
@@ -107,12 +110,12 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 
 func on_shoot():
 	is_attached = false
-	await get_tree().create_timer(0.5).timeout
+	await get_tree().create_timer(1).timeout
 	can_be_picked_up = true
 
 func _physics_process(delta: float) -> void:
 	if is_shot:
-		if new_velocity.x <= 10 and new_velocity.y <= 10 and can_be_picked_up:
+		if new_velocity.x <= 1 and new_velocity.y <= 1 and can_be_picked_up:
 			_switch_sprites_to_outline()
 			score_to_be_added = base_score
 		new_velocity *= 0.99
