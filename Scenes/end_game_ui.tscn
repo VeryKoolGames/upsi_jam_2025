@@ -81,7 +81,7 @@ offset_top = -376.0
 offset_right = 579.0
 offset_bottom = -63.0
 grow_vertical = 0
-theme_override_constants/separation = -35
+theme_override_constants/separation = -65
 
 [node name="replay_button" type="TextureButton" parent="VBoxContainer"]
 layout_mode = 2
