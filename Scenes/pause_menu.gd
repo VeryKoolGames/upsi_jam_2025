@@ -6,16 +6,22 @@ extends Control
 @onready var play: TextureButton = $VBoxContainer/RESUME
 @onready var mainMenu: TextureButton = $VBoxContainer/Menu
 @onready var quit: TextureButton = $VBoxContainer/QuitButton
-
 @onready var hover_sound: AudioStreamPlayer2D = $HoverSound
 
 var is_paused: bool = false
+var has_game_ended: bool = false
 
 func _ready():
+	Events.game_ended.connect(on_game_ended)
 	visible = false
+	process_mode = Node.PROCESS_MODE_ALWAYS
+
+func on_game_ended(_test: bool):
+	has_game_ended = true
 
 func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("pause"):
+	if Input.is_action_just_pressed("pause") and not has_game_ended:
+		print("Pause started")
 		toggle_pause()
 
 func toggle_pause():

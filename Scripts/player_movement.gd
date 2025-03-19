@@ -12,6 +12,7 @@ var current_trail: Trail
 
 func _ready() -> void:
 	PlayerScore.start_phase = true
+	PlayerScore.player_score = 0
 	add_to_group("player")
 	scale = Vector2.ZERO
 	await get_tree().create_timer(1).timeout
