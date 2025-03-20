@@ -44,15 +44,14 @@ func _update_score(score_to_add: int):
 	score += score_to_add
 	PlayerScore.player_score = score
 	score_label.text = str(score)
-	var intensity = clamp(score_to_add / 50.0, 1.0, 2.0)  # Adjust 50.0 for balancing
-
+	var intensity = clamp(score_to_add / 50.0, 1.0, 2.0) 
 	var tween = create_tween()
 	tween.set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_OUT)
 
 	tween.tween_property(score_label, "scale", Vector2(1.2, 1.2) * intensity, 0.1)
 
 	tween.tween_property(score_label, "rotation_degrees", randf_range(-10, 10) * intensity, 0.05)
-	tween.tween_property(score_label, "rotation_degrees", 0, 0.05)  # Reset rotation
+	tween.tween_property(score_label, "rotation_degrees", 0, 0.05)
 
 	tween.tween_property(score_label, "scale", Vector2.ONE, 0.1)
 
@@ -66,3 +65,4 @@ func _schedule_checkpoint(time_remaining: float) -> void:
 
 func on_player_death(_useless: bool):
 	has_ended = true
+	game_timer.stop()

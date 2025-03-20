@@ -1,0 +1,82 @@
+[gd_scene load_steps=2 format=3 uid="uid://bm0o4bewaqvy0"]
+
+[ext_resource type="PackedScene" uid="uid://d0tr5643b772e" path="res://Scenes/enemy_detection.tscn" id="1_dw6cb"]
+
+[node name="EnemyDetect" type="Node2D"]
+
+[node name="TopDetect" type="Node2D" parent="."]
+
+[node name="EnemyDetection" parent="TopDetect" instance=ExtResource("1_dw6cb")]
+position = Vector2(80, 0)
+
+[node name="EnemyDetection2" parent="TopDetect" instance=ExtResource("1_dw6cb")]
+position = Vector2(359, 0)
+
+[node name="EnemyDetection3" parent="TopDetect" instance=ExtResource("1_dw6cb")]
+position = Vector2(640, 0)
+
+[node name="EnemyDetection4" parent="TopDetect" instance=ExtResource("1_dw6cb")]
+position = Vector2(919, 0)
+
+[node name="EnemyDetection5" parent="TopDetect" instance=ExtResource("1_dw6cb")]
+position = Vector2(1200, 0)
+
+[node name="EnemyDetection6" parent="TopDetect" instance=ExtResource("1_dw6cb")]
+position = Vector2(1481, 0)
+
+[node name="BotDetect" type="Node2D" parent="."]
+
+[node name="EnemyDetection8" parent="BotDetect" instance=ExtResource("1_dw6cb")]
+position = Vector2(1839, 1078)
+rotation = 3.14159
+
+[node name="EnemyDetection9" parent="BotDetect" instance=ExtResource("1_dw6cb")]
+position = Vector2(1560, 1078)
+rotation = 3.14159
+
+[node name="EnemyDetection10" parent="BotDetect" instance=ExtResource("1_dw6cb")]
+position = Vector2(1279, 1078)
+rotation = 3.14159
+
+[node name="EnemyDetection11" parent="BotDetect" instance=ExtResource("1_dw6cb")]
+position = Vector2(998, 1078)
+rotation = 3.14159
+
+[node name="EnemyDetection12" parent="BotDetect" instance=ExtResource("1_dw6cb")]
+position = Vector2(721, 1078)
+rotation = 3.14159
+
+[node name="EnemyDetection14" parent="BotDetect" instance=ExtResource("1_dw6cb")]
+position = Vector2(439, 1078)
+rotation = 3.14159
+
+[node name="LeftDetect" type="Node2D" parent="."]
+
+[node name="EnemyDetection15" parent="LeftDetect" instance=ExtResource("1_dw6cb")]
+position = Vector2(1920, 636)
+rotation = 1.5708
+
+[node name="EnemyDetection17" parent="LeftDetect" instance=ExtResource("1_dw6cb")]
+position = Vector2(1920, 357)
+rotation = 1.5708
+
+[node name="EnemyDetection18" parent="LeftDetect" instance=ExtResource("1_dw6cb")]
+position = Vector2(1920, 77)
+rotation = 1.5708
+
+[node name="RightDetect" type="Node2D" parent="."]
+rotation = 3.14159
+
+[node name="EnemyDetection15" parent="RightDetect" instance=ExtResource("1_dw6cb")]
+position = Vector2(-3.81163e-05, -436)
+rotation = 1.5708
+
+[node name="EnemyDetection17" parent="RightDetect" instance=ExtResource("1_dw6cb")]
+position = Vector2(-6.26821e-05, -717)
+rotation = 1.5708
+
+[node name="EnemyDetection18" parent="RightDetect" instance=ExtResource("1_dw6cb")]
+position = Vector2(-8.69857e-05, -995)
+rotation = 1.5708
+
+[editable path="TopDetect/EnemyDetection3"]

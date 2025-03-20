@@ -1,6 +1,6 @@
 extends Node2D
 
-@export var warning_sprite: Node2D
+@onready var warning_sprite = $Node2D
 
 var enemy_count: int = 0
 

@@ -14,10 +14,7 @@ func apply_shake():
 	shakeStrenght = randomStrenght
 
 func apply_small_shake():
-	shakeStrenght = 5
-
-func _start_shakedown_cooldown():
-	pass
+	shakeStrenght = 15
 
 func _process(delta):
 	if shakeStrenght > 0:

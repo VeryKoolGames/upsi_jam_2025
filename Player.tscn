@@ -36,6 +36,7 @@ colors = PackedColorArray(0.145098, 0.176471, 0.909804, 1, 0.145098, 0.176471, 0
 [node name="Player" type="Node2D"]
 
 [node name="Camera2D" type="Camera2D" parent="."]
+unique_name_in_owner = true
 
 [node name="ShapeSpawner" type="Node2D" parent="." node_paths=PackedStringArray("spawn_points", "original_spawn_points")]
 script = ExtResource("5_5ncpa")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://3wds8y6c67hk"]
+[gd_scene load_steps=13 format=3 uid="uid://3wds8y6c67hk"]
 
 [ext_resource type="PackedScene" uid="uid://otlm4qvh6cx" path="res://Player.tscn" id="1_xjj1v"]
 [ext_resource type="Script" uid="uid://cnsvfodv6y40p" path="res://cameraShake.gd" id="2_7h37y"]
@@ -8,6 +8,7 @@
 [ext_resource type="AudioStream" uid="uid://m347ow524jsl" path="res://Sounds/mainMusic.wav" id="6_kgum6"]
 [ext_resource type="PackedScene" uid="uid://cal7ivpltj6oo" path="res://world_environment.tscn" id="7_cpkv3"]
 [ext_resource type="PackedScene" uid="uid://bq6hwv126v0ac" path="res://player_death_events.tscn" id="8_7h37y"]
+[ext_resource type="PackedScene" uid="uid://bm0o4bewaqvy0" path="res://Scenes/enemy_detect.tscn" id="9_7bsiq"]
 
 [sub_resource type="Animation" id="Animation_6bp64"]
 resource_name = "FadeOut"
@@ -103,5 +104,8 @@ autoplay = "FadeOut"
 [node name="PlayerDeathEvents" parent="." node_paths=PackedStringArray("player", "main_music") instance=ExtResource("8_7h37y")]
 player = NodePath("../Player")
 main_music = NodePath("../AudioStreamPlayer2D")
+
+[node name="EnemyDetect" parent="." instance=ExtResource("9_7bsiq")]
+position = Vector2(-959, -537)
 
 [editable path="CanvasLayer/LevelUI"]
