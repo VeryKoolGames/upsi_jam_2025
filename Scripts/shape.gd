@@ -134,7 +134,6 @@ func _physics_process(delta: float) -> void:
 		if time_since_last_check >= check_interval:
 			time_since_last_check = 0.0
 			var distance_moved = global_position.distance_to(previous_position)
-
 			if distance_moved <= movement_threshold and can_be_picked_up:
 				_switch_sprites_to_outline()
 				score_to_be_added = base_score
