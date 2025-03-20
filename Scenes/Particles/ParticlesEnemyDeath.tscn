@@ -1,0 +1,42 @@
+[gd_scene load_steps=5 format=3 uid="uid://dgulj44aqy4fb"]
+
+[ext_resource type="Texture2D" uid="uid://dolarhdkcjpau" path="res://Sprites/particles.png" id="1_ahgu2"]
+[ext_resource type="Script" uid="uid://chjh7mvpjy8uj" path="res://Scripts/explosion_particles.gd" id="1_svfft"]
+
+[sub_resource type="Curve" id="Curve_svfft"]
+_limits = [-360.0, 360.0, 0.0, 1.0]
+_data = [Vector2(0, 360), 0.0, 0.0, 0, 0, Vector2(0.568063, -348.144), -2084.35, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_bwcjq"]
+_data = [Vector2(0.829843, 1), 0.0, -3.07399, 0, 0, Vector2(1, 0), -2.97508, 0.0, 0, 0]
+point_count = 2
+
+[node name="Explosion_Particles" type="Node2D" node_paths=PackedStringArray("particle_one")]
+script = ExtResource("1_svfft")
+particle_one = NodePath("CPUParticles2D")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+z_index = -1
+emitting = false
+amount = 10
+texture = ExtResource("1_ahgu2")
+lifetime = 6.0
+one_shot = true
+explosiveness = 0.98
+randomness = 0.98
+lifetime_randomness = 1.0
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 1800.0
+initial_velocity_max = 2200.0
+angular_velocity_min = 200.0
+angular_velocity_max = 200.0
+angular_velocity_curve = SubResource("Curve_svfft")
+linear_accel_min = 10.38
+linear_accel_max = 10.38
+damping_min = 5700.0
+damping_max = 6000.0
+scale_amount_curve = SubResource("Curve_bwcjq")
+color = Color(1, 0, 0.0156863, 1)

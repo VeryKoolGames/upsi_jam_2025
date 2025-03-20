@@ -1,3 +1,7 @@
-[gd_resource type="Resource" format=3 uid="uid://fucjld5s72fp"]
+[gd_resource type="Resource" script_class="HighestScore" load_steps=2 format=3 uid="uid://fucjld5s72fp"]
+
+[ext_resource type="Script" uid="uid://dsb62envt6d2g" path="res://Scripts/player_high_score.gd" id="1_afqgn"]
 
 [resource]
+script = ExtResource("1_afqgn")
+player_high_score = {}

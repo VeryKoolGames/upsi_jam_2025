@@ -1,0 +1,215 @@
+[gd_scene load_steps=24 format=3 uid="uid://otlm4qvh6cx"]
+
+[ext_resource type="Script" uid="uid://cd4rt1lm4asto" path="res://Scripts/player_movement.gd" id="1_2ibxi"]
+[ext_resource type="Texture2D" uid="uid://4lc7xuy3cfr5" path="res://Sprites/Coeur.svg" id="2_tdg3f"]
+[ext_resource type="PackedScene" uid="uid://dqsvnfjk7e8rf" path="res://Scenes/Shapes/ShapeSquare.tscn" id="3_2feor"]
+[ext_resource type="Script" uid="uid://cmgbbh8o7nwm" path="res://Scripts/shape_spawner.gd" id="5_5ncpa"]
+[ext_resource type="Script" uid="uid://i0w0tr8g0c2j" path="res://Scripts/enemy_spawner.gd" id="5_tdg3f"]
+[ext_resource type="PackedScene" uid="uid://n8nx7vjj0lqy" path="res://Scenes/Enemy/enemy.tscn" id="6_dtqjt"]
+[ext_resource type="PackedScene" uid="uid://w31jg8pbth22" path="res://Scenes/Shapes/ShapeTriangleDiago.tscn" id="6_l6ohk"]
+[ext_resource type="PackedScene" uid="uid://brhpedrkppwpj" path="res://Scenes/Shapes/ShapeTriangle.tscn" id="7_hp6x6"]
+[ext_resource type="PackedScene" uid="uid://be7xl7udyyv2y" path="res://Scenes/Shapes/ShapeSmallTriangle.tscn" id="7_oudfo"]
+[ext_resource type="PackedScene" uid="uid://c2u0po1yo75pc" path="res://Scenes/Shapes/ShapeManager.tscn" id="8_5ncpa"]
+[ext_resource type="PackedScene" uid="uid://cqd4scgty1wlb" path="res://Scenes/Shapes/ShapeCircle.tscn" id="8_d6rpx"]
+[ext_resource type="AudioStream" uid="uid://c5dyiq2iidswq" path="res://Sounds/evolution.wav" id="8_wi0c6"]
+[ext_resource type="PackedScene" uid="uid://clulk1x55eb3t" path="res://Scenes/Shapes/ShapeHalfCircle.tscn" id="9_r3kul"]
+[ext_resource type="PackedScene" uid="uid://73q7pvbppq41" path="res://Scenes/Shapes/ShapeCircleLetter.tscn" id="10_d6rpx"]
+[ext_resource type="PackedScene" uid="uid://c80uwbkjp4xio" path="res://Scenes/Shapes/ShapeCross.tscn" id="11_d6rpx"]
+[ext_resource type="Texture2D" uid="uid://dhii2obai8q5f" path="res://Sprites/RadialGradient.svg" id="11_efikj"]
+[ext_resource type="AudioStream" uid="uid://brs7cc76s2j6h" path="res://Sounds/SNAP2.mp3" id="17_itxgx"]
+[ext_resource type="AudioStream" uid="uid://bn7urc6q85x2s" path="res://Sounds/synth.wav" id="17_rv870"]
+[ext_resource type="AudioStream" uid="uid://dub1sbfxl7x1h" path="res://Sounds/ShapeDeath.mp3" id="18_itxgx"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_o2i67"]
+radius = 34.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tdg3f"]
+radius = 41.1096
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_e80uo"]
+normal = Vector2(-0.0120336, 0.999928)
+
+[sub_resource type="Gradient" id="Gradient_5ncpa"]
+offsets = PackedFloat32Array(0, 0.588415, 1)
+colors = PackedColorArray(0.145098, 0.176471, 0.909804, 1, 0.145098, 0.176471, 0.909804, 0, 0.145098, 0.176471, 0.909804, 0)
+
+[node name="Player" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+unique_name_in_owner = true
+
+[node name="ShapeSpawner" type="Node2D" parent="." node_paths=PackedStringArray("spawn_points", "original_spawn_points")]
+script = ExtResource("5_5ncpa")
+spawn_points = [NodePath("../CharacterBody2D/SpawnPoints/SpawnPoint1"), NodePath("../CharacterBody2D/SpawnPoints/SpawnPoint2"), NodePath("../CharacterBody2D/SpawnPoints/SpawnPoint3"), NodePath("../CharacterBody2D/SpawnPoints/SpawnPoint4"), NodePath("../CharacterBody2D/SpawnPoints/SpawnPoint5"), NodePath("../CharacterBody2D/SpawnPoints/SpawnPoint6"), NodePath("../CharacterBody2D/SpawnPoints/SpawnPoint7"), NodePath("../CharacterBody2D/SpawnPoints/SpawnPoint8"), NodePath("../CharacterBody2D/SpawnPoints/SpawnPoint9"), NodePath("../CharacterBody2D/SpawnPoints/SpawnPoint10"), NodePath("../CharacterBody2D/SpawnPoints/SpawnPoint11"), NodePath("../CharacterBody2D/SpawnPoints/SpawnPoint12")]
+original_spawn_points = [NodePath("../CharacterBody2D/OriginalSpawnPoints/SpawnPoint1"), NodePath("../CharacterBody2D/OriginalSpawnPoints/SpawnPoint2"), NodePath("../CharacterBody2D/OriginalSpawnPoints/SpawnPoint3"), NodePath("../CharacterBody2D/OriginalSpawnPoints/SpawnPoint4"), NodePath("../CharacterBody2D/OriginalSpawnPoints/SpawnPoint5"), NodePath("../CharacterBody2D/OriginalSpawnPoints/SpawnPoint6"), NodePath("../CharacterBody2D/OriginalSpawnPoints/SpawnPoint7"), NodePath("../CharacterBody2D/OriginalSpawnPoints/SpawnPoint8"), NodePath("../CharacterBody2D/OriginalSpawnPoints/SpawnPoint9"), NodePath("../CharacterBody2D/OriginalSpawnPoints/SpawnPoint10"), NodePath("../CharacterBody2D/OriginalSpawnPoints/SpawnPoint11"), NodePath("../CharacterBody2D/OriginalSpawnPoints/SpawnPoint12")]
+shape_scenes = Array[PackedScene]([ExtResource("11_d6rpx"), ExtResource("3_2feor"), ExtResource("7_hp6x6"), ExtResource("10_d6rpx"), ExtResource("6_l6ohk"), ExtResource("7_oudfo"), ExtResource("8_d6rpx"), ExtResource("9_r3kul")])
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="." node_paths=PackedStringArray("spawn_sound", "pick_up_sound", "fioush_sound")]
+script = ExtResource("1_2ibxi")
+spawn_sound = NodePath("../SpawnSound")
+pick_up_sound = NodePath("../PickUpSound")
+fioush_sound = NodePath("../FioushSound")
+
+[node name="Bloom" type="Sprite2D" parent="CharacterBody2D"]
+modulate = Color(0.824, 0.008, 0.393, 0.317)
+scale = Vector2(1.3871, 1.29688)
+texture = ExtResource("11_efikj")
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
+modulate = Color(1, 0.192157, 0.203922, 1)
+texture = ExtResource("2_tdg3f")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+shape = SubResource("CircleShape2D_o2i67")
+
+[node name="Area2D" type="Area2D" parent="CharacterBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/Area2D"]
+shape = SubResource("CircleShape2D_tdg3f")
+
+[node name="SpawnPoints" type="Node2D" parent="CharacterBody2D"]
+
+[node name="SpawnPoint1" type="Node2D" parent="CharacterBody2D/SpawnPoints"]
+position = Vector2(329, -234)
+
+[node name="SpawnPoint2" type="Node2D" parent="CharacterBody2D/SpawnPoints"]
+position = Vector2(418, 21)
+
+[node name="SpawnPoint3" type="Node2D" parent="CharacterBody2D/SpawnPoints"]
+position = Vector2(210, 330)
+
+[node name="SpawnPoint4" type="Node2D" parent="CharacterBody2D/SpawnPoints"]
+position = Vector2(-284, 295)
+
+[node name="SpawnPoint5" type="Node2D" parent="CharacterBody2D/SpawnPoints"]
+position = Vector2(-578, 46)
+
+[node name="SpawnPoint6" type="Node2D" parent="CharacterBody2D/SpawnPoints"]
+position = Vector2(-296, -181)
+
+[node name="SpawnPoint7" type="Node2D" parent="CharacterBody2D/SpawnPoints"]
+position = Vector2(4, -370)
+
+[node name="SpawnPoint8" type="Node2D" parent="CharacterBody2D/SpawnPoints"]
+position = Vector2(586, -154)
+
+[node name="SpawnPoint9" type="Node2D" parent="CharacterBody2D/SpawnPoints"]
+position = Vector2(468, 296)
+
+[node name="SpawnPoint10" type="Node2D" parent="CharacterBody2D/SpawnPoints"]
+position = Vector2(-30, 446)
+
+[node name="SpawnPoint11" type="Node2D" parent="CharacterBody2D/SpawnPoints"]
+position = Vector2(-632, 322)
+
+[node name="SpawnPoint12" type="Node2D" parent="CharacterBody2D/SpawnPoints"]
+position = Vector2(-301, -450)
+
+[node name="OriginalSpawnPoints" type="Node2D" parent="CharacterBody2D"]
+
+[node name="SpawnPoint1" type="Node2D" parent="CharacterBody2D/OriginalSpawnPoints"]
+position = Vector2(133, -126)
+
+[node name="SpawnPoint2" type="Node2D" parent="CharacterBody2D/OriginalSpawnPoints"]
+position = Vector2(108, 20)
+
+[node name="SpawnPoint3" type="Node2D" parent="CharacterBody2D/OriginalSpawnPoints"]
+position = Vector2(46, 102)
+
+[node name="SpawnPoint4" type="Node2D" parent="CharacterBody2D/OriginalSpawnPoints"]
+position = Vector2(-72, 82)
+
+[node name="SpawnPoint5" type="Node2D" parent="CharacterBody2D/OriginalSpawnPoints"]
+position = Vector2(-123, -4)
+
+[node name="SpawnPoint6" type="Node2D" parent="CharacterBody2D/OriginalSpawnPoints"]
+position = Vector2(-73, -70)
+
+[node name="SpawnPoint7" type="Node2D" parent="CharacterBody2D/OriginalSpawnPoints"]
+position = Vector2(0, -110)
+
+[node name="SpawnPoint8" type="Node2D" parent="CharacterBody2D/OriginalSpawnPoints"]
+position = Vector2(209, -31)
+
+[node name="SpawnPoint9" type="Node2D" parent="CharacterBody2D/OriginalSpawnPoints"]
+position = Vector2(158, 96)
+
+[node name="SpawnPoint10" type="Node2D" parent="CharacterBody2D/OriginalSpawnPoints"]
+position = Vector2(-30, 167)
+
+[node name="SpawnPoint11" type="Node2D" parent="CharacterBody2D/OriginalSpawnPoints"]
+position = Vector2(-155, 88)
+
+[node name="SpawnPoint12" type="Node2D" parent="CharacterBody2D/OriginalSpawnPoints"]
+position = Vector2(-158, -83)
+
+[node name="Walls" type="Node2D" parent="."]
+metadata/_edit_lock_ = true
+
+[node name="Area2D" type="StaticBody2D" parent="Walls" groups=["walls"]]
+position = Vector2(-960, 0)
+rotation = -1.5708
+collision_layer = 3
+collision_mask = 3
+
+[node name="leftWall" type="CollisionShape2D" parent="Walls/Area2D"]
+shape = SubResource("WorldBoundaryShape2D_e80uo")
+
+[node name="Area2D2" type="StaticBody2D" parent="Walls" groups=["walls"]]
+position = Vector2(961, 0)
+rotation = 1.5708
+collision_layer = 3
+collision_mask = 3
+
+[node name="rightWall" type="CollisionShape2D" parent="Walls/Area2D2"]
+shape = SubResource("WorldBoundaryShape2D_e80uo")
+
+[node name="Area2D3" type="StaticBody2D" parent="Walls" groups=["walls"]]
+position = Vector2(0, -540)
+collision_layer = 3
+collision_mask = 3
+
+[node name="topWall" type="CollisionShape2D" parent="Walls/Area2D3"]
+shape = SubResource("WorldBoundaryShape2D_e80uo")
+
+[node name="Area2D4" type="StaticBody2D" parent="Walls" groups=["walls"]]
+position = Vector2(-14, 541)
+rotation = 3.14159
+collision_layer = 3
+collision_mask = 3
+
+[node name="botWall" type="CollisionShape2D" parent="Walls/Area2D4"]
+shape = SubResource("WorldBoundaryShape2D_e80uo")
+
+[node name="EnemySpawner" type="Node2D" parent="." node_paths=PackedStringArray("camera")]
+script = ExtResource("5_tdg3f")
+enemy_scene = ExtResource("6_dtqjt")
+spawn_margin = 1000
+camera = NodePath("../Camera2D")
+
+[node name="Line2D" type="Line2D" parent="."]
+z_index = -1
+width = 3.0
+gradient = SubResource("Gradient_5ncpa")
+
+[node name="ShapeManager" parent="." node_paths=PackedStringArray("aim_line") instance=ExtResource("8_5ncpa")]
+unique_name_in_owner = true
+aim_line = NodePath("../Line2D")
+
+[node name="SpawnSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_wi0c6")
+
+[node name="PickUpSound" type="AudioStreamPlayer2D" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("17_itxgx")
+
+[node name="ShapeDeathSound" type="AudioStreamPlayer2D" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("18_itxgx")
+volume_db = -12.0
+
+[node name="FioushSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("17_rv870")
+volume_db = -15.0
+
+[connection signal="area_entered" from="CharacterBody2D/Area2D" to="CharacterBody2D" method="_on_area_2d_area_entered"]

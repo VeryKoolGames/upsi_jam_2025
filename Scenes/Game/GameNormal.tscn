@@ -1,0 +1,105 @@
+[gd_scene load_steps=13 format=3 uid="uid://c4x5jp3xx3pe2"]
+
+[ext_resource type="PackedScene" uid="uid://otlm4qvh6cx" path="res://Scenes/Player/Player.tscn" id="1_3pv36"]
+[ext_resource type="Script" uid="uid://cnsvfodv6y40p" path="res://Scripts/cameraShake.gd" id="2_glffq"]
+[ext_resource type="PackedScene" uid="uid://c8s8qyrng86ep" path="res://Scenes/UI/LevelAndScore.tscn" id="3_fjl5m"]
+[ext_resource type="PackedScene" uid="uid://vs2gc7hbww43" path="res://Scenes/UI/end_game_ui.tscn" id="4_nc1xt"]
+[ext_resource type="PackedScene" uid="uid://stnv4kvm8g88" path="res://Scenes/UI/UIPauseMenu.tscn" id="5_147af"]
+[ext_resource type="AudioStream" uid="uid://m347ow524jsl" path="res://Sounds/mainMusic.wav" id="6_uu0d8"]
+[ext_resource type="PackedScene" uid="uid://cal7ivpltj6oo" path="res://Scenes/Utils/WorldEnvironment.tscn" id="7_irbqh"]
+[ext_resource type="PackedScene" uid="uid://bq6hwv126v0ac" path="res://Scenes/Player/PlayerDeathEvents.tscn" id="8_8u2yy"]
+[ext_resource type="PackedScene" uid="uid://bm0o4bewaqvy0" path="res://Scenes/Enemy/EnemyAreaDetect.tscn" id="9_qxira"]
+
+[sub_resource type="Animation" id="Animation_6bp64"]
+resource_name = "FadeOut"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.166667, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.004, 0.118, 0.22, 1), Color(0.004, 0.118, 0.22, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_344ge"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.004, 0.118, 0.22, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ynf5e"]
+_data = {
+&"FadeOut": SubResource("Animation_6bp64"),
+&"RESET": SubResource("Animation_344ge")
+}
+
+[node name="Main" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_3pv36")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -1
+script = ExtResource("2_glffq")
+randomStrenght = 15.0
+
+[node name="LevelUI" parent="CanvasLayer" instance=ExtResource("3_fjl5m")]
+offset_left = 1.0
+offset_right = 1.0
+metadata/_edit_use_anchors_ = true
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+
+[node name="EndGameUI" parent="CanvasLayer2" instance=ExtResource("4_nc1xt")]
+visible = false
+
+[node name="PauseMenu" parent="CanvasLayer2" instance=ExtResource("5_147af")]
+visible = false
+
+[node name="CanvasLayer3" type="CanvasLayer" parent="."]
+
+[node name="MainMusic" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_uu0d8")
+volume_db = -10.0
+autoplay = true
+
+[node name="WorldEnvironment" parent="." instance=ExtResource("7_irbqh")]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -960.0
+offset_top = -540.0
+offset_right = 960.0
+offset_bottom = 540.0
+grow_horizontal = 0
+grow_vertical = 0
+color = Color(0.004, 0.118, 0.22, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ColorRect"]
+libraries = {
+&"": SubResource("AnimationLibrary_ynf5e")
+}
+autoplay = "FadeOut"
+
+[node name="PlayerDeathEvents" parent="." node_paths=PackedStringArray("player", "main_music") instance=ExtResource("8_8u2yy")]
+player = NodePath("../Player")
+main_music = NodePath("../MainMusic")
+
+[node name="EnemyDetectionZones" parent="." instance=ExtResource("9_qxira")]
+position = Vector2(-959, -537)

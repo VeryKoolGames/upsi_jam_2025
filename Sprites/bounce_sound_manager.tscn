@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://2buprn62e2id"]
 
-[ext_resource type="Script" uid="uid://w58vody6jq3x" path="res://bounce_sound_manager.gd" id="1_q4tql"]
+[ext_resource type="Script" uid="uid://w58vody6jq3x" path="res://Scripts/bounce_sound_manager.gd" id="1_q4tql"]
 [ext_resource type="AudioStream" uid="uid://bwg0x01ven2wf" path="res://Sounds/bounce.wav" id="2_i33h4"]
 
 [node name="BounceSoundManager" type="Node2D"]

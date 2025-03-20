@@ -1,0 +1,153 @@
+[gd_scene load_steps=16 format=3 uid="uid://vs2gc7hbww43"]
+
+[ext_resource type="Script" uid="uid://bi5mxfiwluard" path="res://Scripts/end_game_ui.gd" id="1_x2uj6"]
+[ext_resource type="Resource" uid="uid://fucjld5s72fp" path="res://Resources/player_high_score.tres" id="2_h54es"]
+[ext_resource type="Texture2D" uid="uid://dxqfj1u5rq566" path="res://Sprites/REPLAY.png" id="2_i2676"]
+[ext_resource type="FontFile" uid="uid://b7ishda7ounim" path="res://Fonts/Orbitron-Regular.ttf" id="3_ugxrw"]
+[ext_resource type="Texture2D" uid="uid://crhg8t4iruubv" path="res://Sprites/REPLAY_HOVER.png" id="3_x6ham"]
+[ext_resource type="Texture2D" uid="uid://cuw5qx4rbqoyt" path="res://Sprites/QuitGame.png" id="4_xnyjb"]
+[ext_resource type="FontFile" uid="uid://28lcng152pbr" path="res://Fonts/Orbitron-Bold.ttf" id="4_yjtpl"]
+[ext_resource type="Texture2D" uid="uid://dpjl5i5s4i0ft" path="res://Sprites/QuitGames_Hover.png" id="5_ugxrw"]
+[ext_resource type="Texture2D" uid="uid://crpwfnj5qwttw" path="res://Sprites/yourScore.png" id="6_yjtpl"]
+[ext_resource type="Texture2D" uid="uid://dudo877wy0wgq" path="res://Sprites/Carré.svg" id="7_x6ham"]
+[ext_resource type="Texture2D" uid="uid://bn51tqyg5qqsq" path="res://Sprites/heart.png" id="7_xnyjb"]
+[ext_resource type="Texture2D" uid="uid://chc513t4macs8" path="res://Sprites/MAINMENU.png" id="9_gtdt6"]
+[ext_resource type="Texture2D" uid="uid://bsykoflj1sxhi" path="res://Sprites/MAINMENU_HOVER.png" id="10_h0nbf"]
+[ext_resource type="AudioStream" uid="uid://cw3ggj2qqwf05" path="res://Sounds/HoverSound.wav" id="13_iu5gx"]
+[ext_resource type="AudioStream" uid="uid://drkilniwp46bo" path="res://Sounds/ButtonPressed.mp3" id="14_h54es"]
+
+[node name="EndGameUI" type="Control" node_paths=PackedStringArray("end_game_label", "scoreLabel")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(960, 540)
+script = ExtResource("1_x2uj6")
+end_game_label = NodePath("WINTEXT")
+scoreLabel = NodePath("Label")
+highest_score = ExtResource("2_h54es")
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+modulate = Color(0.00392157, 0.121569, 0.215686, 0.643137)
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("7_x6ham")
+
+[node name="WINTEXT" type="Label" parent="."]
+layout_mode = 1
+offset_left = 150.0
+offset_top = 109.0
+offset_right = 1479.0
+offset_bottom = 445.0
+theme_override_colors/font_color = Color(0.737255, 1, 0.00784314, 1)
+theme_override_fonts/font = ExtResource("4_yjtpl")
+theme_override_font_sizes/font_size = 87
+text = "YOU WON !
+
+"
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+offset_left = 249.0
+offset_top = 340.0
+offset_right = 1578.0
+offset_bottom = 676.0
+theme_override_fonts/font = ExtResource("3_ugxrw")
+theme_override_font_sizes/font_size = 87
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 148.0
+offset_top = 369.0
+offset_right = 213.0
+offset_bottom = 425.0
+texture = ExtResource("7_xnyjb")
+expand_mode = 2
+
+[node name="Heart" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 149.0
+offset_top = 267.0
+offset_right = 525.0
+offset_bottom = 331.0
+texture = ExtResource("6_yjtpl")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 63.0
+offset_top = -376.0
+offset_right = 579.0
+offset_bottom = -63.0
+grow_vertical = 0
+theme_override_constants/separation = -65
+
+[node name="replay_button" type="TextureButton" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("2_i2676")
+texture_pressed = ExtResource("2_i2676")
+texture_hover = ExtResource("3_x6ham")
+
+[node name="MainMenuButton" type="TextureButton" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("9_gtdt6")
+texture_pressed = ExtResource("9_gtdt6")
+texture_hover = ExtResource("10_h0nbf")
+
+[node name="quit_button" type="TextureButton" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("4_xnyjb")
+texture_pressed = ExtResource("4_xnyjb")
+texture_hover = ExtResource("5_ugxrw")
+
+[node name="HoverSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("13_iu5gx")
+volume_db = -10.0
+
+[node name="ClickSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("14_h54es")
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -710.0
+offset_top = 124.0
+offset_right = -186.0
+offset_bottom = 296.0
+grow_horizontal = 0
+theme_override_constants/separation = 30
+metadata/_edit_group_ = true
+
+[node name="GameModeLabel" type="Label" parent="VBoxContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.737255, 1, 0.0196078, 1)
+theme_override_fonts/font = ExtResource("4_yjtpl")
+theme_override_font_sizes/font_size = 64
+text = "Highest Score:"
+
+[node name="HighestScoreLabel" type="Label" parent="VBoxContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.737255, 1, 0.0196078, 1)
+theme_override_fonts/font = ExtResource("4_yjtpl")
+theme_override_font_sizes/font_size = 48
+text = "0"
+
+[connection signal="mouse_entered" from="VBoxContainer/replay_button" to="." method="_on_button_mouse_entered"]
+[connection signal="pressed" from="VBoxContainer/replay_button" to="." method="_on_replay_button_pressed"]
+[connection signal="mouse_entered" from="VBoxContainer/MainMenuButton" to="." method="_on_button_mouse_entered"]
+[connection signal="pressed" from="VBoxContainer/MainMenuButton" to="." method="_on_main_menu_button_pressed"]
+[connection signal="mouse_entered" from="VBoxContainer/quit_button" to="." method="_on_button_mouse_entered"]
+[connection signal="pressed" from="VBoxContainer/quit_button" to="." method="_on_quit_button_pressed"]

@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://bq6hwv126v0ac"]
+
+[ext_resource type="Script" uid="uid://cbwlnasedonu8" path="res://Scripts/player_death_events.gd" id="1_ksxan"]
+[ext_resource type="AudioStream" uid="uid://dyycr3ohywrty" path="res://Sounds/PlayerDeath.mp3" id="2_4mgci"]
+[ext_resource type="PackedScene" uid="uid://cb7yk1wabwugq" path="res://Scenes/Particles/ParticlesPlayerDeath.tscn" id="3_a7ho2"]
+
+[node name="PlayerDeathEvents" type="Node2D"]
+script = ExtResource("1_ksxan")
+
+[node name="PlayerDeathSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_4mgci")
+
+[node name="PlayerDeathParticles" parent="." instance=ExtResource("3_a7ho2")]

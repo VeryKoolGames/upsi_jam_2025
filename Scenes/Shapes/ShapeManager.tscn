@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://c2u0po1yo75pc"]
+
+[ext_resource type="Script" uid="uid://bmmu75tdlondq" path="res://Scripts/shape_manager.gd" id="1_1v0ig"]
+[ext_resource type="AudioStream" uid="uid://ceps23503yncv" path="res://Sounds/laserShoot.wav" id="2_ar6b1"]
+
+[node name="ShapeManager" type="Node2D"]
+script = ExtResource("1_1v0ig")
+
+[node name="ShootSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_ar6b1")
+volume_db = -10.0

@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://d0tr5643b772e"]
+
+[ext_resource type="Script" uid="uid://d0a5ubnypfyo2" path="res://Scripts/enemy_detection.gd" id="1_ihkjb"]
+[ext_resource type="Texture2D" uid="uid://chayhg5r0wxc7" path="res://Sprites/EnnemiesAlertDots.png" id="2_10brc"]
+[ext_resource type="Texture2D" uid="uid://dpm2ra558v8r5" path="res://Sprites/EnnemiesAlertGradient.png" id="3_ur6kb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6fxjm"]
+size = Vector2(260, 247)
+
+[node name="EnemyDetection" type="Node2D"]
+script = ExtResource("1_ihkjb")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(181, -160.5)
+shape = SubResource("RectangleShape2D_6fxjm")
+
+[node name="Node2D" type="Node2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(180, 7)
+
+[node name="mainSprite" type="Sprite2D" parent="Node2D"]
+texture = ExtResource("2_10brc")
+
+[node name="gradientSprite" type="Sprite2D" parent="Node2D"]
+position = Vector2(0, 27)
+texture = ExtResource("3_ur6kb")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]

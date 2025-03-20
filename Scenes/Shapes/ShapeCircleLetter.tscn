@@ -1,0 +1,54 @@
+[gd_scene load_steps=8 format=3 uid="uid://73q7pvbppq41"]
+
+[ext_resource type="Script" uid="uid://cdsvvbrrgasar" path="res://Scripts/shape.gd" id="1_tqv4q"]
+[ext_resource type="Texture2D" uid="uid://cd7e7ngvdtcdk" path="res://Sprites/Croissant.svg" id="2_tqv4q"]
+[ext_resource type="Texture2D" uid="uid://02mx1dib63l0" path="res://Sprites/Croissant_Dotted.svg" id="3_174w1"]
+[ext_resource type="PackedScene" uid="uid://bi7yny72t34p4" path="res://Scenes/Particles/ParticlesShapeSnap.tscn" id="4_im580"]
+[ext_resource type="PackedScene" uid="uid://bw758m4gx7dj4" path="res://Scenes/Particles/ParticlesShapeDeath.tscn" id="5_174w1"]
+[ext_resource type="PackedScene" uid="uid://2buprn62e2id" path="res://Sprites/bounce_sound_manager.tscn" id="6_ik0uc"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_77gc5"]
+radius = 34.1321
+
+[node name="CircleShape" type="RigidBody2D" node_paths=PackedStringArray("sprite", "outline_sprite", "snap_particle", "piece_mort_particle", "bounce_sound_manager")]
+collision_layer = 2
+collision_mask = 2
+gravity_scale = 0.0
+script = ExtResource("1_tqv4q")
+possible_colors = Array[Color]([Color(0.737255, 1, 0.00784314, 1), Color(0.145098, 0.176471, 0.909804, 1), Color(1, 0.784314, 0.215686, 1)])
+possible_shapes = Array[Texture2D]([ExtResource("2_tqv4q")])
+possible_shapes_outlines = Array[Texture2D]([ExtResource("3_174w1")])
+sprite = NodePath("Node2D/MainSprite")
+outline_sprite = NodePath("Node2D/OutlineSprite")
+snap_particle = NodePath("SnapParticles")
+piece_mort_particle = NodePath("PieceMortParticles")
+bounce_sound_manager = NodePath("BounceSoundManager")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_77gc5")
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="MainSprite" type="Sprite2D" parent="Node2D"]
+scale = Vector2(0.639999, 0.639999)
+texture = ExtResource("2_tqv4q")
+
+[node name="OutlineSprite" type="Sprite2D" parent="Node2D"]
+visible = false
+scale = Vector2(0.639999, 0.639999)
+texture = ExtResource("3_174w1")
+
+[node name="Area2D" type="Area2D" parent="Node2D"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Node2D/Area2D"]
+scale = Vector2(0.639999, 0.639999)
+polygon = PackedVector2Array(27, -53.5, 6.9, -53.5, 1.6, -51.5, -0.799999, -51.5, -10.7, -42.5, -13, -42.5, -23, -28.5, -24.4, -28.5, -27, -20.7, -27, 21.4, -25, 24.9, -25, 27.3, -8, 45.3, -8, 46.7, 5.5, 53.5, 27, 53.5, 27, 21.4, 21.2, 20.5, 17.7, 20.5, 11.7, 15.5, 10.3, 15.5, 5.3, 3.5, 5, -5, 11, -14.9, 11, -16.3, 19, -20.3, 27, -21.5)
+
+[node name="SnapParticles" parent="." instance=ExtResource("4_im580")]
+
+[node name="PieceMortParticles" parent="." instance=ExtResource("5_174w1")]
+
+[node name="BounceSoundManager" parent="." instance=ExtResource("6_ik0uc")]
+scale = Vector2(0.996828, 1.01987)
+
+[connection signal="area_entered" from="Node2D/Area2D" to="." method="_on_area_2d_area_entered"]

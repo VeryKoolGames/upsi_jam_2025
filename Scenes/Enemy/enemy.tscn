@@ -1,0 +1,38 @@
+[gd_scene load_steps=7 format=3 uid="uid://n8nx7vjj0lqy"]
+
+[ext_resource type="Script" uid="uid://1kn3uvwyb0py" path="res://Scripts/enemy.gd" id="1_d40jh"]
+[ext_resource type="Texture2D" uid="uid://dhii2obai8q5f" path="res://Sprites/RadialGradient.svg" id="2_gx76c"]
+[ext_resource type="Texture2D" uid="uid://c720fdlu5qorm" path="res://Sprites/Ennemy.svg" id="3_pqgp3"]
+[ext_resource type="PackedScene" uid="uid://dgulj44aqy4fb" path="res://Scenes/Particles/ParticlesEnemyDeath.tscn" id="4_4ad2a"]
+[ext_resource type="AudioStream" uid="uid://c2rcruviybe3y" path="res://Sounds/Damage.mp3" id="5_kiqm3"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1f0kj"]
+radius = 23.0
+
+[node name="Enemy" type="Node2D" node_paths=PackedStringArray("explosionParticles", "death_sound")]
+modulate = Color(1, 0, 0.0156863, 1)
+script = ExtResource("1_d40jh")
+explosionParticles = NodePath("Explosion_Particles")
+death_sound = NodePath("AudioStreamPlayer2D")
+
+[node name="Glow" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0.314)
+rotation = -1.5708
+scale = Vector2(0.496358, 0.496358)
+texture = ExtResource("2_gx76c")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_1f0kj")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 4.71239
+texture = ExtResource("3_pqgp3")
+
+[node name="Explosion_Particles" parent="." instance=ExtResource("4_4ad2a")]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_kiqm3")
+volume_db = -6.0

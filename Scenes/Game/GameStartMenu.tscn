@@ -1,0 +1,276 @@
+[gd_scene load_steps=21 format=3 uid="uid://bd2va6fqq64dt"]
+
+[ext_resource type="Texture2D" uid="uid://dudo877wy0wgq" path="res://Sprites/Carré.svg" id="1_gu3n6"]
+[ext_resource type="Shader" path="res://Shaders/Pattern.gdshader" id="2_6dlhk"]
+[ext_resource type="Texture2D" uid="uid://dllh45ivq315l" path="res://Sprites/GridPattern.png" id="3_56a87"]
+[ext_resource type="Texture2D" uid="uid://cnmv4e68cep7s" path="res://Sprites/BackGroundFade.png" id="4_kfpgq"]
+[ext_resource type="Texture2D" uid="uid://fdsk4ws4k5j0" path="res://Sprites/Cadre.png" id="5_jjnou"]
+[ext_resource type="Texture2D" uid="uid://d38226rqoridu" path="res://Sprites/BorderGradient.png" id="6_bar60"]
+[ext_resource type="PackedScene" uid="uid://f6ggcfwbj2is" path="res://Scenes/UI/UIMainMenuButtons.tscn" id="7_tnck2"]
+[ext_resource type="Texture2D" uid="uid://2bu2vcw3fce6" path="res://Sprites/Title.png" id="8_vqxfv"]
+[ext_resource type="Texture2D" uid="uid://btbbpiieap8rf" path="res://Sprites/VKG.png" id="9_2g8yx"]
+[ext_resource type="Texture2D" uid="uid://wd8u2x1ahwdw" path="res://Sprites/HowTo.png" id="10_n34ik"]
+[ext_resource type="PackedScene" uid="uid://cal7ivpltj6oo" path="res://Scenes/Utils/WorldEnvironment.tscn" id="11_tx061"]
+[ext_resource type="AudioStream" uid="uid://drkilniwp46bo" path="res://Sounds/ButtonPressed.mp3" id="12_1q6ib"]
+[ext_resource type="AudioStream" uid="uid://m347ow524jsl" path="res://Sounds/mainMusic.wav" id="13_u366u"]
+[ext_resource type="PackedScene" uid="uid://n8nx7vjj0lqy" path="res://Scenes/Enemy/enemy.tscn" id="14_7vwnx"]
+[ext_resource type="Script" uid="uid://0mqq0bbmitjn" path="res://Scripts/enemy_main_menu.gd" id="15_qrknt"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_trj04"]
+shader = ExtResource("2_6dlhk")
+shader_parameter/pattern_texture = ExtResource("3_56a87")
+shader_parameter/uv_scale = Vector2(14, 7)
+shader_parameter/speed = -0.2
+
+[sub_resource type="Animation" id="Animation_trj04"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1.01, 1.01)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_yhxw7"]
+resource_name = "TitleAnim"
+length = 4.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2, 4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1.01, 1.01), Vector2(1.07, 1.07), Vector2(1.01, 1.01)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2, 4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, -0.172788, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_16hvj"]
+_data = {
+&"RESET": SubResource("Animation_trj04"),
+&"TitleAnim": SubResource("Animation_yhxw7")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wyh8j"]
+size = Vector2(1899, 1052)
+
+[node name="MAIN_MENU" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(960, 540)
+
+[node name="BG" type="TextureRect" parent="."]
+modulate = Color(0.00784314, 0.121569, 0.215686, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_gu3n6")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_trj04")
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+
+[node name="BG2_Fade" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_kfpgq")
+
+[node name="Cadre_Billes" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_jjnou")
+
+[node name="BorderGradient" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_bar60")
+
+[node name="MarginContainer" parent="." node_paths=PackedStringArray("button_sound", "fade_overlay") instance=ExtResource("7_tnck2")]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -963.0
+offset_top = -358.0
+offset_right = -447.0
+offset_bottom = -28.0
+grow_horizontal = 2
+grow_vertical = 0
+button_sound = NodePath("../AudioStreamPlayer2D")
+fade_overlay = NodePath("../FadeOverlay")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("TextureRect")
+libraries = {
+&"": SubResource("AnimationLibrary_16hvj")
+}
+autoplay = "TitleAnim"
+
+[node name="TextureRect" type="TextureRect" parent="AnimationPlayer"]
+offset_left = 12.0
+offset_top = 11.0
+offset_right = 692.0
+offset_bottom = 484.0
+scale = Vector2(1.01, 1.01)
+pivot_offset = Vector2(340, 237)
+texture = ExtResource("8_vqxfv")
+
+[node name="LOGO" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -256.0
+offset_top = -171.0
+offset_right = -101.0
+offset_bottom = -115.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = ExtResource("9_2g8yx")
+
+[node name="HowTo" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -862.0
+offset_top = 83.0
+offset_right = 126.0
+offset_bottom = 349.0
+grow_horizontal = 0
+texture = ExtResource("10_n34ik")
+stretch_mode = 2
+
+[node name="WorldEnvironment" parent="." instance=ExtResource("11_tx061")]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("12_1q6ib")
+volume_db = -10.0
+
+[node name="FadeOverlay" type="ColorRect" parent="."]
+process_mode = 4
+modulate = Color(1, 1, 1, 0)
+z_index = 60
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.00392157, 0.117647, 0.219608, 1)
+
+[node name="AudioStreamPlayer2D2" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("13_u366u")
+volume_db = -10.0
+autoplay = true
+
+[node name="Enemies" type="Node2D" parent="."]
+
+[node name="Area2D" type="Area2D" parent="Enemies"]
+position = Vector2(958, 547)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemies/Area2D"]
+position = Vector2(-176.5, -84)
+shape = SubResource("RectangleShape2D_wyh8j")
+
+[node name="Enemy" parent="Enemies" node_paths=PackedStringArray("box") instance=ExtResource("14_7vwnx")]
+position = Vector2(1385, 605)
+script = ExtResource("15_qrknt")
+box = NodePath("../Area2D")
+speed = 200.0
+
+[node name="Enemy2" parent="Enemies" node_paths=PackedStringArray("box") instance=ExtResource("14_7vwnx")]
+position = Vector2(908, 752)
+script = ExtResource("15_qrknt")
+box = NodePath("../Area2D")
+speed = 200.0
+
+[node name="Enemy3" parent="Enemies" node_paths=PackedStringArray("box") instance=ExtResource("14_7vwnx")]
+position = Vector2(955, 447)
+script = ExtResource("15_qrknt")
+box = NodePath("../Area2D")
+speed = 200.0
+
+[node name="Enemy4" parent="Enemies" node_paths=PackedStringArray("box") instance=ExtResource("14_7vwnx")]
+position = Vector2(1260, 231)
+script = ExtResource("15_qrknt")
+box = NodePath("../Area2D")
+speed = 200.0
+
+[node name="Enemy5" parent="Enemies" node_paths=PackedStringArray("box") instance=ExtResource("14_7vwnx")]
+position = Vector2(471, 482)
+script = ExtResource("15_qrknt")
+box = NodePath("../Area2D")
+speed = 200.0
+
+[node name="Enemy6" parent="Enemies" node_paths=PackedStringArray("box") instance=ExtResource("14_7vwnx")]
+position = Vector2(539, 105)
+script = ExtResource("15_qrknt")
+box = NodePath("../Area2D")
+speed = 200.0
+
+[node name="Enemy7" parent="Enemies" node_paths=PackedStringArray("box") instance=ExtResource("14_7vwnx")]
+position = Vector2(314, 672)
+script = ExtResource("15_qrknt")
+box = NodePath("../Area2D")
+speed = 200.0
